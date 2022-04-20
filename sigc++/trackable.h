@@ -1,5 +1,5 @@
 /*
- * Copyright 2002, The libsigc++ Development Team
+ * Copyright 2002 - 2016, The libsigc++ Development Team
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -16,16 +16,20 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-#ifndef _SIGC_TRACKABLE_HPP_
-#define _SIGC_TRACKABLE_HPP_
+#ifndef SIGC_TRACKABLE_HPP
+#define SIGC_TRACKABLE_HPP
 #include <list>
 #include <sigc++config.h>
 
-namespace sigc {
+namespace sigc
+{
 
-namespace internal {
+struct notifiable;
 
-typedef void* (*func_destroy_notify) (void* data);
+namespace internal
+{
+
+using func_destroy_notify = void (*)(notifiable* data);
 
 /** Destroy notification callback.
  * A destroy notification callback consists of a data pointer and a
@@ -35,10 +39,11 @@ typedef void* (*func_destroy_notify) (void* data);
  */
 struct SIGC_API trackable_callback
 {
-  void* data_;
+  notifiable* data_;
   func_destroy_notify func_;
-  trackable_callback(void* data, func_destroy_notify func)
-    : data_(data), func_(func) {}
+  trackable_callback(notifiable* data, func_destroy_notify func) noexcept : data_(data), func_(func)
+  {
+  }
 };
 
 /** Callback list.
@@ -52,34 +57,42 @@ struct SIGC_API trackable_callback_list
   /** Add a callback function.
    * @param data Data that will be sent as a parameter to teh callback function.
    * @param func The callback function.
-   * 
+   *
    */
-  void add_callback(void* data, func_destroy_notify func);
+  void add_callback(notifiable* data, func_destroy_notify func);
 
   /** Remove the callback which has this data associated with it.
    * @param data The data that was given as a parameter to add_callback().
    */
-  void remove_callback(void* data);
+  void remove_callback(notifiable* data);
 
   /** This invokes all of the callback functions.
    */
   void clear();
 
-  trackable_callback_list()
-    : clearing_(false) {}
+  trackable_callback_list() : clearing_(false) {}
+
+  trackable_callback_list(const trackable_callback_list& src) = delete;
+  trackable_callback_list& operator=(const trackable_callback_list& src) = delete;
+  trackable_callback_list(trackable_callback_list&& src) = delete;
+  trackable_callback_list& operator=(trackable_callback_list&& src) = delete;
 
   /** This invokes all of the callback functions.
    */
   ~trackable_callback_list();
 
 private:
-  typedef std::list<trackable_callback> callback_list;
+  using callback_list = std::list<trackable_callback>;
   callback_list callbacks_;
-  bool          clearing_;
+  bool clearing_;
 };
 
 } /* namespace internal */
 
+struct SIGC_API notifiable
+{
+  using func_destroy_notify = internal::func_destroy_notify;
+};
 
 /** Base class for objects with auto-disconnection.
  * trackable must be inherited when objects shall automatically
@@ -101,34 +114,42 @@ private:
  *
  * @ingroup signal
  */
-struct SIGC_API trackable
+struct SIGC_API trackable : public notifiable
 {
-  trackable();
+  // Concerning noexcept specifications:
+  // libsigc++ does not have complete control of what happens when notify_callbacks()
+  // is called. It may throw an exception. A method that calls notify_callbacks()
+  // shall not be declared noexcept.
 
-  trackable(const trackable& src);
+  trackable() noexcept;
+
+  trackable(const trackable& src) noexcept;
+
+  trackable(trackable&& src) noexcept;
 
   trackable& operator=(const trackable& src);
 
+  trackable& operator=(trackable&& src) noexcept;
+
   ~trackable();
 
-  /*virtual ~trackable() {} */  /* we would need a virtual dtor for users
-                                   who insist on using "trackable*" as
-                                   pointer type for their own derived objects */
+  /*virtual ~trackable() {} */ /* we would need a virtual dtor for users
+                                  who insist on using "trackable*" as
+                                  pointer type for their own derived objects */
 
-  
-  typedef internal::func_destroy_notify func_destroy_notify;
-  
+  using func_destroy_notify = internal::func_destroy_notify;
+
   /** Add a callback that is executed (notified) when the trackable object is detroyed.
    * @param data Passed into func upon notification.
    * @param func Callback executed upon destruction of the object.
    */
-  void add_destroy_notify_callback(void* data, func_destroy_notify func) const;
+  void add_destroy_notify_callback(notifiable* data, func_destroy_notify func) const;
 
   /** Remove a callback previously installed with add_destroy_notify_callback().
    * The callback is not executed.
    * @param data Parameter passed into previous call to add_destroy_notify_callback().
    */
-  void remove_destroy_notify_callback(void* data) const;
+  void remove_destroy_notify_callback(notifiable* data) const;
 
   /// Execute and remove all previously installed callbacks.
   void notify_callbacks();
@@ -145,4 +166,4 @@ private:
 
 } /* namespace sigc */
 
-#endif /* _SIGC_TRACKABLE_HPP_ */
+#endif /* SIGC_TRACKABLE_HPP */

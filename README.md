@@ -1,31 +1,146 @@
-# dmlibsigcpp
+# libsigc++ : The Typesafe Callback Framework for C++
 
-Copyright (c) 2013-2018 brinkqiang (brink.qiang@gmail.com)
+## Introduction
 
-[![dmlibsigcpp](https://img.shields.io/badge/brinkqiang-dmlibsigcpp-blue.svg?style=flat-square)](https://github.com/brinkqiang/dmlibsigcpp)
-[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/brinkqiang/dmlibsigcpp/blob/master/LICENSE)
-[![blog](https://img.shields.io/badge/Author-Blog-7AD6FD.svg)](https://brinkqiang.github.io/)
-[![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.png)](https://github.com/brinkqiang)
-[![GitHub stars](https://img.shields.io/github/stars/brinkqiang/dmlibsigcpp.svg?label=Stars)](https://github.com/brinkqiang/dmlibsigcpp) 
-[![GitHub forks](https://img.shields.io/github/forks/brinkqiang/dmlibsigcpp.svg?label=Fork)](https://github.com/brinkqiang/dmlibsigcpp)
+libsigc++ implements a typesafe callback system for standard C++. It
+allows you to define signals and to connect those signals to any
+callback function, either global or a member function, regardless of
+whether it is static or virtual.
 
-## Build status
-| [Linux][lin-link] | [Mac][mac-link] | [Windows][win-link] |
-| :---------------: | :----------------: | :-----------------: |
-| ![lin-badge]      | ![mac-badge]       | ![win-badge]        |
+libsigc++ is used by gtkmm to wrap the GTK+ signal system. It does not
+depend on GTK+ or gtkmm.
 
-[lin-badge]: https://github.com/brinkqiang/dmlibsigcpp/workflows/linux/badge.svg "linux build status"
-[lin-link]:  https://github.com/brinkqiang/dmlibsigcpp/actions/workflows/linux.yml "linux build status"
-[mac-badge]: https://github.com/brinkqiang/dmlibsigcpp/workflows/mac/badge.svg "mac build status"
-[mac-link]:  https://github.com/brinkqiang/dmlibsigcpp/actions/workflows/mac.yml "mac build status"
-[win-badge]: https://github.com/brinkqiang/dmlibsigcpp/workflows/win/badge.svg "win build status"
-[win-link]:  https://github.com/brinkqiang/dmlibsigcpp/actions/workflows/win.yml "win build status"
+See the [libsigc++ web site](https://libsigcplusplus.github.io/libsigcplusplus/)
 
-## Intro
-dmlibsigcpp mod by libsigc++
-```cpp
+## License
+
+Distribution of library and components is under the LGPL as listed in the
+file COPYING. Examples and tests are Public Domain.
+
+## Compatibility
+
+Compatible compilers must support C++17, such as the decltype(auto) specifier
+(from C++14) and std::invoke().
+
+## Build
+
+Whenever possible, you should use the official binary packages approved by the
+supplier of your operating system, such as your Linux distribution. For
+instance, Ubuntu Linux, Debian Linux and Fedora Linux have official libsigc++
+packages.
+
+## Building from a release tarball
+
+Building from the [libsigc++ release tarball](https://github.com/libsigcplusplus/libsigcplusplus/releases) is easier than building from git.
+
+It's easiest to build with Meson, if the tarball was made with Meson,
+and to build with Autotools, if the tarball was made with Autotools.
+Then you don't have to use maintainer-mode.
+
+How do you know how the tarball was made? If it was made with Meson,
+it contains files in untracked/build_scripts/, untracked/docs/ and possibly
+other subdirectories of untracked/.
+
+### Building from a tarball with Meson
+
+Don't call the builddir 'build'. There is a directory called 'build' with
+files used by Autotools.
+
+For instance:
+```sh
+# If the tarball was made with Autotools, and you want to rebuild the reference
+# documentation, you must enable maintainer-mode:
+$ meson --prefix=/usr/local --libdir=lib -Dmaintainer-mode=true your_builddir .
+
+# If the tarball was made with Meson, or you don't want to rebuild the docs:
+$ meson --prefix=/usr/local --libdir=lib your_builddir .
+
+# then:
+$ cd your_builddir
+$ ninja
+$ ninja install
+# You can run the tests like so:
+$ ninja test
 ```
-## Contacts
-[![Join the chat](https://badges.gitter.im/brinkqiang/dmlibsigcpp/Lobby.svg)](https://gitter.im/brinkqiang/dmlibsigcpp)
 
-## Thanks
+### Building from a tarball with Autotools
+
+For instance:
+```sh
+# If the tarball was made with Autotools:
+$ ./configure --prefix=/usr/local
+
+# If the tarball was made with Meson, you must enable maintainer-mode:
+$ ./autogen.sh --prefix=/usr/local
+
+# then:
+$ make
+$ make install
+# You can build the examples and tests, and run the tests, like so:
+$ make check
+```
+
+## Building from git
+
+Building from git can be difficult so you should prefer building from a release
+tarball unless you need to work on the libsigc++ code itself.
+
+jhbuild can be a good help. See the [jhbuild repo](https://gitlab.gnome.org/GNOME/jhbuild)
+and the [jhbuild wiki](https://wiki.gnome.org/Projects/Jhbuild).
+
+### Building from git with Meson
+
+You must have Meson properly installed (meson, ninja, etc) and you
+will also need [mm-common](https://gitlab.gnome.org/GNOME/mm-common/)
+version 1.0.0 or higher.
+
+Maintainer-mode is enabled by default when you build from a git clone.
+
+Don't call the builddir 'build'. There is a directory called 'build' with
+files used by Autotools.
+
+```sh
+$ meson --prefix=/usr/local --libdir=lib your_builddir .
+$ cd your_builddir
+$ ninja
+$ ninja install
+# You can run the tests like so:
+$ ninja test
+# You can create a tarball like so:
+$ ninja dist
+```
+
+### Building from git with Autotools
+
+You must have Autotools properly installed (autoconf, automake, etc) and you
+will also need [mm-common](https://gitlab.gnome.org/GNOME/mm-common/).
+
+```sh
+$ ./autogen.sh --prefix=/usr/local
+$ make
+$ make install
+# You can build the examples and tests, and run the tests, like so:
+$ make check
+# You can create a tarball like so:
+$ make distcheck
+# or
+$ make dist
+```
+
+### Building from git with CMake
+
+The CMake build is not used very often by the libsigc++ developers, but it
+should work, and we would welcome improvements.
+
+For instance:
+
+```sh
+$ mkdir libsigcplusplus_build
+$ cd libsigcplusplus_build
+$ cmake path/to/libsigcplusplus
+$ make
+```
+
+## Building with Microsoft Visual C++
+
+See MSVC_NMake/README.txt.

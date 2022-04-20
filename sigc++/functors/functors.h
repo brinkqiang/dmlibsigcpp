@@ -1,6 +1,4 @@
-// -*- c++ -*-
-/*
- * Copyright 2002, The libsigc++ Development Team
+/*  Copyright 2002 - 2016, The libsigc++ Development Team
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -17,11 +15,11 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-#ifndef _SIGC_FUNCTOR_HPP_
-#define _SIGC_FUNCTOR_HPP_
+#ifndef SIGC_FUNCTOR_HPP
+#define SIGC_FUNCTOR_HPP
 
 #include <sigc++/functors/slot.h>
 #include <sigc++/functors/ptr_fun.h>
 #include <sigc++/functors/mem_fun.h>
 
-#endif /* _SIGC_FUNCTOR_HPP_ */
+#endif /* SIGC_FUNCTOR_HPP */

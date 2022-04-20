@@ -1,0 +1,5 @@
+<map id="sigc::hide_functor&lt; I_location, T_functor &gt;" name="sigc::hide_functor&lt; I_location, T_functor &gt;">
+<area shape="rect" id="node1" title="Adaptor that adds a dummy parameter to the wrapped functor." alt="" coords="9,155,193,196"/>
+<area shape="rect" id="node2" href="$structsigc_1_1adapts.html" title="Base type for adaptors." alt="" coords="5,80,196,107"/>
+<area shape="rect" id="node3" href="$structsigc_1_1adaptor__base.html" title="A hint to the compiler." alt="" coords="29,5,173,32"/>
+</map>

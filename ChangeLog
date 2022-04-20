@@ -1,1880 +1,1348 @@
-2.0.18:
+2022-02-11  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2007-08-31  Murray Cumming  <murrayc@murrayc.com>
+  3.2.0
 
-	* tests/test_copy_invalid_slot.cc: Added some includes to 
-	fix the build in some environments, such as when using Sun CC.
-	Thanks to Vladimir Marek in bug #469872.
+2022-02-11  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2006-06-20  Murray Cumming  <murrayc@murrayc.com>
+  meson.build: Specify 'check' option in run_command()
 
-	* sigc++/adaptors/macros/bind.h.m4:
-	* sigc++/adaptors/macros/retype.h.m4:
-	* sigc++/functors/macros/functor_trait.h.m4:
-	* sigc++/functors/macros/slot.h.m4:
-	* sigc++/macros/retype.h.m4:
-	* sigc++/macros/signal.h.m4: Revert the previous changes, because none is 
-	used in the exported symbol names from gtkmm, so this would break the ABI 
-	of gtkmm.
+  The default value will be changed in future Meson releases.
+  
+  Don't use deprecated python3.path() and execute(..., gui_app: ...).
 
-2006-05-26  Régis Duchesne <hpreg@vmware.com>
+2022-02-11  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++/adaptors/macros/bind.h.m4:
-	* sigc++/adaptors/macros/retype.h.m4:
-	* sigc++/functors/macros/functor_trait.h.m4:
-	* sigc++/functors/macros/slot.h.m4:
-	* sigc++/macros/retype.h.m4:
-	* sigc++/macros/signal.h.m4:
-	Renamed 'nil' to 'none' to allow an Objective-C++ compiler to compile
-	the library header files.
+  docs/docs/reference/Doxyfile.in: Remove obsolete entry
 
-2.0.17:
+2022-01-31  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2005-12-20  Murray Cumming  <murrayc@murrayc.com>
+  tools/tutorial-custom-cmd.py: Add comment about used stylesheet
 
-	* sigc++/macros/signal.h.m4: Make all operator--() methods 
-	return by reference, like the operator++() methods. 
-	Bug #304402 from John Profic.
+2022-01-09  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-This is the libsigc-2-0 branch, for maintenance of libsigc++ 2.0.
-API/ABI-compatible API-addition happens in the HEAD branch.
+  CI: Install docbook-xsl where documentation is built
 
-2005-12-01  Murray Cumming <murrayc@murrayc.com>
+  If docbook-xsl is installed, the xsltproc command reads stylesheets
+  from local files instead of from http://docbook.sourceforge.net.
+  Faster and safer. Reading from docbook.sourceforge.net sometimes fails.
+  
+  Remove test with g++-7.
 
-	* sigc++/functors/slot_base.cc: 
-	slot_base::disconnect(): Set call_ to 0, 
-	to invalidate the slot, even if parent_ is 0. 
-	I think parent_ is, for instance, a signal, but 
-	disconnect should still work on a slot that is not 
-	connected to a signal, because a slot can be invoked 
-	directly.
-	Fixes bug #311057 from James Lin.
+2021-12-29  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2005-12-01  Murray Cumming <murrayc@murrayc.com>
+  docs: Fix links to sigc::slot and sigc::signal
 
-	* tests/Makefile.am:
-	* tests/test_slot_disconnect.cc: Added test 
-	case from bug #311057.
+  Doxygen creates links to sigc::slot and sigc::signal only if
+  template parameters are included in the documentation.
+  sigc::slot<T_return(T_arg...)>, sigc::signal<T_return(T_arg...)>.
 
-2005-11-16  Philipp Berndt  <philipp.berndt@gmx.net>
+2021-12-26  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++/adaptors/macros/exception_catch.h.m4: Make member
-	exception_catch_functor<T_functor, T_catcher, void>::catcher_
-	public so that it can be accessed by visit_each()
-	(bug fixed for generalization on 2004-11-06)
+  ptr_fun(), mem_fun() docs: Remove left-overs from sigc++-2.0
 
-2.0.16:
+  Some documentation of template parameters described sigc++-2.0
+  rather than sigc++-3.0.
 
-2005-08-01  Neal E. Coombes  <nealc@trdlnk.com>
+2021-12-26  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
- 	* sigc++/signal_base.h: Updated the documentation for temp_slot_list
- 	as requested in bug #303896.
+  Reformat to suit clang-format-12
 
-2005-08-01  Murray Cumming  <murrayc@murrayc.com>
+2021-12-26  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++/adaptors/hide.h.m4: Added missing 
-	) in call to sun_forte_workaround(), fixing
-	build on SUN Forte 5.5. Bug #312020.
+  CI: Use clang-format-12
 
-2005-08-19  Bruno Martinez <brunom@fing.edu.uy>
+  and call clang-format directly without using autogen.sh + make.
 
-	* sigc++/type_traits.h: Renamed
-	::sigc::is_base_and_derived::internal to 
-	::sigc::is_base_and_derived::internal_class
-	in order to avoid conflict with
-	namespace internal. 
+2021-12-23  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2005-07-13  Murray Cumming  <murrayc@murrayc.com>
+  Second attempt to suit clang-format 10
 
-	* docs/manual/libsigc_manual.xml: Correct mentions of 
-	1.2 stuff instead of 2.0. Patch in bug #310213 from 
-	pebble.org.uk.  
+  Irritating that different versions of clang-format don't agree on what's
+  an acceptable format, and that clang-format 10 is not easily installable
+  on Ubuntu 21.10.
 
-2005-07-13  Murray Cumming  <murrayc@murrayc.com>
+2021-12-23  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* docs/manual/libsigc_manual.xml: Fixed typo 
-	found by Antonio Coralles.
+  Format source code to suit clang-format
 
-2005-07-09  Murray Cumming  <murrayc@murrayc.com>
+  * sigc++/functors/mem_fun.h:
+  * sigc++/functors/ptr_fun.h:
+  * tests/test_rvalue_ref.cc: Reformated with clang-format 13,
+  but CI uses clang-format 10.
+  
+  Also add #include <utility> where std::forward was added. Doesn't seem
+  to be necessary with g++ or clang++. Mostly a precaution.
 
-	* sigc++/macros/signal.h.m4: Did the same (see 
-	last commit) for slot_const_iterator and 
-	slot_iterator_buf.
+2021-12-23  Slava Andrejev  <vyac.andrejev@gmail.com>
 
-2005-07-09  Murray Cumming  <murrayc@murrayc.com>
+  Add missing perfect forwarding in mem_functor and pointer_functor
 
-	* sigc++/macros/signal.h.m4: slot_iterator:
-	operator--() now returns value, not reference, like 
-	operator++() already did. This caused crashes when 
-	using --no-inline with g++. Bug #308651 by 
-	Michael Andres.
+  This is a missed addition to the commit that allowed rvalue references
+  in slot parameters.
 
-2.0.15:
+2021-12-23  Slava Andrejev  <vyac.andrejev@gmail.com>
 
-2005-07-04  Philip Langdale  <plangdale@vmware.com>
+  Add missing perfect forwarding in bound_mem_functor::operator()
 
-	* sigc++/adaptors/macros/compose.h.m4: Add a setter typedef to 
-	compose*_functor and use it instead of the (incorrect) getter 
-	typedef in the compose* specialization of visit_each<>().
-	This corrects the lifetime management of slots created with 
-	compose(). Bug #308433.
+  This is a missed addition to the commit that allowed rvalue references
+  in slot parameters.
 
-2005-06-13  Marek Rouchal  <marek.rouchal@infineon.com>
+2021-12-19  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* tests/test_deduce_result_type.cc: Specify int return type 
-	for main(), to be more ISO C++ compliant. Bug #307478.
+  CMakeLists.txt: Update sigc++ version to 3.0.7
 
-2005-06-11  Andris Pavenis <pavenis@latnet.lv>
+  Should have been done when configure.ac and meson.build were updated.
 
-	* sigc++/adaptors/lambda/macros/base.h.m4:
-	* sigc++/adaptors/lambda/macros/select.h.m4
-	* sigc++/adaptors/macros/hide.h.m4: Specify only a type (not a
-	parameter name) for unused member function parameters
+2021-11-09  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2005-06-12  Paul Pogonyshev  <pogonyshev@gmx.net>
+  NMake Makefiles: Support building with VS2022
 
-	* configure.ac: 
-	* scripts/cxx.m4: 
-	* sigc++config.h.in: Add test for whether the compiler allows
-	referencing to member functions of the class/structure being
-	declared from a definition of a static member variable.
-	Supposedly a generic solution for GCC 3.2 compilation problems.
-
-	* sigc++/type_traits.h: Define SIGC_WRAP_IS_BASE_CLASS_ based on
-	results of the above test.
-	(struct is_base_and_derived): Wrap up is_base_class_() functions
-	in an internal class if SIGC_WRAP_IS_BASE_CLASS_ is defined.
-
-2005-06-10  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/adaptors/macros/bind.h.m4:
-	* sigc++/functors/macros/slot.h.m4:
-	* sigc++/macros/signal.h.m4: Use CALL_SIZE instead of 
-	hard-coded 7s and 6s.
-
-2.0.14:
-
-2005-06-10  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/visit_each.h: Make the 
-        limit_derived_target::with_type inner class an outer class, 
-	to satisfy the SUN CC 5.7 compiler, though I think it is a 
-	compiler bug. Bug #302098 has the test case.
-
-2.0.13:
-
-2005-06-07  Murray Cumming <murrayc@murrayc.com>
-
-	* tests/test_compatibility.cc: Specify the actual class when 
-	using test_int(), instead of the derived class, to fix the build 
-	on SUN Forte CC 5.5. Patch from Friedemann Kleint in 
-	Bug #305647
-
-2005-06-07  Murray Cumming <murrayc@murrayc.com>
-
-	* sigc++/macros/signal.h.m4: signal_emit::emit(): Use scope to 
-	ensure a certain order of destruction of the member variables, to 
-	avoid a leak on MSVC++. Patch by Andreas Ames in Bug #306249.
-
-2005-06-07  Murray Cumming <murrayc@murrayc.com>
-
-	* sigc++/macros/signal.h.m4: Added comments about commenting-out
-        SIGC_TYPEDEF_REDEFINE_ALLOWED when using SUN Forte CC 5.7, 
-        because I can not seem to create a test for it.
-
-2005-06-07  Murray Cumming <murrayc@murrayc.com>
-
-	* configure.ac:
-	* scripts/cxx_std.m4:
-	* sigc++/macros/signal.h.m4:
-	* sigc++config.h.in: Added check for 
-	the non-standard SUN Forte reverse_iterator<>,
-	and used it. This is based on the same stuff in 
-	gtkmm.
-
-2005-06-07  Murray Cumming <murrayc@murrayc.com>
-
-	* sigc++/visit_each.h: limit_derived_target(): Just some whitespace 
-        changes.
-
-2005-05-16  Neal E. Coombes  <nealc@trdlnk.com>
- 	
-	* sigc++/signal_base.h:  Modified temp_slot_list to be a temporary view
-	into a slot list.  Instead of emptying the original it now simply tacks
-	a placeholder to the end of the original.  It then uses this as it's
-	'end' iterator.  This should allow for conscious recursiveness, as well
-	as inserting a slot to any position in the slot list during emittion.
-	See bug #303896.
-
-2005-06-04  Friedemann Kleint <kleint@bifab.de>
-
-	* sigc++/macros/limit_reference.h.m4: 
-	visit_each() template specializations: 
-	Mention the bool I_derives_trackable 
-	template type, to fix the build on Solaris 
-	Forte 5.5.
-
-2.0.12:
-
-2005-05-06  Régis Duchesne <hpreg@vmware.com>
-
-	* sigc++/macros/limit_reference.h.m4 (added):
-	* sigc++/Makefile.am:
-	New class that just stores a reference, and makes sure that if the
-	reference derives from trackable, then the trackable reference will be
-	used instead of the derived reference in visit_each().
-	* sigc++/functors/macros/mem_fun.h.m4: Better fix for bug #169225 by
-	Régis Duchesne and Christian Hammond, based on the new limit_reference
-	class.
-	* sigc++/adaptors/bound_argument.h (added): New class (built upon the
-	new limit_reference class) that handles all 3 kinds of bound arguments:
-	by value, by reference, and by constant reference. References are
-	unwrapped in the bound_argument's constructor.
-	* sigc++/adaptors/macros/bind.h.m4: Fix for bug #302327 by Régis
-	Duchesne. Bound arguments now need to know whether they are passed by
-	reference or not. So bind() now builds bind_functor instances using
-	'reference_wrapper<Foo>' types, instead of 'Foo &' types. The
-	bind_functor code is modified to compensate.
-	* sigc++/adaptors/macros/bind_return.h.m4: Similar fix for a similar
-	bug (unfiled) with bound return arguments.
-	* sigc++/reference_wrapper.h:
-	* sigc++/type_traits.h:
-	The reference_wrapper class is only used in bound_argument.h. Put
-	correct but unused code under #if 0.
-	* sigc++/adaptors/lambda/base.h: This file needs reference_wrapper.h,
-	but was incorrectly relying on type_traits.h to include it.
-	* tests/Makefile.am:
-	* tests/test_virtualbase_delete.cc (deleted):
-	* tests/test_virtualbase_delete_ref_param.cc (deleted):
-	* tests/test_limit_reference.cc (added):
-	Replaced test_virtualbase_delete*.cc with a simpler
-	test_limit_reference.cc which checks for all 3 aspects of the same bug
-	in one file.
-	* tests/test_bind_ref.cc: Slots must use 'Foo &' types. We were lucky
-	this broken usage worked before this change. The change in
-	type_traits.h made this bug obvious, by preventing the code to compile.
-	* tests/test_bind_return.cc: After my change, bind() and bind_return()
-	must use 'reference_wrapper<Foo>' types.
-	* tests/test_custom.cc: Made this test a no-op (so it does not perturb
-	'make check' on released versions of the library) and made it a
-	template ready to be modified by hackers.
-
-2005-05-01  Murray Cumming <murrayc@murrayc.com>
-
-	* sigc++/functors/slot_base.cc: 
-	slot_base::slot_base(src): If the source 
-	slot_base has a null rep->call_, meaning that the 
-	slot is invalid, just return a default-constructed 
-	slot, to prevent the crash shown in 
-	tests/tests_copy_invalid_slot.cc. Bug #302515 by 
-	Régis Duchesne.
-
-2005-05-01  Murray Cumming <murrayc@murrayc.com>
-
-	* sigc++/functors/macros/mem_fun.h.m4: bound_*<>: 
-	Add a new is_base_and_derived<sigc::trackable> 
-	parameter to the template and thereby provide a 
-	specialization for T_Obj types that derive from 
-	sigc::trackable. This prevents a crash when casting 
-	from the derived type to sigc::trackable after the 
-	derived destructor has run. This cast can sometimes 
-	fail when using multiple inheritance, at least with 
-	g++. Bug #169225 by Régis Duchesne and Christian 
-	Hammond.
-	* sigc++/type_traits.h: Add documenation for 
-	the internal is_base_and_derived<> template, which 
-	allows us to specialize other templates for certain 
-	template types.
-
-2005-04-28  Murray Cumming <murrayc@murrayc.com>
-
-	* sigc++/type_traits.h: Added comments for users of 
-	g++ 3.2.
-
-2005-04-28  Murray Cumming <murrayc@murrayc.com>
-
-	* tests/Makefile.am:
-	* tests/test_virtualbase_delete.cc: Added 
-	simplified test case from bug #169225. We have a patch 
-	to make this succeed but I am not ready to commit it 
-	just yet.
-
-2005-04-27  Murray Cumming <murrayc@murrayc.com>
-
-	* tests/Makefile.am:
-	* tests/test_custom.cc:
-	Added a place to put extra test code, so I don't have 
-	to keep installing my crazy libsigc++ versions.
-
-2005-04-27  Murray Cumming <murrayc@murrayc.com>
-
-	* sigc++/visit_each.h: Revert back to the non-explicit 
-	template call, because we can not specify the 
-	template specialization so easily, because the 
-	specializations have different numbers of types.
-	* tests/Makefile/am:
-	* tests/test_bind_ref.cc: Add a simple test only for 
-	sigc::ref disconnection.
-
-2005-04-26  Murray Cumming <murrayc@murrayc.com>
-
-	* sigc++/visit_each.h: Use the explicit template 
-	specialization, needed for Tru64 and AIX compilers. 
-	This causes a crash in some uses of sigc::ref() 
-        (when using g++ 3.3.4 or 3.3.5 , but not with 3.4) but 
-	seems to fix a crash in some uses of multiple inheritance 
-	(bug #169225).
-	* tests/test_bind.cc: Comment out the crashing (not with 
-	g++ 3.4) use of sigc::ref() with an explanatory comment.
-	
-2.0.11:
-
-2005-03-09  Cedric Gustin <cedric.gustin@swing.be>
-
-	* Makefile.am: Moved MSVC_Net2003 directory to SUBDIRS.
-	* MSVC_Net2003/Makefile.am: Added blank.cpp to EXTRA_DIST.
-	* MSVC_Net2003/libsigc++2_msvcNet2003.sln: Removed
-	test_accumulated and test_lambda projects as the tests are
-	disabled in the standard, configure-based build.
-	* MSVC_Net2003/MSVC_Net2003/libsigc++2_msvcNet2003.vcproj:
-	Generate a PDB file in the Debug target.
-
-2005-03-05  Murray Cumming  <murrayc@murrayc.com>
-
-	* docs/website/stable.html: Mention actual supported compilers.
-	* docs/website/docs.html: Removed broken examples links. Change 
-	reference link to the reference overview page.
-
-2005-02-23  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/functors/slot_base.h: Make slot_base::operator=() public, to 
-	fix the build with SUN Forte C++ 5.5 and Tru64.
-
-2.0.10:
-
-2005-02-20  Murray Cumming  <murrayc@murrayc.com>
-
-	* tests/test_slot.cc, test_disconnect.cc: #included <new> to avoid 
-	an unresolved symbol error with the Tru64 compiler. Solution found by 
-	Tim Mooney in bug #161503.
-
-2005-02-20  Martin Schulze  <mschulze@cvs.gnome.org>
-
-	* sigc++/signal_base.h: Add some documentation.
-
-2005-02-20  Martin Schulze  <mschulze@cvs.gnome.org>
-
-	* sigc++/signal_base.cc: Reset deferred_ flag to false in
-	signal_impl::sweep() (Neal E. Coombes). Partly fixes bug #167714.
-
-2005-02-11  Martin Schulze  <mschulze@cvs.gnome.org>
-
-	* docs/manual/Makefile.am: Set the correct group in post-html.
-
-2005-02-11  Murray Cumming  <murrayc@murrayc.com>
-
-	* docs/website/doc.shtml: Fix typo in url for reference docs. Found by 
-	James Lin.
-
-2005-02-06  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/signal_base.h: temp_slot_list::begin(), end(): Actually 
-	return the iterators.
-
-2005-02-03  Neal E. Coombes <nealc@trdlnk.com>
-
-	* sigc++/signal_base.h: Add temp_slot_list struct to facilitate
-	allowing new connections to a signal during an emittion without
-	affecting that emittion.
-	* sigc++/macros/signal.h.m4: Use the new struct temp_slot_list to
-	prevent connections made during an emittion from being called in the
-	same emittion (which has the potential of causing things like
-	infinite loops).  This guarantees an emittion will be finite, as well
-	as maintaining any order of emittion guarantees that may have already
-	been in place.
-	
-2.0.9:
-
-2005-02-02  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/visit_each.h: visit_each_type(): Reverted the change, so that 
-	we do not specify the template types ot visit_each<>(), because it 
-	crashes on g++ 3.3.4 (but not g++ 3.4.2). Added a comment telling users 
-	of AIX (and maybe IRIX MipsPro and Tru64) to use the alternative version 
-	if they have compilation problems.
-
-2005-02-01  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/adapators/macros/base.h.m4: Add sigc::var<>() documentation, 
-	from Roger Ferrer Ibáñez in bug #149483.
-
-2005-02-01  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/adaptors/macros/compose.h.m4: In the template specializations 
-	of visit_each(): As before, specify the specific other template 
-	specializations of visit_each that we use. Needed by AIX.
-	* tests/Makefile.am: Reenabled most tests, because AIX can now 
-	build them.
-
-2005-02-01  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/visit_each.h: visit_each_type(): Specify the specific 
-	template specialization of visit_each<>() to use. The AIX compiler, 
-	and possibly the Tru64 compiler, need this extra hint.
-
-2005-02-01  Murray Cumming  <murrayc@murrayc.com>
-
-	* bind.h.m4: Define bind_functor::operator() inline because the AIX 
-	compiler/linker sometimes fails to find it when it is defined 
-	outside of the class.
-
-2.0.8:
-
-2005-01-30  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/type_traits.h: is_base_and_derived: Added 
-	avoid_gcc3_warning_(), to avoid an incorrect warning when using 
-	g++ 3.3.5
-
-2005-01-28  Liza Klerck   <liza@trdlnk.com>
-
-	* sigc++/functors/macros/mem_fun.h.m4: Add a sigc:: namespace 
-	prefix to the nested use of visit_each(), to avoid ambiguity when 
-	using 2 versions of the libsigc++ API inside different namespace.
-	
-2005-01-27  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/adaptors/macros/adaptor_trait.h.m4: Add a sigc:: namespace 
-	prefix to the nested use of visit_each(), to avoid ambiguity when 
-	using 2 versions of the libsigc++ API inside different namespace, 
-	which is not very advisable anyway. Bug #165222 from 
-	liza at trdlnk.com.
-
-2.0.7:
-
-2005-01-24  Cedric Gustin <cedric.gustin@swing.be>
-
-	* sigc++config.h.in : Moved the SIGC_USING_STD macro definition
-	out of the SIGC_CONFIGURE section. We also need it for MSVC.
-	* MSVC_Net2003/.cvsignore : Added .def and .aps files
-	* MSVC_Net2003/Makefile.am: Rewrote rule for local copy of
-	sigc++config.h (required for 'make distcheck').
-	* MSVC_Net2003/libsigc++2_msvcNet2003.sln: Added test_retype and
-	test_disconnect_during_emit tests.
-	* MSVC_Net2003/tests/test_disconnect_during_emit/*,
-	MSVC_Net2003/tests/test_retype/*: Initial commit.
-
-2005-01-21  Murray Cumming  <murrayc@murrayc.com>
-
-	* tests/: Disabled the test_accumulator, test_bind, and test_compose 
-	tests, and part of test_mem_fun because the AIX xlC compiler can not 
-	build them, but it can still do most things, including the examples.
-	See the comments in tests/Makefile.am.
-
-2005-01-21  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/adaptors/bind.h.m4: non-member operator()(): Specify the 
-	extra nil arguments in the templated class name prefix. Oddly, the 
-	AIX xlC compiler says that the type of the first parameter does not 
-	match the template if you don't do this.
-
-2005-01-21  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/type_traits.h: is_base_and_derived struct: Move the 
-	is_base_class_() functions out of the inner class, because the AIX 
-	xlC compiler does not like that - see the comments in the code.
-	* sigc++/adaptors/bind.h.m4: Add the extra nil template types to 
-	the template specializations, as in slot and signal.
-	
-2005-01-21  Murray Cumming  <murrayc@murrayc.com>
-
-	* sigc++/functors/macros/slot.h.m4, sigc++/macros/signal.h.m4: 
-	slot and signal template specialization for 
-	various numbers of template args: In the class slot line, specify 
-	all the remaining template types as null, instead of expecting the 
-	compiler to guess them in itself. This partly fixes the build on 
-	AIX with the xlC compiler. Bug #164685.
+  Make the VS2019 builds distinct from VS2022 builds.
 
-2005-01-19  Murray Cumming  <murrayc@murrayc.com>
+2021-09-27  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++/type_traits: struct is_base_and_derived: Make the test inner 
-	struct a friend, so that it can use the big inner struct. This is 
-	required by the Tru64 compiler.
-	* sigc++/adaptors/lambda/base.h: Put the unwrap_lambda_value() 
-	definitions at the top, because Tru64 (understandably) needs them to 
-	be declared before use.
-
-2005-01-19  Murray Cumming  <murrayc@murrayc.com>
-
-	* scripts/: Added cxx_std.m4, with a test copied from 
-	glibmm/scripts/cxx_std.m4 to check if the compiler has the std:: 
-	namespace.
-	* sigcconfig.h: #undef the new #define and add SIGC_USING_STD(), 
-	like GLIBMM_USING_STD, to put stuff in the std:: namespace when it 
-	is not there already,
-	* configure.in: Used the new test.
-	* tests/*: Uses SIG_USING_STD() for every std:: thing that we use.
-	This is needed by the Tru64 and HP-UX compilers when using their 
-	defaults.
+  docs/docs/manual, Meson config: Check if xmllint can be used
 
-2005-01-19  Murray Cumming  <murrayc@murrayc.com>
+2021-09-24  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* configure.in: AC_INIT(): Provide the extra tarball name parameter, 
-	so that it does not create a libsigc--- tarball.
+  CI, Meson build: Install packages for validating XML file
 
-2005-01-19  Murray Cumming  <murrayc@murrayc.com>
+  libxml2-utils and docbook5-xml are necessary in order to validate
+  the XML file in docs/docs/manual/.
 
-	* configure.in: AC_INIT(): Use libsigc++ instead of sigc++, attempting 
-	to get the correct tarball name.
+2021-09-19  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2005-01-18  Murray Cumming  <murrayc@murrayc.com>
+  docs/docs/manual: Upgrade from DocBook 4.1 to DocBook 5.0
 
-	* configure.in: Used the autoconf 2.93 and AM_INIT_AUTOMAKE() 
-	technique to specify ustar format for the tarball, to prevent files 
-	with long file names from appearing at the top of the tarball. 
-	Based on the same fix in gtkmm 2.6.
+2021-08-22  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2005-01-18  Murray Cumming  <murrayc@murrayc.com>
+  Require meson >= 0.54.0
 
-	* sigc++/functors/macros/slot_h.m4: Specify the base class when 
-	using the rep_ member variable. This stops the HP-UX aCC compiler 
-	from saying that a Nonstatic member  is referenced in a nested class, 
-	local class or static member initializer. Bug #150719.
+2021-08-17  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2005-01-18  Murray Cumming  <murrayc@murrayc.com>
+  meson.build: Check if Perl is required for building documentation
 
-	* Bug #159597 - patch from e97_far at e.kth.se to replace C-style 
-	casts with reinterpret_cast<> and static_cast<> to avoid warnings.
+  New versions of mm-common use the Python scripts doc_postprocess.py
+  and doc_install.py instead of the Perl scripts doc-postprocess.pl and
+  doc-install.pl when documentation is built.
 
-2005-01-17  Murray Cumming  <murrayc@murrayc.com>
+2021-07-04  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* docs/manual/Makefile.am: Specifying html/index.html instead of 
-	just the html directory as a target seems to fix distcheck problems.
-	I can also now confirm that the install works on solaris, when using 
-	gmake, though not when using make.
+  docs: Remove some obsolete files
 
-2005-01-17  Murray Cumming  <murrayc@murrayc.com>
+  Remove docs/docs/manual/README, docs/docs/reference/README
+  and docs/Makefile.
 
-	* MSVC_Net2004/Makefile.am: Add built files to DISTCLEANFILES to fix 
-	the distcheck.
-	* docs/reference/Makefile.am, manual/Makefile.am: Specify $srcdir in 
-	paths, to fix distcheck of the manual, and maybe fix install problems 
-	on Solaris.
+2021-07-04  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2005-01-11  Murray Cumming  <murrayc@murrayc.com>
+  docs/docs/manual: Add some formatting when html files are generated
 
-	* docs/website/stable.html: Updated the text about binary packages.
-	* docs/website/docs.html: Link to the 2.0 documentation instead of the 
-	1.2 documentation.
+  making it slightly more similar to gtkmm-documentation and libxml++.
+  In Autotools builds, don't distribute the empty manual/README file.
 
-2004-12-17  GregSchussman  <schussman@slac.stanford.edu>
- 
- 	* glossary.shtml: Clean up punctuation, make definitions complete
-        sentences, and add clarifications for certain definitions according to
-        what Murray Cumming's suggestions and answers to my questions.
- 	Bug #161580.
+2021-07-04  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2005-01-11  Murray Cumming  <murrayc@murrayc.com>
+  docs/docs/manual/libsigc_manual.xml: Add id on <sect1> elements
 
-	* docs/: Added manual, copied from the libsigc++-1.2 cvs module, 
-	and updated it for the new 2.0 API.
+2021-06-02  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2005-01-11  Murray Cumming  <murrayc@murrayc.com>
+  test_rvalue_ref: Small fixes
 
-	* docs/: Added website, copied from the libsigc++-1.2 cvs module.
-	We will use it from here from now on.
+  * tests/.gitignore:
+  * tests/CMakeLists.txt:
+  * tests/Makefile.am: Add test_rvalue_ref.
+  * tests/test_rvalue_ref.cc: Avoid [-Werror=unused-parameter]
+  when building with warnings=fatal.
+  
+  Some files have been reformated with clang-format in order to
+  make the CI tests happy. Reformated with clang-format 12, but CI
+  uses clang-format 10.
 
-2004-12-11  Cedric Gustin <cedric.gustin@swing.be>
+2021-06-02  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* configure.ac : parse version tags at configure time (for
-	sigc-2.0.rc).
-	* MSVC_Net2003/sigc-2.0.rc.in : New resource file.
-	* MSVC_Net2003/Makefile.am: include sigc-2.0.rc in distribution.
+  Revert "test_rvalue_ref: Small fixes"
 
-2004-12-08  Cedric Gustin <cedric.gustin@swing.be>
+  This reverts commit 01652fdbc9f6fc2e72b217c9de8c89c93f95ba7c.
 
-	* MSVC_Net2003/Makefile.am: get sigc++config.h from $(top_builddir)
-	instead of $(top_srcdir).
+2021-06-02  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-12-08  Cedric Gustin <cedric.gustin@swing.be>
+  test_rvalue_ref: Small fixes
 
-	* MSVC_Net2003/*/*.vcproj: Renamed libsigc++ target to
-	sigc-2.0d.dll (Debug) and sigc-2.0.dll (Release). Added
-	$(SolutionDir) and $(SolutionDir)\.. to "Additional Include
-	Directories" in tests projects.
-	* sigc++config.h.in: Rewrote dllexport/dllimport macros for
-	MSVC, for better consistency with glibmm/gtkmm.
-	* MSVC_Net2003/Makefile.am: copy sigc++config.h from $(top_srcdir)
-	at build time.
+  * tests/.gitignore:
+  * tests/CMakeLists.txt:
+  * tests/Makefile.am: Add test_rvalue_ref.
+  * tests/test_rvalue_ref.cc: Avoid [-Werror=unused-parameter]
+  when building with warnings=fatal.
+  
+  Some files have also been reformated with clang-format in order to
+  make the CI tests happy. Reformated with clang-format 12, but CI
+  uses clang-format 10.
 
-2004-11-27  Murray Cumming  <murrayc@murrayc.com>
+2021-06-02  Slava Andrejev  <vyac.andrejev@gmail.com>
 
-	* configure.in: Revert the AC_PROG_LIBTOOL change, so that this builds
-	with actually released libtool versions, and in jhbuild, so that it 
-	gets testing.
+  Allow slots with rvalue reference parameters
 
-2004-11-06  Martin Schulze  <mschulze@cvs.gnome.org>
+  In code based on Glibmm it's quite common to convert a Glib C structure
+  to a Glib::Object's descendant before passing it as a parameter to a
+  slot. If the slot is not supposed to modify the object, then everything
+  is fine, we can declare the parameter as a const reference and the
+  temporary object will be accurately dealt with by the compiler. However,
+  if the Glib based object is getting modified, the only way to pass it to
+  the slot is to declare it a Glib::RefPtr shared pointer. This creates a
+  lot of unnecessary churn of memory allocations for a simple deal of
+  calling a signal. However, C++ has a specific mean for this particular
+  semantic of passing a temporary object: rvalue reference.
+  
+  For example, somewhere inside Gtkmm might be a declaration:
+  _WRAP_SIGNAL(void sun_rose(const Glib::RefPtr<Gtk::Sun> &new_sun),
+  "sun-rose")
+  
+  Instead its more semantically correct to write:
+  _WRAP_SIGNAL(void sun_rose(Gtk::Sun &&new_sun), "sun-rose")
+  
+  And later somewhere in your code:
+  world->signal_sun_rose().connect([&](auto &&new_sun) {
+    new_sun.shine();
+  });
+  
+  This commit makes a couple of simple modifications that allow declaring
+  signals and slots with rvalue reference parameter.
 
-	* sigc++/adaptors/macros/exception_catch.h.m4: Make catcher_ member
-	public so that it can be accessed by visit_each() (bug reported on
-	ml by Philip Langdale <plangdale@vmware.com>).
+2021-05-20  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-10-24  Martin Schulze  <mschulze@cvs.gnome.org>
+  3.0.7
 
-	* MSVC_Net2003/*/*.vcproj: Link with the "multithreaded DLL" runtime
-	libraries and enable RTTI for the MSVC build
-	(patch from Timothy M. Shead <tshead@k-3d.com>).
-	* MSVC_Net2003/*/.cvsignore: Hide generated build files from cvs
-	(patch from Timothy M. Shead <tshead@k-3d.com>).
+2021-05-18  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2.0.6:
+  Visual Studio build files: Some cleanups
 
-2004-10-12  Martin Schulze  <mschulze@cvs.gnome.org>
+  Replace /wd4530 with /EHsc, as that is the more proper CXXFlag to use for C++ programs
 
-	* MSVC_Net2003/*/*.vcproj, MSVC_Net2003/blank.cpp: Fix project files
-	to compile out-of-the-box and add dummy file so that .cc files get
-	recognized as c++ code files (patch from Timothy M. Shead).
+2021-05-18  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-10-10  Martin Schulze <mschulze@cvs.gnome.org>
+  Add dependencies to Doxygen tag files in subprojects
 
-	* sigc++/signal_base.{h,cc}, sigc++/functors/slot_base.{h,cc},
-	sigc++/functors/macros/slot.h.m4: If SIGC_NEW_DELETE_IN_LIBRARY_ONLY
-	is defined, implement signal_base::operator new/delete and
-	slot_rep::operator new/delete (suggested by Timothy M. Shead).
-	Remove old work-around from 2004-10-02 since it didn't work.
+  Doxygen in a main project shall not be called before tag files have been
+  created or updated in subprojects.
 
-2004-10-07  Martin Schulze <mschulze@cvs.gnome.org>
+2021-05-14  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* configure.ac: Update for libtool 1.5a (with support for Intel C++).
-	* MSVC_Net2003/sigc++config.h: Remove bogus '#define'
-	(reported by Timothy M. Shead <tshead@k-3d.com>).
+  Fix build as subproject without building documentation
 
-2004-10-02  Martin Schulze <mschulze@cvs.gnome.org>
+  * meson.build: If mm-common-get is not found in maintainer-mode
+  with 'required: false', try with 'required: true'.
+  Don't try to use tag_file, if documentation is not built.
+  * docs/docs/reference/meson.build: Don't use variables from modules
+  that don't define doxytagfile. These are subprojects that don't build
+  their documentation.
+  
+  Fixes #71
 
-	* configure.ac: Bump version number to 2.0.6.
-	* NEWS: Add ChangeLog summary for version 2.0.6.
+2021-05-05  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-10-02  Martin Schulze <mschulze@cvs.gnome.org>
+  Subprojects can use meson.add_dist_script() if meson.version() >= 0.58.0
 
-	* sigc++/functors/slot_base.{h,cc}, sigc++/functors/macros/slot.h.m4:
-	Rename (typed_)slot_rep::detach to (typed_)slot_rep::destroy.
-	Call the dtor of the functor stored in typed_slot_rep from destroy().
-	A cleaner solution would be to add an additional "virtual" function
-	that calls 'delete' or a real virtual dtor. However, this would be
-	less efficient and might break the ABI. (Fixes #152323.)
+  * meson.build:
+  * MSVC_NMake/meson.build:
+  * docs/docs/manual/meson.build:
+  * docs/docs/reference/meson.build:
+  Call add_dist_script() in a subproject, if meson.version() >= 0.58.0.
+  * tools/handle-built-files.py:
+  * tools/tutorial-custom-cmd.py:
+  Use MESON_PROJECT_DIST_ROOT if it exists, else MESON_DIST_ROOT.
+  It exists if meson.version() >= 0.58.0.
 
-2004-10-02  Martin Schulze <mschulze@cvs.gnome.org>
+2021-04-08  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++config.h.in, MSVC_Net2003/sigc++config.h,
-	sigc++/signal_base.cc, sigc++/functors/slot_base.{h,cc},
-	sigc++/functors/macros/slot.h.m4: Define and use new macro
-	SIGC_NEW_DELETE_IN_LIBRARY_ONLY to ABI-compatibly move
-	all calls to new and delete into non-inline library code.
+  Meson build: No implicit_include_directories
 
-2004-09-26  Martin Schulze <mschulze@cvs.gnome.org>
+2021-03-26  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++/adaptors/lambda/macros/group.h.m4: Add a missing
-	template keyword in the definition of deduce_result_type::type
-	(hopefully fixes #152327).
+  Meson build: No implicit_include_directories
 
-2004-09-26  Martin Schulze <mschulze@cvs.gnome.org>
+  It shall not be possible to find a sigc++ header file
+  with #include <xxx.h> instead of #include <sigc++/xxx.h>.
 
-	* sigc++/macros/object_slot.h.m4: Use correct bound_mem_functor
-	variants for const (volatile) methods (fixes #148744).
+2021-03-13  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-09-01  Martin Schulze <mschulze@cvs.gnome.org>
+  Meson build: Require only meson.version() >= 0.51.0
 
-	* docs/index.html: Correct link to lambda module.
+  meson.version() >= 0.54.0 is necessary if sigc++ is a subproject,
+  or if mm-common is a subproject of sigc++.
+  Only meson.version() <= 0.53.2 is available in CI. Make it possible
+  to build with version 0.53.2 as long as no subprojects are used.
 
-2004-09-01  Martin Schulze <mschulze@cvs.gnome.org>
+2021-03-12  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* README: Update compatibility section.
+  Meson build: Make it possible to use sigc++ as a subproject
 
-2.0.5:
+  mm-common can be a subproject of sigc++.
 
-2004-09-01  Martin Schulze <mschulze@cvs.gnome.org>
+2021-03-11  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* MSVC_Net2003/Makefile.am: Add sigc++config.h to EXTRA_DIST.
-	* configure.ac: Bump version number to 2.0.5.
-	* NEWS: Add ChangeLog summary for version 2.0.5.
+  docs/docs/reference/Doxyfile.in: Remove obsolete entries
 
-2.0.4:
+2021-01-24  Murray Cumming  <murraycu@google.com>
 
-2004-08-21  Martin Schulze <mschulze@cvs.gnome.org>
+  GitHub Actions CI: Check formatting with clang-format
 
-	* tests/test_lambda.cc: Use sigc::var("\n") instead of sigc::ref("\n").
-	Comment out the affected lines, nevertheless.
-	Sun FORTE and Compaq C++ can handle neither sigc::ref("\n") nor
-	sigc::var("\n"). I see more chances fixing sigc::var("\n").
-	* sigc++/adaptors/lambda/macros/base.h.m4: Add a comment about a
-	possible work around for sigc::var("\n") compiler problems.
-	* tests/test_compatibility.cc: Remove a 'const' keyword that prevents
-	the test case from compiling with the Sun FORTE.
-	* tests/test_trackable.cc: Remove a 'virtual' keyword and an unused
-	variable to avoid compiler warnings.
-	* NEWS: Add ChangeLog summary for version 2.0.4.
+  This requires clang-format-10, which is available in ubuntu-20.04.
 
-2004-08-03  Martin Schulze <mschulze@cvs.gnome.org>
+2021-01-24  Murray Cumming  <murraycu@google.com>
 
-	* scripts/cxx.m4, sigc++config.h.in, configure.ac,
-	sigc++/adaptors/lambda/macros/operator.h.m4, tests/test_lambda.cc:
-	Rollback change from 2004-07-15: configure check
-	SIGC_OPERATOR_OVERLOAD_AMBIGUITY is not needed - the overload
-	ambiguity doesn't occur if the lambda operators take all arguments
-	as const reference.
-	* configure.ac: Bump version number to 2.0.4.
+  Build: Add target to check code formatting with clang-format
 
-2004-08-03  James Lin <slimjimmy@mail.com>
+  However, this requires clang 10.
 
-	* Added SIGC_API qualifier to all externally-visible non-template 
-	classes/structs.
-	* Added #include <sigc++config.h> to the files that use SIGC_API.
-	* Added empty SIGC_API definition to sigc++config.h.in for non-MSVC
-	compilers.  I'm not sure if this is the right place to put this
-	(probably not).
-	* Added MSVC-specific sigc++config.h to the MSVC project directory.
-	(The comment in it probably should be edited.)
-	* Changed MSVC project settings to output a multi-threaded DLL, set 
-	the include paths to work (hopefully) out-of-the-box.  Disabled
-	precompiled headers, since they just complicate things and 
-	shouldn't be necessary for such a relatively project.
+2021-01-24  Murray Cumming  <murrayc@murrayc.com>
 
-2004-08-01  Martin Schulze <mschulze@cvs.gnome.org>
+  sigc++config.h.* Format with clang-format (clang-format-10)
 
-	* sigc++/type_traits.h: Remove type_trait<>::instance()
-	(was unimplemented and unused; caused problems with the MSVC).
+  So the generated sigc++config.h will have the correct formatting.
 
-2004-07-23  Martin Schulze <mschulze@cvs.gnome.org>
+2021-01-24  Murray Cumming  <murraycu@google.com>
 
-	* Makefile.am: Fix typo concerning distribution of libsigc++-2.0.spec.
-	* AUTHORS: Mention our contributors for platforms Sun FORTE and Intel C++.
+  run make format (with clang-format-10), to format the code
 
-2004-07-15  Martin Schulze <mschulze@cvs.gnome.org>
+2021-01-02  Murray Cumming  <murraycu@google.com>
 
-	* *.h.m4: Don't call operator()() in sun_forte_workaround(); rather copy
-	operator()(). Calling operator()() makes a copy of the arguments causing
-	wrong results if an argument type is a reference. Hopefully fixes #147311.
+  GitHub Actions: Try gcc 8 and gcc 9 too
 
-2004-07-15  Martin Schulze <mschulze@cvs.gnome.org>
+2021-01-02  Murray Cumming  <murrayc@murrayc.com>
 
-	* tests/test_lambda.cc: Break "std::cout << [expr] << a << std::endl;"
-	into "std::cout << [expr]; std::cout << a << std::endl;".
-	I hope this fixes #147313 where the right values for "[expr]" but wrong
-	values for "a" were written to std::cout for some compiler with optimizations
-	turned off.
+  GitHub Actions: Try clang-10 too
 
-2004-07-15  Martin Schulze <mschulze@cvs.gnome.org>
+2021-01-02  Murray Cumming  <murrayc@murrayc.com>
 
-	* sigc++/adaptors/lambda/macros/operator.h.m4: Correct return type deduction
-	of lambda expressions in lambda_operator*::operator()(). Might be related to
-	bug #147313.
-	* sigc++/adaptors/lambda/macros/group.h.m4: Use m4 macro _P_().
+  GitHub actions: Use ubuntu-20.04 directly
 
-2004-07-15  Martin Schulze <mschulze@cvs.gnome.org>
+  GitHub Actions now supports ubuntu-20.04 directly, not only via a
+  separate container:
+  https://github.com/actions/virtual-environments
+  
+  And use ubuntu-18.04 instead of ubuntu-latest, because that's what it
+  currently is, but ubuntu-latest will change to mean ubuntu-20.04 soon:
+  https://github.com/actions/virtual-environments/issues/1816
 
-	* scripts/cxx.m4, sigc++config.h.in, configure.ac,
-	sigc++/adaptors/lambda/macros/operator.h.m4, tests/test_lambda.cc:
-	Add configure check SIGC_OPERATOR_OVERLOAD_AMBIGUITY for a SUN FORTE
-	compiler problem (bug #147391). Use it to decide whether the lambda
-	action operators may be overloaded (not doing so restricts the API slightly).
-	* sigc++/adaptors/lambda/macros/operator.h.m4: Add some doxygen comments
-	and remove attic code.
-	* sigc++/adaptors/lambda/macros/base.h.m4:
-	Add templates unwrap_lambda_type and unwrap_lambda_value() to support
-	the non-overloaded lambda action operators. Also add some doxygen comments
-	and remove attic code.
-	* sigc++/adaptors/lambda/macros/group.h.m4: Fix a bug that resulted in
-	gargabe values being passed on to the functor contained in the group adaptor
-	(partly fixes #147313).
+2020-12-25  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-07-11  Martin Schulze <mschulze@cvs.gnome.org>
+  docs: Update the web page
 
-	* scripts/cxx.m4, sigc++config.h.in, configure.ac, *.h.m4:
-	Split SIGC_CXX_TEMPLATE_SPECIALIZATION_OPERATOR_OVERLOAD
-	into SIGC_CXX_GCC_TEMPLATE_SPECIALIZATION_OPERATOR_OVERLOAD
-	and SIGC_CXX_MSVC_TEMPLATE_SPECIALIZATION_OPERATOR_OVERLOAD.
-	Remove LIBSIGC_TEMPLATE_PREFIX. Add template keyword to
-	SIGC_WORKAROUND_OPERATOR_PARENTHESES depending on the configure checks.
-	Should fix the compiler problems with MSVC.
+  The changes are automatically published at
+  libsigcplusplus.github.io/libsigcplusplus.
 
-2004-07-11  Martin Schulze <mschulze@cvs.gnome.org>
+2020-12-14  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* examples/hello_world.cc: Use sigc::ptr_fun instead of std::ptr_fun.
-	(fixes bug #144846)
+  CI: Test clang-9 in Ubuntu 20.04
 
-2004-07-11  Eric Bourque <ericb@computer.org>
+2020-12-11  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* libsigc++-2.0.spec.in: new file
-	* configure.ac : patched generate spec file
-	* .cvsignore: ignore generated file (Martin Schulze)
-	* Makefile.am: distribute spec file (Martin Schulze)
+  CI: Do some tests with Meson
 
-2004-07-11  Murray Cumming  <murrayc@murrayc.com>
+  Remove test with clang 7.
+  Test gcc 9 and clang 10 with meson instead of autotools.
 
-	* sigc++/connection.cc: Added some comments.
-	* sigc++/trackable.cc: operator=(): Check for self-asignment, though I 
-	do not know of any actual bug that this fixes. Added some comments.
-	* sigc++/trackable.h Added some doxygen documentation.
+2020-12-01  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-07-09  Murray Cumming  <murrayc@murrayc.com>
+  CI: Remove tests with clang 5 and clang 6
 
-	* tests/: Added test_disconnect_during_emit.cc, to prove that this 
-	works.
+  Building with clang 7, 8, 9 and 10 is enough.
 
-2004-07-08  Murray Cumming  <murrayc@murrayc.com>
+2020-12-01  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* tests/test_retype_return.cc: foo::operator(int): return a 
-	value. The SUN Forte 5.5 compiler complains about this, as it should.
+  CI: Update the MSVC check and run it on push
 
-2004-07-08  Murray Cumming  <murrayc@murrayc.com>
+2020-11-25  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++/macros/signal.h.m4: class signal*: Rename the slot_list 
-	typedef to slot_list_type, because there is already a template class 
-	called slot_type. SUN Forte 5.5 seems to complain about this and I am 
-	not surprised. The old typdef is still there for backwards 
-	compatibility, except when building with SUN Forte.
+  CI: Don't run MSVC check on push
 
-2004-07-07  Murray Cumming  <murrayc@murrayc.com>
+  This test does not work any more. I don't know how to fix it.
+  Run it only manually.
+  
+  Unable to process command '##[add-path]C:\Program Files (x86)\
+  Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin' successfully.
+  
+  The `add-path` command is disabled. Please upgrade to using Environment Files
+  or opt into unsecure command execution by setting the
+  `ACTIONS_ALLOW_UNSECURE_COMMANDS` environment variable to `true`.
+  For more information see: https://github.blog/changelog/
+  2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/
 
-	* scripts/cxx.m4: SIGC_CXX_TEMPLATE_SPECIALIZATION_OPERATOR_OVERLOAD():
-	Don't define the SIGC_TEMPLATE_SPECIALIZATOIN_OPERATOR_OVERLOAD C 
-	macro at all if the test fails. This might fix the build on SUN Forte.
-	* sigc++/functors/macros/mem_fun.h.m4: Default constructor: Initialize 
-	the func_ptr_ member variable. I have no evidence that this solves any 
-	problems, but it worried me.
-	* sigc++/functors/slot_base.h: operator bool(): Correct documentation, 
-	to use @code instead of <code>
-	* sigc++/macros/signal.h.m4: Remove the documentation for the 
-	parameters named first and last, because they do not exist.
+2020-11-25  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-05-31  Martin Schulze  <mschulze@cvs.gnome.org>
+  3.0.6
 
-	* autogen.sh: Add '--force'-flag to the 'libtoolize'-command (bug #143425).
+2020-10-12  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2.0.3:
+  sigc++/sigc++.h: Fix a typo
 
-2004-05-30  Martin Schulze  <mschulze@cvs.gnome.org>
+2020-10-12  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* configure.ac: Bump version number to 2.0.3.
-	* NEWS: Add ChangeLog summary for version 2.0.3.
-	* sigc++/macros/signal.h.m4: Fix segfault on emission of unconnected signal.
-	* tests/test_signal.cc, tests/test_accumulated.cc: Emit unconnected signal.
-	* sigc++/macros/object_slot.h.m4: Suppress compiler warning at
-	dynamic_cast<>-test (tested by Christof Petig/Timothy M. Shead).
+  sigc++/sigc++.h: Describe how to use libsigc++ with meson
 
-2.0.2:
+2020-10-04  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-05-22  Martin Schulze  <mschulze@cvs.gnome.org>
+  Docs: Change libsigc++ webpage mentions to GitHub
 
-	* configure.ac: Bump version number to 2.0.2.
-	* NEWS: Add ChangeLog summary for version 2.0.2.
+  Change libsigc.sourceforge.net to
+  libsigcplusplus.github.io/libsigcplusplus.
 
-2004-05-20  Martin Schulze  <mschulze@cvs.gnome.org>
+2020-09-28  Tom Schoonjans  <Tom.Schoonjans@rfi.ac.uk>
 
-	* sigc++/macros/signal.h.m4: If a custom accumulator is specified
-	invoke it on signal emission even if the signal's slot list is empty.
-	(This used to be the case in libsigc++-1.2 as pointed out by Timothy.)
+  Meson build: fix versioning on macOS
 
-2004-05-20  Martin Schulze  <mschulze@cvs.gnome.org>
+  See pull request #65
 
-	* sigc++/macros/object_slot.h.m4: Suppress compiler warning at
-	dynamic_cast<>-test (suggested by Timothy M. Shead).
+2020-09-27  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-05-01  Martin Schulze  <mschulze@cvs.gnome.org>
+  3.0.4
 
-	* README: Updated for libsigc++-2.0.
+2020-07-23  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2.0.1:
+  NMake Makefiles: Use Meson-style DLL and .lib naming if requested
 
-2004-04-27  Martin Schulze  <mschulze@cvs.gnome.org>
+  To make things more consistent and less prone to confusion, if 'USE_MESON_LIBS'
+  is specified in the NMake command line, build the DLLs and .lib's that are
+  named like the Meson counterparts.  Binaries built with Meson+Visual Studio
+  and the ones that are built via NMake using 'USE_MESON_LIBS' are
+  interchangeable.
 
-	* configure.ac: Bump version number to 2.0.1.
-	* NEWS: Add ChangeLog summary for version 2.0.1.
-	* sigc++/adaptors/lambda/macros/base.h.m4: Fixed documentation.
-	* sigc++/adaptors/macros/bind.h.m4: Hide work-arounds from doxygen.
-	* scripts/cxx.m4, sigc++config.h.in, configure.ac,
-	sigc++/adaptors/macros/bind.h.m4: Removed configure	check. It
-	showed that the Apple gcc can also compile the sophisticated version
-	of the work-around.
+2020-07-22  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2004-04-26  Martin Schulze  <mschulze@cvs.gnome.org>
+  NMake Makefiles: Streamline builds from GIT checkouts
 
-	* sigc++/macros/object_slot.h.m4: Modified test for SigC::Object
-	inheritance so that it also works if SigC::Object is virtual base.
-	(Fixes bug 141094 reported by Jonathan Brandmeyer)
+  Streamline the source generating process into the 'all' target, so there
+  is no more need to run the 'prep-git-build' target.
 
-2004-04-26  Martin Schulze  <mschulze@cvs.gnome.org>
+2020-07-08  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-	* scripts/cxx.m4: Updated the configure check. It would probably
-	have succeeded on the Apple.
+  NMake Makefiles: Support ARM64 Windows builds
 
-2004-04-26  Martin Schulze  <mschulze@cvs.gnome.org>
+  This will make the NMake Makefiles capable of building ARM64 binaries of glibmm
+  and giomm, which can be used on Windows 10 on ARM systems.
 
-	* sigc++/adaptors/macros/bind.h.m4: Add work-arounds for
-	bind<-1>::deduce_result_type compilation error on Apple gcc 3.3.
-	* scripts/cxx.m4, sigc++config.h.in, configure.ac: Add configure
-	check for the compilation error above.
-	* sigc++/adaptors/lambda/macros/operator.h.m4: Replace _A with
-	_Aa. _A is a reserved keyword on Apple gcc 3.3 (Spundun Bhatt).
-	(fixes bug #10444 reported by Spundun Bhatt)
+2020-06-29  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-04-19  Martin Schulze  <mschulze@cvs.gnome.org>
+  docs/docs/reference/: Update for Doxygen >= 1.8.16
 
-  * sigc++/signal_base.cc: Fixed serious bug in signal_base::impl():
-  Only reference a newly created object (initial reference).
-  (This fixes bug #140269 reported by Andris.)
+  * docs/docs/reference/meson.build: Doxygen 1.8.16 and later does not store
+  tag file names in the html files. This requires changes in meson.build
+  and in doc-install.pl (in mm-common). Otherwise references to other modules
+  won't be updated in the html files when they are installed.
+  * docs/docs/reference/Doxyfile.in: Remove PERL_PATH and MSCGEN_PATH.
+  Doxygen since version 1.8.0 does not use them.
 
-2004-04-19  Murray Cumming  <murrayc@murrayc.com>
+2020-06-27  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* scripts/cxx.m4: Updated the operator() template check, because it
-	failed with gcc 3.4 (from cvs). Apparently the template keyword can
-	only be used from another template.
+  docs/docs/manual/libsigc_manual.xml: Fix description of sigc::retype()
 
-2.0.0:
+  Although sigc::retype() is a template function, no template parameters
+  shall be specified when it's called.
 
-2004-04-06  Martin Schulze  <mschulze@cvs.gnome.org>
+2020-06-26  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* configure.ac: Bump version number to 2.0.0.
-	* NEWS: Add ChangeLog summary for version 2.0.0.
-	* TODO, AUTHORS: Bring up to date.
-	* sigc++-2.0.pc.in, Makefile.am: 1.9 -> 2.0
-	* Added more documentation.
+  docs/docs/manual/libsigc_manual.xml: Fix previous commit
 
-2004-04-10  Murray Cumming  <murrayc@murrayc.com>
+  Correct the comment about libsigc++2. It accepts both sigc::signal<void,int>
+  and sigc::signal<void(int)>. sigc::signal<void,int> is deprecated.
 
-	* sigc++/connection.[h|cc]: Implement blocked() to avoid undefined 
-	symbol linker error.
+2020-06-25  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-04-08  Murray Cumming  <murrayc@murrayc.com>
+  docs/docs/manual/libsigc_manual.xml: Update signal and slot syntax
 
-	* dist the scripts directory.
+  Update the syntax of template parameters.
+  sigc::signal<void,int> -> sigc::signal<void(int)>.
+  
+  Mention lambda expressions.
+  
+  Fixes #59
 
-1.9.16:
+2020-06-18  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2004-04-06  Martin Schulze  <teebaum@cvs.gnome.org>
+  NMake Makefiles: Use toolset version in DLL filename by default
 
-	* configure.ac: Bump version number to 1.9.16.
-	* NEWS: Add ChangeLog summary for version 1.9.16.
+  The libsigc++ DLL and .lib was only named 'sigc-vc150(d)-3_0' until the
+  previous patches in this series improved Visual Studio 2019 support to
+  name the DLL and .lib by using 'sigc-vc160(d)-3_0'.
+  
+  This updates the naming of the DLL and .lib to the toolset version as
+  defined by Microsoft by default, i.e. 'vc141' for Visual Studio 2017
+  and 'vc142' for Visual Studio 2019.  If the former DLL naming ('vc150')
+  is desired, passing 'USE_COMPAT_LIBS=1' will achive this.
 
-2004-04-02  Murray Cumming  <murrayc@murrayc.com>
+2020-06-18  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-	* sigc++/connection.cc: Make block() and unblock() always return a 
-	value, to fix compiler warnings. Patch from bug #138620 by
-	Alexander Nedotsukov.
+  Update MSVC_NMake/README
 
-2004-04-02  Murray Cumming  <murrayc@murrayc.com>
+  Fix some typos and reflect the build information more accurately
 
-	* Fix the compile of examples/member_method.cc. Bug #131701 from 
-	Kirill Smelkov. I also made the examples build as part of the regular
-	build.
+2020-06-18  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2004-04-02  Murray Cumming  <murrayc@murrayc.com>
+  Rework NMake Makefiles
 
-	* sigc++config.h.m4: Remove every undef apart from the one we need, to
-	avoid clashes, because we #include this in a public header.
+  Clean up the NMake Makefiles so that they will become easier to maintain and
+  faster to run by:
+  
+  * Rename instances of 'libsigcpp' to 'sigc'
+  * Just use 'md' directly to create all intermediate directories
+  * "Generate" the rules to build the example and test programs, instead of using
+    generic hand-written rules for all of them, as most of them share common
+    rules.
+  * Add a 'prep-git-build' rule to allow building directly from a GIT checkout
 
-2004-03-25  Murray Cumming  <murrayc@murrayc.com>
+2020-06-18  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-	* scripts/cxx.m4, configure.in, sigc++config.h.in: Rename the 
-	template_keyword check to template_specialization, because the problem
-	is with or without the keyword.
-	* sigc++/adaptors/macros/adaptor_trait.h.m4: Define 
-	SIGC_WORKAROUND_OPERATOR_PARENTHESES, which calls either operator() or 
-	sun_forte_workaround() depending on the result of the compiler test.
-	* many .m4 files: Add sun_forte_workaround methods that call the 
-	operator() methods. Put them in #ifdefs so that only SUN Forte C++ 
-	sees them.
+  NMake Makefiles: Fix header installation
 
-2004-03-22  Murray Cumming  <murrayc@murrayc.com>
+  We ought to install sigc++.h, too
 
-	* Makefile.am, sigc++/Makfile.am: Fix the sigc++config.h.in disting,
-	to fix make distcheck.
+2020-06-18  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2004-03-21  Murray Cumming  <murrayc@murrayc.com>
+  NMake Makefiles: Support Visual Studio 2019 better
 
-	* Rename config.h.in to sigc++config.h.in so that gtkmm does not 
-	include some other config.h at strange times - fixes a problem in
-	the gtkmm demos. This should really be in the sigc++ directory, but
-	that seems to add that as an include path, which causes the STL
-	headers to include sigc++/signal.h instead of some STL signal.h header.
+  We ought to separate Visual Studio 2019 from 2017, by all means
 
-2004-03-20  Murray Cumming  <murrayc@murrayc.com>
+2020-06-18  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-	* Makefile.am: Install the config.h platform-specific header.
-	* sigc++-2.0.pc.in: Report the include path for config.h
+  NMake Makefiles: Use 'md' instead of 'mkdir'
 
-2004-03-20  Murray Cumming  <murrayc@murrayc.com>
+  This ensure that we don't accidentally use Cygwin's or MSYS's/MSYS64's mkdir
+  command
 
-	* Added config.h.in, using autoheader, from which config.h will be 
-	generated, so we can detect compiler features.
-	* configure.ac: Added AC_CONFIG_HEADER(config.h) to generate config.h
-	from config.h.in.
-	* scripts/cxx.m4: Added this directory and file, with a 
-	SIGC_CXX_TEMPLATE_KEYWORD_OPERATOR_OVERLOAD macro that defines 
-	the SIGC_TEMPLATE_KEYWORD_OPERATOR_OVERLOAD C macro.
-	* autogen.sh: Added -I scripts to the aclocal call, so that it finds
-	the m4 macro for configure.ac.
-	* sigc++/adapators/macros/adaptor_trait.h.m4: Include config.h and
-	use SIGC_TEMPLATE_KEYOWRD_OPERATOR_OVERLOAD.
+2020-04-26  Murray Cumming  <murraycu@google.com>
 
-2004-03-18  Martin Schulze  <mschulze@cvs.gnome.org>
+  GitHub Actions CI: Add a clang++ 10 build
 
-  * tests/test_mem_fun.cc, tests/test_ptr_fun.cc: Don't test
-  making functors from overloaded methods with partial template
-  specialization. Not portable among different compilers (SUN FORTE).
-  * adaptors/macros/apdaptor_trait.h.m4: Only gcc seems to use the
-  notation A.template operator()<...>(...) => adapt preprocessor check
-  for #define LIBSIGC_TEMPLATE_PREFIX. TODO: replace with configure check.
+  Like the clang-10 CI, this uses a newer Ubuntu version (20.04) by
+  specifying a different docker image.  Because of that, we no longer need
+  to use sudo with apt.
 
-2004-03-13  Murray Cumming  <murrayc@murrayc.com>
+2020-04-25  Murray Cumming  <murrayc@murrayc.com>
 
-	* g++ 3.4 (pre-release) build fixes:
-	* sigc++/macros/signal.h.m4: slot_iterator_buf::operator*():
-	Use blocked() and empty() instead of non-existant blocked_and_empty().
-	* sigc++/functors/macros/mem_fun.h.m4: memfun_functor*::operator()(): 
-	Use this->func_ptr_ instead of just func_ptr_.
-	* sigc++/adaptors/macros/deduce_result_type.h.m4: Use 
-	T_functor::template deduce_result_type<> instead of just
-	T_functor::deduce_result_type<>.
-	* sigc++/adaptors/lambda/macros/base.h.m4, operator.h.m4, group.h.m4:: 
-	Use template keyword again. operator[](): Use this->value_ instead of 
-	just value_.
-	* sigc++/adaptors/lambda/macros/bind/m4: Use template keyword, and 
-	this-> again.
-	* sigc++/adaptors/macros/compose.h.m4, hide.h.m4, bind_return.h.m4, 
-	exception_catch.h.m4:
-	rettype.h.m4, rettype_return.h.m4: Use template keyword,and this-> again
+  run make format, to clang-format the code
 
-1.9.15:
+  This was with clang-format-9
 
-2004-02-27  Martin Schulze  <teebaum@cvs.gnome.org>
+2020-04-02  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* configure.ac: Bump version number to 1.9.15.
-	* NEWS: Add ChangeLog summary for version 1.9.15.
+  Meson build: Set default value of the 'warnings' option to 'min'
 
-2004-02-27  Martin Schulze  <teebaum@cvs.gnome.org>
+  * MSVC_NMake/meson.build: Copy sigc++config.h with configure_file().
+  * Makefile.am: Remove tools/dist-cmd.py.
+  * docs/docs/manual/meson.build:
+  * docs/docs/reference/meson.build: Don't use tools/dist-cmd.py.
+  * meson.build: Use dist-warnings when a tarball is tested by
+  'ninja dist' or 'meson dist'. Check if doc-reference.py exists, if not
+  maintainer-mode.
+  * meson_options.txt: Set default value of the 'warnings' to 'min'.
+  Add 'dist-warnings' with default value 'fatal'.
+  * tools/dist-cmd.py: Removed file. It's not necessary in add_dist_script()
+  when the first parameter is python3.path().
 
-  * sigc++/functors/macros/slot.h.m4: Make the unnumbered slot templates'
-  copy ctors use the copy ctors of the base class. Fixes bug #24698.
-  * tests/test_slot.cc: Test copy ctor (Bryan Forbes).
+2020-03-25  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-02-27  Martin Schulze  <teebaum@cvs.gnome.org>
+  3.0.3
 
-  * tests/type_functor_trait.cc: Bring it up-to-date (use sigc::ref).
-  Make it work with the SUN Forte.
+2020-03-25  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-02-24  Martin Schulze  <teebaum@cvs.gnome.org>
+  README.md: Better describe when maintainer-mode is necessary
 
-  * sigc++/type_traits.h: Make is_base_and_derived<> work with the SUN Forte.
+  As a libsigc++-3 tarball does not contain generated source code,
+  maintainer-mode is not always necessary when you build with Meson
+  from a tarball that was created by Autotools.
 
-2004-02-19  Martin Schulze  <teebaum@cvs.gnome.org>
+2020-03-24  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-  * sigc++/type_traits.h: Make is_base_and_derived<> platform independant.
-  * sigc++/adaptors/lambda/macros/base.h.m4: Make lambda_core<> ctors
-  explicit. Remove an unused ctor from lambda_core<T_type, true>.
+  README.md: Improve the Build section
 
-2004-02-14  Martin Schulze  <teebaum@cvs.gnome.org>
+  and remove README_build. All build information is in README.md.
 
-  * sigc++/functors/slot_base.h, sigc++/functors/macros/slot.h.m4:
-  Move some documentation to slot_base.h.
-  * sigc++/signal_base.h, sigc++/macros/signal.h.m4:
-  Move some documentation to signal_base.h.
+2020-03-10  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-  API addition:
-  * sigc++/functors/macros/slot.h.m4: Add numbered slot# templates.
-  Make unnumbered slot templates inherit from slot#.
+  meson.build: Update version to 3.0.2
 
-  API change:
-  * sigc++/functors/macros/mem_fun.h.m4: Allow for methods of the object's
-  base types to be passed into sigc::mem_fun(). (Used to be the case in
-  libsigc++-1.2).
+2020-03-10  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2004-02-13  Murray Cumming  <murrayc@usa.net>
+  examples: Disable deprecated API when building with Meson
 
-	* sigc++/functors/slot_base.[h|cc], sigc++/trackable.[h|cc]: Create 
-	and use a typedef for the destroy_notify callback functions, to avoid
-	confusion function pointer declaration syntax in the API.
+  Deprecated SIGCXX API is disabled when example programs are built
+  with Autotools. Do the same when building with Meson.
 
-2004-02-13  Murray Cumming  <murrayc@murrayc.com>
+2020-01-13  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* Moved implementation to .cc files:
-	* sigc++/functors/: Added slot_base.[h|cc] which contains non-template
-	code that was previsouly in the generated functors/slot.h and 
-	non-generated slot.cc files. All non-inline implementation is now in 
-	the .cc file.
-	* sigc++/functors/macros/slot.m4: Removed the code that has been moved
-	to slot_base.[h|cc].
-	* sigc++/: Added signal_base.[h|cc] which contains non-template code 
-	that was previously in the generated signal.h and non-generated
-	signal.cc file. All non-inline implementation is now in the .cc file.
-	* sigc++/macros/signal.m4: Removed the code that ahs been moved to
-	signal.cc
-	* sigc++/connector.[h|cc]: method implementation moved to the .cc file.
+  README.md, README_build: Describe building with Meson
 
-1.9.14:
+2020-01-08  Robert Middleton  <robert.middleton@rm5248.com>
 
-2004-02-13  Martin Schulze  <teebaum@cvs.gnome.org>
+  Added example of using libsigc++ with Qt
 
-	* configure.ac: Bump version number to 1.9.14.
-	* NEWS: Add ChangeLog summary for version 1.9.14.
+  Pull Request #35.
 
-2004-02-09  Murray Cumming  <murrayc@usa.net>
+2020-01-06  Lennard Berger  <lennard.berger@student.uni-tuebingen.de>
 
-	* sigc++/functors/macros/slot.h.m4: slot_base: Added operator bool(), needed to
-	check for a slot that is created with the default constructor. This was
-	present in libsigc++ 1.2 also.
+  tests: Replace C-style casts with static_cast<>
 
-2004-02-06  Murray Cumming  <murrayc@usa.net>
+  murrayc-tuple-utils Pull Request #4 .
 
-	* Makefile.am: Build the docs directory, by adding it to SUBDIRS.
-	* docs/Doxyfile.in: Updated to be more glibmm-like.
-	* Added some @deprecated doxygen bits.
-	* sigc++/macros/signal.h.m4: Call base constructor from signal_base
-	constructor - this is an error-as-warning when building gtkmm.
+2020-01-02  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-1.9.13:
+  docs/docs/reference/meson.build: Check if perl is found
 
-2003-11-30  Martin Schulze  <teebaum@cvs.gnome.org>
+  Don't use perl.path() when configuring Doxyfile, if perl is not found.
+  Perl is not required, if build-documentation=false.
+  Fixes #53
 
-	* configure.ac: Bump version number to 1.9.13.
-	* NEWS: Add ChangeLog summary for version 1.9.13.
-	* Makefile.am, MSVC_Net2003/Makefile.am, configure.ac:
-	Distribute MS .Net project files.
-	* sigc++/adaptors/macros/[bind,hide].h.m4: Correct and add
-	documentation. Make hide_functor ctor explicit.
+2020-01-01  Murray Cumming  <murraycu@google.com>
 
-2003-11-11  Martin Schulze  <teebaum@cvs.gnome.org>
+  3.0.2
 
-	* sigc++/adaptors/macros/[bind,hide].h.m4: Change to zero-based
-	argument index in numbered bind() and hide() overload
-	(Agreement on the mailing list).
-	Support binding up to CALL_SIZE arguments with one bind adaptor.
-	(Requested by joey yandle and others).
-	Only support binding of multiple arguments in unnumberd overloads
-	to keep the API simple (Requested by Murray Cumming).
-	* tests/test_[bind,hide,functor_trait].cc, sigc++/bind.h:
-	Reflect API changes in compatibility module and test cases.
+2019-12-30  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2003-11-10  Martin Schulze  <teebaum@cvs.gnome.org>
+  meson.build: Change project name, sigc++ -> libsigc++
 
-	* sigc++/adaptors/macros/[bind,hide].h.m4: Add unnumbered
-	bind() and hide() overloads to make specifying the argument
-	position optional (Proposed by Jeff Franks).
-	* tests/test_[bind,hide].cc: Test unnumbered bind() and hide().
-	* sigc++/adaptors/macros/adaptor_trait.h.m4:
-	Change "#ifdef MSVC" to "#ifdef _MSC_VER" (Roel Vanhout).
+  Autotools make tarballs called libsigc++-x.y.z.tar.xz. No reason to
+  change that. The leading "lib" is now also restored in some locations
+  in the reference documentation.
 
-2003-11-09  Martin Schulze  <teebaum@cvs.gnome.org>
+2019-12-30  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++/functors/macros/slot.h.m4: Change functor type in
-	typed_slot_rep to adaptor_trait::adaptor_type<T_functor>
-	and use explicit function template instantiation in
-	internal::slot_call::call_it(). Avoids copying of arguments
-	in call_it() and enables binding of object instances
-	to class methods through bind() (Reported by Jeff Franks).
-	* tests/test_bind.cc: Test binding object instances to
-	class methods through bind().
-	* sigc++/adaptors/adaptors.h: Include retype[_result].h.
-	* sigc++/adaptors/macros/adaptor_trait.h.m4:
-	- Add documentation.
-	- Mark some c-tors as explicit.
-	- Remove ununsed operator T_functor&() from adaptor_functor.
-	* sigc++/adaptors/macros/deduce_result_type.h.m4:
-	Rewrite parts of the documentation.
-	* sigc++/adaptors/macros/bind.h.m4: Add documentation.
-	* sigc++/functors/macros/mem_fun.h.m4: Remove unnecessary
-	explicit markers. Minor fixes to documentation.
-	* sigc++/functors/macros/functor_trait.h.m4:
-	Minor fixes to documentation.
+  Update untracked/README
 
-1.9.12:
+2019-12-29  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2003-11-04  Martin Schulze  <teebaum@cvs.gnome.org>
+  meson.build: Check if .git is a directory or a file
 
-	* configure.ac: Bump version number to 1.9.12.
-	* NEWS: Add ChangeLog summary for version 1.9.12.
+  In a git worktree, .git is a regular file.
+  
+  See https://gitlab.gnome.org/GNOME/pangomm/merge_requests/8
 
-2003-11-03  Martin Schulze  <teebaum@cvs.gnome.org>
+2019-12-29  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++/macros/signal.h.m4: Document accumulators.
-	Move slot_iterator_buf into namespace internal. Since
-	accumulators have the iterator type as a template argument
-	there is no need to expose this very internal type.
-	* sigc++/functors/macros/*.m4: Regroup documentation.
-	Documentation of the core parts of the library should be
-	complete by now.
+  sigc++/meson.build: Library name is sigc-3.0
 
-2003-11-02  Martin Schulze  <teebaum@cvs.gnome.org>
+  Pointed out by Chun-wei Fan in PR #51.
 
-	* Improve documentation of the core parts of the library.
-	* tests/test_ptr_fun.cc: Test ptr_fun() with static
-	member functions.
+2019-12-29  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2003-11-02  Martin Schulze  <teebaum@cvs.gnome.org>
+  NMake: Split outdir by toolset version
 
-	* Move all .m4 files into new subdirectories
-	sigc++/[...]/macros. Install the .m4 files on
-	"make install" (Reported by Ron Steinke).
+  This makes it less likely for one to accidently mix binaries linked to
+  different CRTs in a single buildtree.
 
-2003-11-01  Martin Schulze  <teebaum@cvs.gnome.org>
+2019-12-29  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-	* sigc++/[class,method,object]_slot.h.m4: Include
-	sigc++/functors/mem_fun.h (Reported by Ron Steinke).
+  build: Support NMake builds from Meson tarballs
 
-2003-11-01  Martin Schulze  <teebaum@cvs.gnome.org>
+  This adds the MSVC files in MSVC_NMake/ that are generated during
+  Meson's configure step to the generated release tarball.
+  
+  The NMake Makefiles are updated so that they will be able to find files
+  that are now in untracked/MSVC_NMake, when a release tarball is
+  generated with Meson.
 
-	* sigc++/adaptors/lambda/operator.h.m4: Add negation
-	operator I have completely overlooked until now.
-	* sigc++/tests/test_lambda.cc: Test negation operator.
+2019-12-29  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2003-11-01  Martin Schulze  <teebaum@cvs.gnome.org>
+  meson: Build Windows .rc files on Windows
 
-	* sigc++/[class_slot,method_slot,object_slot,hide].h.m4,
-	sigc++/signal.h.m4, sigc++/functors/mem_fun.h.m4:
-	- Use a shorter notation for ..._mem_function variants.
-	- Change order of mem_funcotr<>'s template arguments to
-	match std::mem_fun_t and to be more consistent with adaptors.
-	- Use ::sigc::slot's implicit ctor in compatibility module.
-	* sigc++/adaptors/lambda/operator.h.m4: Change some
-	lambda action names to match action names in std.
+  This ensures that on Windows, the version info resources are indeed
+  linked into the libsigc++ DLL.
 
-	API addition:
-	* sigc++/adaptors/retype.h.m4: New file adding
-	adaptor retype.
-	* sigc++/Makefile.am: Build and distribute new file.
-	* tests/test_retype.cc: New file testing adaptor retype.
-	* MSVC_Net2003/tests/test_retype/test_reytype.vcproj,
-	tests/Makefile.am: Build and distribute new test case.
+2019-12-29  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2003-11-01  Martin Schulze  <teebaum@cvs.gnome.org>
+  meson/Windows: Fix builds when builddir is a subdir of source tree
 
-	* MSVC_Net2003: New directory containing project
-	files for Visual Studio .Net 2003.
-	Credits to Roel Vanhout <roel@riks.nl>!
+  It appears that Meson did not construct the paths properly for
+  shutil.copy2() when building in a build directory that is a
+  subdirectory of the sources, when using meson.current_build_dir(),
+  possibly due how path separators are handled.
+  
+  Fix this by constructing the paths using project_build_root / 'MSVC_NMake'.
 
-2003-11-01  Martin Schulze  <teebaum@cvs.gnome.org>
+2019-12-29  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-	* sigc++/retype.h.m4: Use LIBSIGC_TEMPLATE_PREFIX
-	in explicit function template instantiations.
-	* sigc++/type_traits.h: Add template specialization
-	for arrays (T_type[N]) to disable non-working member
-	type_trait<T_type[N]>::instance().
-	* sigc++/visit_each.h: Remove more disturbing
-	limit_derived_target<>::operator() overloads.
-	(Should have noticed earlier that they are unnecessary.)
-	* sigc++/adaptors/deduce_result_type.h.m4,
-	sigc++/adaptors/lambda/operator.h.m4,
-	sigc++/functors/functor_trait.h.m4,
-	tests/test_[bind,compose,exception_catch,hide,lambda].cc:
-	Completely removed support for typeof(). We don't need
-	it any more and it is completely non-standard!
+  meson.build: Fix 'meson dist' on Windows
 
-2003-10-30  Cedric Gustin <cedric.gustin@swing.be>
- 
- 	* configure.ac: Added test of win32 platform. Commented
- 	out AM_DISABLE_SHARED (DLLs are shared libraries).
- 	* sigc++/Makefile.am: added a few LDFLAGS for win32
- 	DLLs.
+  Since we are assured that we are using Python 3.x on when we run Meson, we
+  do not really need to look for the 'python3' executable, but we could
+  just use whatever Python interpreter that is used to run Meson.
+  
+  This will fix situations where it is commonly the case where we may have
+  multiple Python 3.x installations on Windows (www.python.org, and those
+  from Cygwin/mingw-w64), so that Meson really uses one and only one
+  Python installation to run everything that is Python-related, which will
+  thus fix '[meson|ninja] dist' on Visual Studio builds.
 
-2003-10-30  Martin Schulze  <teebaum@cvs.gnome.org>
+2019-12-23  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++/signal.h.m4: Add SigC::Signal#<>::slot().
-	* sigc++/slot.h.m4: Comment out make_slot() work-around.
-	* sigc++/adaptors/bind.h.m4: Remove unnecessary brackets
-	in template argument lists. They are confusing MSVC.
-	* sigc++/adaptors/*.h.m4, sigc++/adaptors/lambda/*.h.m4:
-	Use LIBSIGC_TEMPLATE_PREFIX in explicit function
-	template instantiations.
-	* sigc++/tests/test_*.cc:
-	- Include <string> where std::string is used.
-	- Use double instead of float.
+  meson.build: Update version to 3.0.1
 
-2003-10-27  Martin Schulze  <teebaum@cvs.gnome.org>
+2019-12-22  Murray Cumming  <murraycu@google.com>
 
-	* sigc++/retype.h.m4: Cleanup.
-	* TODO: Bring it up to date.
+  3.0.1
 
-1.9.11:
+2019-12-20  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-2003-10-26  Martin Schulze  <teebaum@cvs.gnome.org>
+  meson.build: Enable /utf-8 for MSVC builds
 
-	* configure.ac: Bump version number to 1.9.11.
-	* NEWS: Add ChangeLog summary for version 1.9.11.
+  This avoids warnings and mis-compilations on certain system locales when
+  building on Visual Studio, in particular Chinese, Japanese and Korean
+  versions of Windows.
 
-2003-10-26  Martin Schulze  <teebaum@cvs.gnome.org>
+2019-12-20  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-	Compatiblity module:
-	* sigc++/signal.h.m4: Move definition of compatiblity
-	classes SigC::SignalN to here.
-	* sigc++/connection.h:
-	- Add connection::connected().
-	- Add compatibility typedef SigC::Connection.
-	* sigc++/bind.h, sigc++/bind_return.h,
-	sigc++/class_slot.h.m4,	sigc++/hide.h.m4,
-	sigc++/method_slot.h.m4, sigc++/object.h,
-	sigc++/object_slot.h.m4, sigc++/retype.h.m4,
-	sigc++/retype_return.h sigc++/slot.h.m4,
-	sigc++/compatibility.h:
-	New files to complete compatibility module.
-	Split content of compatibility.h.m4 among the new files.
-	* sigc++/compatibility.h.m4: Removed.
-	* Makefile.am: Build and distribute new files.
-	* tests/test_compatibility.cc: Test new stuff.
+  meson: State clearly mm-common-get is required for maintainer mode
 
-	Fixes:
-	* sigc++/functors/slot.h.m4: Fix copy constructor and
-	operator=() of slot template.
-	* sigc++/adaptors/bind.h.m4: Fix deduce_result_type
-	template specializations. bind<0>() probably compiles
-	with gcc-3.3, now.
+  Instead of showing that 'mm-common-get' is not found, state that it is
+  required for maintainer-mode.
 
-2003-10-26  Martin Schulze  <teebaum@cvs.gnome.org>
+2019-12-20  Chun-wei Fan  <fanchunwei@src.gnome.org>
 
-	Fixes:
-	* sigc++/functors/slot.{cc,h.m4}:
-	- Fix notification process: don't defer detaching of a
-	slot from all referred trackables during signal emission!
-	- Size optimization: replace virtual functions from
-	struct typed_slot_rep with function pointers in slot_rep
-	(reduces size of a typical typed_slot_rep instantiation
-	by 30% !!!).
-	* tests/test_slot.cc: Test sigc::slot more thoroughly.
-	* sigc++/functors/mem_fun.h.m4: Fix visit_each().
-	* sigc++/adaptos/bind_return.h.m4: Add support for
-	sigc::ref().
-	* tests/test_bind_return.cc: Use sigc::ref().
-	* sigc++/signal.h.m4: Avoid compiler warning about
-	uninitialized variable r_ in emit().
-	* sigc++/visit_each.h: Cleanup.
-
-	API additions:
-	* sigc++/adpators/lambda/operators.h.m4: Add
-	lambda actions sigc::{reinterpret,static,dynamic}_cast_
-	to support explicit parameter conversion.
-	* tests/test_lambda.cc: Test sigc::static_cast_.
-	* sigc++/adaptors/retype_return.h.m4: New file adding
-	adaptor retype_return (and hide_return).
-	* sigc++/Makefile.am: Build and distribute new file.
-	* tests/test_retype_return.cc: New file testing
-	adaptor retype_return (and hide_return).
-	* tests/Makefile.am: Build and distribute new test case.
-
-2003-10-25  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/visit_each.h: Remove disturbing
-	limit_derived_target<>::operator() overloads.
-	* sigc++/adaptors/bind.h.m4: Add support for sigc::ref().
-	* tests/test_bind.cc: Test sigc::ref().
-	* sigc++/adaptors/lambda/{operator,group,base}.h.m4:
-	- Move support for sigc::ref() from lambda_core<> into
-	lambda operator and lambda group creator functions.
-	- Add missing visit_each() overload for lambda<> template.
-	* tests/test_lambda.cc: Test auto-disconnection.
-	TODO: Fix a strange bug that leads to "Bus error"
-	during auto-disconnection.
-
-1.9.10:
-
-2003-10-23  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* configure.ac: Bump version number to 1.9.10.
-	* NEWS: Add ChangeLog summary for version 1.9.10.
-
-2003-10-23  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/functors/{functor_trait,slot}.h.m4:
-	Move definition of struct nil into functor_trait.h.
-
-2003-10-23  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* configure.ac: Disable typeof() compiler checks.
-	* sigc++/adaptors/bind.h.m4: Remove unnecessary
-	deduce_result_type<> template specializations.
-
-2003-10-20  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/adaptors/compose.h.m4:
-	Correct order of typedefs for good. (Patch from Jeff Franks.)
-
-1.9.9:
-
-2003-10-20  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/connection.h: Add constructor that takes
-	a sigc::slot_base& to support 3rd-party slot lists
-	like they are used in glibmm/gtkmm.
-	* sigc++/functors/slot.h.m4: Make sigc::slot::call_type public.
-	(Fixes compile problems reported by Jeff Franks.)
-	* sig++/type_traits.h: Don't use long long in
-	sigc::is_base_and_derived.
-	(Fixes compile problems reported by Jeff Franks.)
-	* sigc++/adaptors/{bind,compose,hide,exception_catch}.h.m4:
-	Correct order of typedefs. (Repoted by Jeff Franks.)
-	* configure.ac: Bump version number to 1.9.9.
-	* NEWS: Add ChangeLog summary for version 1.9.9.
-
-1.9.8:
-
-2003-10-19  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/functors/slot.h.m4: Define doxygen group functors.
-	* configure.ac: Bump version number to 1.9.8.
-	* NEWS: Add ChangeLog summary for version 1.9.8.
-
-2003-10-19  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* NEWS: Add announces of versions 1.9.6 and 1.9.7.
-	* sigc++/compatibility.h.m4: New file. Defines namespace SigC.
-	namespace SigC should be API compatible to libsigc++-1.2.
-	* sigc++/Makefile.am: Build compatibility.h.
-	* tests/test_compatibility.cc, tests/Makefile.am:
-	Add test case for compatibility module.
-	* docs/index.html: Change group names.
-	* sigc++/sigc++.h: Include connection.h.
-	* sigc++/connection.{cc,h}:
-	- Rename dependency to destroy_notify_callback.
-	- Change parameter name in set_slot() from d to data.
-	- Fix operator=(): Add "return *this;"
-	- Get rid of namespace functor.
-	- Corrections in documentation.
-	* sigc++/signal.{cc,h.m4}:
-	- Add reference counter to signal_impl. Replaces "bool destroy_".
-	- Move signal_base, slot_iterator[_buf], slot_list out of
-	namespace internal. They are part of the public API.
-	- Add convenience function signal#::make_slot().
-	- Get rid of namespace functor.
-	- Corrections in documentation.
-	* sigc++/trackable.{cc,h}:
-	- Rename dependency to destroy_notify_callback.
-	- Rename trackable::clear() to trackable::notify_callbacks().
-	- Corrections in documentation.
-	* sigc++/type_traits.h: Add documentation.
-	* sigc++/visit_each.h:
-	- Get rid of namespace functor.
-	- Add documentation.
-	* sigc++/adaptors[/lambda]/*: Get rid of namespace functor.
-	* sigc++/functors/{functor_trait.h,ptr_fun.h.m4,mem_fun.h.m4}:
-	- Get rid of namespace functor.
-	- Corrections in documentation / add documentation.
-	* sigc++/functors/slot.{cc,h.m4}:
-	- Move slot_base out of namespace internal. It's public API.
-	- Get rid of one-letter-parameter-names.
-	- Get rid of namespace functor.
-	- Corrections in documentation.
-	* tests/*.cc: Get rid of "using namespace ...".
-
-2003-09-10  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/adaptors/lambda/{base,operators}.h.m4:
-	Add subscript ([]) and assign (=) operator. I think there are now
-	enough operators available to make any future power user happy.
-	The only one missing is the comma operator and if we added it
-	the logical consequence would be to also add if(), switch(), do(),
-	etc. lambda expressions which are really out of place in libsigc++.
-	* sigc++/type_traits.h: Fix is_base_and_derived<> for const types.
-	* tests/test_lambda.cc: Test new operators.
-
-1.9.7:
-
-2003-09-05  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* configure.ac: Bump version number to 1.9.7.
-
-2003-09-03  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/adaptors/lambda/operator.h.m4:
-	- Restructure so that the size of the generated source file stays
-	reasonable for 34 operators: There are only two lambda templates
-	lambda_operator and lambda_operator_unary. The action is an additional
-	template parameter. A small template lambda_action[_unary] is specialized
-	for all actions.
-	- Add most operators that boost::lambda supports. Missing operators are
-	"=", "[]", "," and support for pointer arithmetic. I don't know if it's
-	worth adding these. In libsigc++, the purpose of lambda operators is to
-	provide some extra functionality for the group adaptor.
-	* tests/test_lambda.cc:
-	Test pre-increment, address and dereference operator.
-
-2003-08-31  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/reference_wrapper.h, sigc++/type_traits.h, sigc++/Makefile.am:
-	New file reference_wrapper.h provides ref() to specify that adaptors/lambdas
-	should take a reference to the object passed into ref() instead of a copy.
-	* tests/test_lambda.cc:
-	- Test group() with mem_fun().
-	- Use ref() where lambdas should store references to objects.
-	- Test var() and constant().
-	* sigc++/adaptors/lambda/base.h.m4:
-	- Support ref() in return type deduction.
-	- Add var() and constant() which create lambdas for usage with lambda operators.
-	* sigc++/adaptors/lambda/operator.h.m4:
-	- Fix return type deduction.
-	- Remove operator{+,-,*,...} overloads added on 2003-08-29. ref() is way cleaner.
-	* sigc++/adaptors/lambda/group.h.m4,
-	sigc++/adaptors/bind.h.m4, sigc++/adaptors/compose.h.m4,
-	sigc++/adaptors/exception_catch.h.m4, sigc++/adaptors/hide.h.m4:
-	Fix return type deduction.
-
-2003-08-29  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* tests/test_lambda.cc: Add more tests.
-	* sigc++/adaptors/lambda/select.h.m4, sigc++/adaptors/lambda/lambda.cc.m4:
-	Make _1, _2, ... constant.
-	* sigc++/adaptors/lambda/operator.h.m4:
-	Add operator{+,-,*,...} overloads to distinguish between const and non-const objects.
-	Store references to non-const objects rather than copies.
-	This allows expressions like e.g. std::cout << _1.
-	* sigc++/adaptors/lambda/base.h.m4, sigc++/adaptors/lambda/group.h.m4:
-	Remove void specializations. Functors returning void are tested and work fine.
-
-2003-08-27  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* tests/test_callof.cc, tests/test_deduce_result_type.cc:
-	Rename, correct and improve this test case.
-	* tests/Makefile.am: Build and run test_deduce_result_type
-	instead of test_callof.
-
-2003-08-27  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* Update TODO.
-
-2003-08-27  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/adaptors/hide.h.m4: Remove usage of callof_ignore_arg<>.
-	* sigc++/callof.h.m4, sigc++/adaptors/deduce_result_type.h.m4,
-	sigc++/functors/functor_trait.h.m4:
-	Remove the first and move deduce_result_type templates from
-	functor_trait.h.m4 into new file deduce_result_type.h.m4.
-	* sigc++/Makefile.am, sigc++/sigc++.h, sigc++/adaptors/adaptor_trait.h.m4:
-	Build and include sigc++/adaptors/deduce_result_type.h instead of callof.h.
-	* sigc++/functors/slot.h.m4: Document struct nil.
-
-2003-08-24  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/functors/functor_trait.h.m4: Simplify usage of convenience
-	macro SIGC_FUNCTORS_HAVE_RESULT_TYPE:
-	namespace sigc{ namespace functor{ SIGC_FUNCTORS_HAVE_RESULT_TYPE }}
-
-2003-08-24  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/functors/functor_trait.h,m4, sigc++/adaptors[/lambda]/*.h.m4:
-	Merge adaptor return type deduction and typeof() into
-	sigc::functor::deduce_result_type. Use it for all adaptors.
-	* tests/test_compose.cc: Only test multi-type get-functor if
-	typeof() if supported.
-
-2003-08-24  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/adaptors[/lambda]/*.h.m4:
-	- Remove unnecessary void specializations. In fact, only the one
-	for sigc::functor::exception_catch<> is needed and I don't really
-	understand why. For the lambda stuff the void specializatoins are
-	just commented out at the moment.
-	- Make typeof() optional. Surprisingly, I got the lambda stuff working
-	without typeof()! The test suite doesn't catch all cases yet, so maybe
-	some thing are still not working.
-	TODO: Implement configure check.
-	* tests/test_bind.cc, tests/test_compose.cc tests/test_exception_catch.cc,
-	tests/test_hide.cc, tests/test_lambda.cc:
-	Only test multiple functor return types if typeof() is supported.
-
-2003-08-06  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/trackable.{cc,h}: Add function trackable::clear().
-
-2003-06-24  Andreas Rottmann  <rottmann@users.sourceforge.net>
-
-	* TODO: Minor tweaks.
-
-2003-06-23  Andreas Rottmann  <rottmann@users.sourceforge.net>
-
-	* docs/reference/Doxyfile.in: Use these variables.
-	* docs/reference/Makefile.am (html/index.html): Provide doxygen 
-	with SRCDIR and TOP_SRCDIR environment variables.
-	
-	* sigc++/functors/slot.h.m4: Make slot::call_type typedef public;
-	this fixes a g++ 3.3 error in signal.h.
-
-	* sigc++/signal.h.m4: Make the signal::accumulated class public;
-	this fixes a g++ 3.3 error in test_accumulated.cc.
-
-2003-06-15  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/functor/slot.h.m4: Correct typing error in docs.
-	* sigc++/functor/ptr_fun.h.m4: Document the whole thing.
-
-2003-05-31  Murray Cumming  <murrayc@usa.net>
-
-	* Reference documentation: Rearranged the groups to make it all
-	a bit more like the libsigc++ 1.2 reference documentation.
-	Corrected some spelling and grammar too.
-	This needs a lot of work. The text is very hard to read and it's
-	generally not appropriate for a user of the code who doesn't
-	care about the internals. But it's not impossible - our examples
-	should show us what we need to say in the documentation.
-	We probably need some more groups for the extra stuff, like we do
-	in libsigc++ 1.2.
-
-2003-05-29  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/signal.h.m4: Fix documentation.
-	* sigc++/connection.h, sigc++/functor/slot.h.m4:
-	Document the whole thing.
-
-2003-05-29  Martin Schulze  <teebaum@cvs.gnome.org>
-
-	* sigc++/signal.h.m4:
-	- Remove bogus operator() from unnumbered signal<> and
-	  signal<>::accumulated templates.
-	- Document the whole thing.
-
-	* docs/index.html: Fix some links.
-
-2003-04-06  Martin Schulze  <MHL.Schulze@t-online.de>
-
-	* TODO, configure.ac, Makefile.am, docs/*:
-	Add Doxygen framework.
+  Meson: Fix Visual Studio builds
 
-2003-04-06  Martin Schulze  <MHL.Schulze@t-online.de>
+  We need to make sure that SIGC_BUILD and _WINDLL are defined when
+  building the libsigc++ DLL, so that it gets build properly.
 
-	* sigc++/callof.h.m4, sigc++/adaptors/*, tests/test_callof.cc:
-	Move sigc::callof<> to sigc::functor::internal::callof<>.
+2019-12-20  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-	* sigc++/functors/mem_fun.h.m4, tests/test_mem_fun.cc:
-	Add new types [bound_][const_]volatile_mem_functor, visit_each()
-	and mem_fun() overloads for volatile qualifier.
-	Add ctor overloads in bound_*mem_functor and mem_fun() overloads
-	that take reference instead of pointer.
+  Add support for building libsigc++-3.0 with Meson
 
-2003-03-26  Martin Schulze  <MHL.Schulze@t-online.de>
+  libsigc++-3.0 can be built with either Autotools or Meson.
 
-	* Change "closure" to "slot" throughout sigc++2 (file names,
-	class names, member variables, documentation, etc.).
+2019-12-10  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2003-03-26  Martin Schulze  <MHL.Schulze@t-online.de>
+  Make libsigc_manual.xml valid
 
-	* TODO: Rewrite to reflect recent changes as well as recent discussions.
+  Fix errors reported by "xmllint --postvalid".
 
-2003-03-24  Martin Schulze  <MHL.Schulze@t-online.de>
+2019-11-03  Murray Cumming  <murrayc@murrayc.com>
 
-	* sigc++/adaptors/bind_return.h.m4: Make the adaptor's data member
-	public so that visit_each() can access it.
+  tests: Remove unused SIGC_CXX_TYPEOF alternative code
 
-	* sigc++/adaptors/lambda/*.h.m4: More fixes. Add a note about
-	malfunctioning typeof() (probably compiler bug in gcc-3.2).
+  This was apparently related to some long-since removed libsigc++ support
+  for a non-standard a gcc typeof() extension.
+  https://gcc.gnu.org/onlinedocs/gcc/Typeof.html
 
-	* tests/*.cc: Test references. Fix compose equivalent in test_lambda.
+2019-11-02  Murray Cumming  <murrayc@murrayc.com>
 
-2003-03-24  Martin Schulze  <MHL.Schulze@t-online.de>
+  test_mem_fun(): Re-enable tests of overloaded functions
 
-	* sigc++/Makefile.am, sigc++/functors/functor_trait.h[.m4],
-	sigc++/adaptors/adaptor_trait.h.m4: Move detection of function
-	and member method pointers' return types from adaptor_trait into
-	functor_trait. (We'll use functor_trait rather than adaptor_trait for
-	our lambda stuff.) functor_trait.h needs to be generated from .m4 now.
+  But, as with test_ptr_fun(), we need to specify the types.
+  The compiler doesn't seem to be able to figure it out based on the
+  values passed.
 
-	* sigc++/functors/functor_trait.h.m4: Add convenience macros:
-	- SIGC_FUNCTORS_HAVE_RESULT_TYPE indicates that the existance of
-	T_functor::result_type should be assumed for all unknown functors.
-	- SIGC_FUNCTOR_TRAIT(T_functor, T_result) explicitly specifies the
-	result type of a functor.
-	("typename functor_trait<T_functor>::result_type") is used to
-	determine the return type of our adaptors' operator()() overloads.
+2019-11-02  Murray Cumming  <murrayc@murrayc.com>
 
-	* sigc++/adaptors/[lambda/]*.h.m4: Various fixes in visit_each() and
-	operator()() overloads to make these operator()() overloads usable.
-	Most of them were just commented out before. Some adaptor types also
-	have void specializations, now.
+  test_ptr_fun: Re-enable tests of overloaded functions
 
-	* sigc++/adaptors/lambda/group.h.m4: Change syntax from
-	"[some_functor] % grp([args])" to "group([some_functor], [args])"
-	like we agreed on the ml some time ago.
+2019-10-29  Murray Cumming  <murrayc@murrayc.com>
 
-	* sigc++/tests/test_[all adaptors].cc: Test stuff that didn't work
-	before.
-
-2003-03-22  Murray Cumming  <murrayc@usa.net>
-
-	* Added pgk-config file, from a mystery person in bug #108857
-
-2003-03-22  Martin Schulze  <MHL.Schulze@t-online.de>
-
-	* tests/test_bind.cc: Test and show how to use functor_trait
-	for user defined or 3rd-party functors so that a
-	bind<0>([functor],[arg1])() call with no arguments can return a value.
-
-2003-03-20  Martin Schulze  <MHL.Schulze@t-online.de>
-
-	* sigc++/callof.h.m4: Add explanations. Comment in / create templates
-	callof_safe[#]. Unfortunately they don't work for functors with overloaded
-	operator() so we don't use it for now. At least everything is documented.
-
-	* sigc++/functors/functor_trait.h, sigc++/functors/*.h.m4: Add back
-	functor_base compiler hint. We're using it now in adaptor_functor<>.
-
-	* sigc++/adaptors/{adaptor_trait,bind}.h.m4: Make operator() overloads
-	with no arguments return the result of the functor invocation.
-	Fix multiple bind<0>().
-	* tests/test_bind.cc: Test the stuff that's working now.
-
-2003-03-16  Murray Cumming  <murrayc@usa.net>
-
-	* Added sigc++/sigc++.h, like in libsigc++ 1.2
-	* examples: Added member_method example, which uses a class method
-	and which demonstrates disconnection.
-
-1.9.6:
-
-2003-03-11  Andreas Rottmann  <rottmann@users.sourceforge.net>
-
-	* sigc++/Makefile.am: Use substitution references instead of
-	$(patsubst). Is shorter and fixes the strange-dirs-in-dist-tarball
-	bug.
-
-2003-03-09  Martin Schulze  <MHL.Schulze@t-online.de>
-
-	* sigc++/connection.h: Add block() capability.
-
-2003-03-09  Martin Schulze  <MHL.Schulze@t-online.de>
-
-	* sigc++/signal.{cc,h.m4}: Add flag signal_impl::destroy_
-	and function signal_impl::destroy(). Use them to defer
-	the destruction of the signal_impl object during signal
-	emission.
-
-	* tests/test_disconnect.cc: Add tests for the connection
-	class and for deleting signals during emission.
-
-2003-03-09  Martin Schulze  <MHL.Schulze@t-online.de>
+  GitHub Actions CI: Remove extra configure calls
 
-	* sigc++/connection.{cc,h}, sigc++/Makefile.am:
-	- New files that add a connection class. Objects of this
-	  class are constructed from closure list iterators and can
-	  be used to disconnect the refered closure. As opposed to
-	  iterators they stay valid beyond the lifetime of the closure.
+  ./autogen.sh already runs configure, passing the arguments.
+  This is why the builds didn't fail when there were compiler errors.
 
-2003-03-09  Martin Schulze  <MHL.Schulze@t-online.de>
+2019-10-29  Murray Cumming  <murrayc@murrayc.com>
 
-	* sigc++/functors/closure.{cc,h.m4}, sigc++/signal.cc:
-	- Rename closure_{base,rep}::[set_]dependency_ -> [set_]parent_.
-	- Make closure_rep inherit trackable. This allows for
-	  connection objects that stay valid beyond the life time
-	  of the refered closure.
-	- Make some one-line-functions inline again.
+  test_limit_reference: Avoid virtual-move-assign warning
 
-2003-03-08  Martin Schulze  <MHL.Schulze@t-online.de>
+  "= delete" Bases's move operations because the defaulted one
+  would call non-trivial assignment operators in the virtual bases.
+  
+  This avoids this compiler warning, at least with g++ 9.2:
+  
+  test_limit_reference.cc:12:7: error: defaulted move assignment for ‘{anonymous}::Base’ calls a non-trivial move assignment operator for virtual base ‘sigc::trackable’ [-Werror=virtual-move-assign]
+     12 | class Base : virtual public sigc::trackable
+        |       ^~~~
+  test_limit_reference.cc:22:7: error: defaulted move assignment for ‘{anonymous}::Derived’ calls a non-trivial move assignment operator for virtual base ‘{anonymous}::Base’ [-Werror=virtual-move-assign]
+     22 | class Derived : virtual public Base, public Base2
+  
+  It would be nice if this test had a comment saying what it is testing.
 
-	* sigc++/trackable.cc: BUGFIX in trackable_dep_list::clear()
+2019-10-29  Murray Cumming  <murrayc@murrayc.com>
 
-2003-03-08  Andreas Rottmann  <rottmann@users.sourceforge.net>
+  signal: slot_iterator_buf: Remove T_result default type
 
-	* sigc++/Makefile.am: Rewritten so we can build lambda cleanly.
-	* sigc++/Makefile.am_fragment: Removed.
+  This expected a result_type type alias. Luckily, in the few places where
+  we use this, we always specify the type, ignoring the default.
 
-	* sigc++/functors/Makfile.am: Removed.
-	* sigc++/adaptors/Makefile.am: Removed.
-	* sigc++/adaptors/lambda/Makefile.am: Removed.
-	* configure.ac (AC_OUTPUT): Remove the above Makefiles.
+2019-10-29  Murray Cumming  <murrayc@murrayc.com>
 
-	* tests/Makefile.am: Re-included lambda test.
-	
-2003-03-07  Martin Schulze  <MHL.Schulze@t-online.de>
+  tests: Remove unnecessary result_type aliases
 
-	* sigc++/signal.{cc,h.m4}:
-	- signal_emit#<>: New templates replacing signal#<>::caller.
-	  The purpose of these templates is implementing the emit
-	  function and optimizing signal emission for the case that
-	  no accumulator is used via template specializations.
-	- default_accumulator<>: Removed. The default for T_accumulator
-	  in signal#<> now is nil. An example how to use accumulators
-	  is available in tests/test_accumulator.cc.
-	- signal_{base,impl}: Move the implementation of signal_base's
-	  interface to signal_impl. An object of this class is
-	  dynamically allocated when first connecting a closure to
-	  the signal. This drastically reduces the size of empty signals
-	  and allows for future addition of a reference counter to make
-	  it safe to delete a signal during emission.
-	- Directly work on closure_rep during signal emission. This
-	  seems to be quicker than using the closure templates.
-	- Document the classes. Restructure the header file a bit.
+  This was necessary with older pre-C++11 versions of libsigc++.
 
-	* sigc++/functors/closure.h.m4: Make closure_base::rep_ data
-	member public, so that signal emission can directly work on it.
+2019-10-28  Murray Cumming  <murrayc@murrayc.com>
 
-	* tests/test_size.cc: Add an entry for signal_impl.
+  Reformat code with make format
 
-2003-03-07  Martin Schulze  <MHL.Schulze@t-online.de>
+2019-10-28  Murray Cumming  <murrayc@murrayc.com>
 
-	* sigc++/functors/closure.{cc,h.m4}:
-	- closure_base: BUGFIXES in ~closure_base() and operator=().
-	- Mark some functions with the inline keyword. This seems to
-          help gcc 3.2 to optimize signal emission and (dis)connection.
-	- Document the classes. Restructure the header file a bit.
+  Build: Add target to format code with clang-format
 
-2003-03-07  Martin Schulze  <MHL.Schulze@t-online.de>
+  This lets us do "make format" to reformat the code.
 
-	* sigc++/trackable.{cc,h}: Make trackable allocate a
-	trackable_dep_list object dynamically when adding the first
-	dependency. (This reduces the size of objects, that are not
-	refered by a closure by 4 bytes (50%) and increases the size
-	of objects that are refered by a closure by 4 bytes (50%)
-	on a 32 bit architecture => This reduces total memory use
-	when >50% of the trackables are not refered by a closure.)
-	Document the classes.
+2019-10-27  Murray Cumming  <murrayc@murrayc.com>
 
-2003-03-05  Martin Schulze  <MHL.Schulze@t-online.de>
+  GitHub Actions CI: Specify CXX before make distcheck
 
-	* tests/Makefile.am, tests/test_size.cc, tests/test_accumulated.cc:
-	Add two test cases. test_size is showing the size of  public and
-	internal structures. (Which apart from empty signals are smaller
-	than the sizes of the equivalent libsigc++-1.2 structures.)
-	test_accumulated is a test for the template signal<>::accumulated<>
-	at the same time showing the use of accumulators in libsigc++2.
+  As in the build step. Otherwise, the distcheck's configure run will
+  just pick up the default compiler again.
 
-	* Offtopic: My note about binary sizes from 2003-02-10 is wrong.
-	Stripped libsigc++2 test binaries are about 8-10k in size.
+2019-10-27  Murray Cumming  <murrayc@murrayc.com>
 
-2003-03-05  Martin Schulze  <MHL.Schulze@t-online.de>
+  GitHub Actions CI: Add a clang++ 9 build
 
-	* sigc++/visit_each.h: BUGFIX in template specialization
-	limit_derive_target<T_Target*,T_action>::with_type<false,T_type>:
-	Add non-const overloads for static void execute_() avoiding
-	compile time errors.
+  This uses a newer Ubuntu version by specifying a different docker image.
+  Because of that, we no longer need to use sudo with apt.
 
-2003-02-16  Martin Schulze  <MHL.Schulze@t-online.de>
+2019-10-27  Murray Cumming  <murrayc@murrayc.com>
 
-	* tests/Makefile.am, tests/test_disconnect.cc:
-	Add testcase with a mixed connection & disconnection sequence.
+  GitHub Actions CI: autotools-clang-8: Don't try to use Ubuntu 19.10
 
-2003-02-16  Martin Schulze  <MHL.Schulze@t-online.de>
+  The uses: line was actually a separate step that didn't influence the
+  following step. Ubuntu 18.04 (what GitHub actions uses for
+  "ubuntu-latest") actually has clang-8 anyway.
 
-	* sigc++/signal.cc: Bugfix in signal_base::insert():
-	Set notification function in the newly created copy of
-	slot_ rather than in slot_ itself.
+2019-10-27  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
 
-2003-02-10  Martin Schulze  <MHL.Schulze@t-online.de>
+  sigc++/adaptors/bind.h: Make bind_functor::bound_ public
 
-	* sigc++/signal.h.m4: Comment in typedefs for iterator types in
-	the signal#<> class template. Make signal#<>::connect() return an
-	iterator for convenience.
-	(Note that the first change increases the binary size of
-	tests/test_signal from 201k to 204k, the second change to 206k.)
+  It's used by sigc::visitor::do_visit_each().
+  Add a test case in tests/test_bind.cc.
+  Fixes #26
 
-2003-01-23  Murray Cumming  <murrayc@usa.net>
+2019-10-25  Stuart Dootson  <stuart.dootson@gmail.com>
 
-	* sigc++/adaptors/lambda is disable temporarily (not built and
-	not distributed) because it gets built before its parent
-	directory, but #includes generated sources in the parent directory.
+  MSVC build: Add version check to MSVC warning removal
 
-2003-01-22  Murray Cumming  <murrayc@usa.net>
+  CMake 3.15 removes /W3 as a default flag for MSVC, so we no longer need to remove it.
+2019-10-25  Stuart Dootson  <stuart.dootson@gmail.com>
 
-	* Added Andreas Rottman's example.
+  MSVC build: Add code comments
 
-2003-01-22  Murray Cumming  <murrayc@usa.net>
+2019-10-25  Stuart Dootson  <u404261@methods.local>
 
-	* Applied Andreas Rottman's make dist fixes.
+  MSVC build: Silence 'C4100: unreferenced formal parameter' warnings
 
-2003-01-14  Murray Cumming  <murrayc@usa.net>
+  Added 'static_cast<void>(parameter-name)' in all paths where the parameter isn't used
+2019-10-25  Stuart Dootson  <u404261@methods.local>
 
-	* Added whitespace to make the code more readable.
+  MSVC build: Disable C4244 (conversion, possible loss of data) for relevant tests
+
+2019-10-25  Stuart Dootson  <u404261@methods.local>
+
+  MSVC build: Fix 'C4127: conditional expression is constant' warning
+
+2019-10-25  Stuart Dootson  <u404261@methods.local>
+
+  Add default warning flags
+
+2019-10-11  Stuart Dootson  <stuart.dootson@gmail.com>
+
+  CMake Build: tests: Let MSVC find the library
+
+  Use 'cmake -E env ... <test-executable>' to execute the test executable.
+  The '-E env' option allows the environment to be altered for the executed test.
+  
+  Use generator expressions to retrieve the build directory/file for the
+  sigc++ & test targets
+
+2019-10-11  Murray Cumming  <murrayc@murrayc.com>
+
+  GitHub Actions: Add workflow on Windows (MSVC compiler)
+
+2019-10-11  Murray Cumming  <murrayc@murrayc.com>
+
+  Github Actions: Use --enable-warnings=fatal
+
+  This enables more warnings and makes the build fail if they happen.
+
+2019-09-28  Murray Cumming  <murrayc@murrayc.com>
+
+  GitHub Actions: Add workflow for clang 8
+
+  Using Ubuntu 19.10 (Eoan) instead of Ubuntu 18.04.
+
+2019-09-28  Murray Cumming  <murrayc@murrayc.com>
+
+  GitHub Actions: Add workflow for gcc 9
+
+  Using Ubuntu 19.10 (Eoan) instead of Ubuntu 18.04.
+
+2019-09-28  Murray Cumming  <murrayc@murrayc.com>
+
+  GitHub Actions: Use specific compiler versions
+
+  We only try compiler versions that are known to have C++17 support.
+  There is no point in trying older compiler versions.
+
+2019-09-28  Murray Cumming  <murrayc@murrayc.com>
+
+  GitHub Actions: Better workflow names
+
+2019-09-27  Murray Cumming  <murrayc@murrayc.com>
+
+  Add GitHub Actions build workflow (cmake build)
+
+2019-09-27  Murray Cumming  <murrayc@murrayc.com>
+
+  Add GitHub Actions build workflow (autotools build)
+
+2019-09-26  Murray Cumming  <murrayc@murrayc.com>
+
+  tests: Add test_connection, to check copying
+
+  For now, this just confirms that we can now copy empty sigc::connection
+  instances. (See the previous commit.)
+
+2019-09-26  AIGRIND  <AIGRIND-LLC@users.noreply.github.com>
+
+  Empty connections can be safely copied now
+
+  Copy constructor and `operator=` could fail if `src` was empty.
+  ```
+  sigc::connection con1;
+  sigc::connection con2(con1); // failed
+  ```
+  ```
+  sigc::connection con3;
+  sigc::connection con4;
+  con3 = con4; // failed
+  ```
+2019-09-05  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  3.0.0
+
+2019-09-05  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  README_build: Refer MSVC users to MSVC_NMake/README.txt
+
+2019-09-02  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  tuple_transform_each(): Fix for libc++
+
+  Tuples which are input data to std::tuple_cat() are not declared const.
+  Some versions of libc++ has a bug in std::tuple_cat(): All output
+  elements coming from a const tuple become const.
+  It can break 'make check' when using clang++ and -stdlib=libc++.
+  
+  Fixes issue #25
+
+2019-09-01  Murray Cumming  <murrayc@murrayc.com>
+
+  tests: Don't call static method via instance
+
+2019-09-01  Murray Cumming  <murrayc@murrayc.com>
+
+  tests: Remove an unnecessary semicolon
+
+2019-08-29  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  tests/test_track_obj.cc: Remove obsolete comments
+
+2019-08-29  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  bind(), track_obj() documentation: Remove obsolete restrictions
+
+  The number of objects and arguments are not restricted to max 7
+  now that variadic templates have replaced the .m4 files in libsigc++-2
+  that generated 7 copies.
+
+2019-07-03  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  tests/test_track_obj: Fix for clang++
+
+  clang++ complains if private members are unused, so make them protected.
+  
+  error: private field 'bar_' is not used [-Werror,-Wunused-private-field]
+
+2019-06-12  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  2.99.13
+
+2019-06-03  Jeff Trull  <edaskel@att.net>
+
+  CMake: supply SIGC_BUILD and use CMAKE_CXX_STANDARD, for MSVC
+
+2019-03-21  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  Doxyfile.in: Remove obsolete preprocessor macros
+
+  The removed macros are not used anywhere in libsigc++ 3.0.
+
+2019-02-17  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  sigc::tuple_transform_each: std::result_of -> std::invoke_result
+
+  std::result_of is deprecated in C++17 and will be removed in C++20.
+  
+  Fixes issue #19
+
+2019-02-13  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  Makefile.am: Distribute README.md
+
+2019-02-13  Jürg Billeter  <j@bitron.ch>
+
+  configure.ac: Set `foreign` option to fix build
+
+  Without the `foreign` option, automake requires a README file, which no
+  longer exists.
+  
+  	Makefile.am: error: required file './README' not found
+  
+  Fixes: 8a0cb176 ("README: Rename to README.md and reformat as markdown")
+
+2019-01-10  Murray Cumming  <murrayc@murrayc.com>
+
+  README.md: Add some build hints
+
+  This fixes issue #18:
+  https://github.com/libsigcplusplus/libsigcplusplus/issues/18
+  
+  Note that this file should not duplicate too much from the website.
+  Information should be on the website or in the README.md, but rarely in
+  both places.
+
+2019-01-10  Murray Cumming  <murrayc@murrayc.com>
+
+  README: Rename to README.md and reformat as markdown
+
+  And remove:
+  - the description of the directory structure, which is
+  outdated and not very useful.
+  - the contact information section. There is no need to duplicate
+  what is on the website, which we link to.
+
+2019-01-02  Lennard Berger  <lennard.berger@student.uni-tuebingen.de>
+
+  tests: Fix a couple of imports in tests
+
+  See pull request #15
+
+2018-12-05  Murray Cumming  <murrayc@murrayc.com>
+
+  docs: Remove unused docs/docs/index.html
+
+  And remove the .gif images that it used.
+  
+  This fixes issue #12
+  https://github.com/libsigcplusplus/libsigcplusplus/issues/12
+
+2018-11-11  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  Create only .tar.xz tarballs
+
+  * configure.ac: This is what ftp.gnome.org wants, so this avoids
+  it doing any repackaging. This is what gtkmm does.
+
+2018-10-30  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  2.99.12
+
+2018-10-26  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  Add necessary #include<>s
+
+  * sigc++/adaptors/tuple_visitor_visit_each.h
+  * sigc++/reference_wrapper.h
+
+2018-10-03  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  cmake: Require C++17 support
+
+  Fixes #9
+
+2018-09-10  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  slot, signal: Fix the Doxygen documentation
+
+  Hide the forward declarations of sigc::slot and sigc::signal from Doxygen.
+  If Doxygen sees the forward declarations, it does not care about what's
+  in the complete class definitions.
+
+2018-09-10  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  Update .gitignore
+
+2018-09-10  Chun-wei Fan  <fanc999@yahoo.com.tw>
+
+  build: Add a README.txt for Visual Studio builds
+
+2018-09-10  Chun-wei Fan  <fanc999@yahoo.com.tw>
+
+  build: Build the examples and tests on MSVC builds
+
+  Also add a BOOST_DLL option for one to build the benchmark program
+  for libsigc++, which is needed on Visual Studio builds if the
+  installed Boost libraries are built as DLLs.
+
+2018-09-10  Chun-wei Fan  <fanc999@yahoo.com.tw>
+
+  tests: Include <string> as needed
+
+  Some compilers do insist that <string> be included so that things like
+  to_string() and stoi() becomes part of the std namespace.
+
+2018-09-10  Chun-wei Fan  <fanc999@yahoo.com.tw>
+
+  build: Remove the Visual Studio project files
+
+  We now use NMake, so we don't need to keep the project files around
+  anymore.
+
+2018-09-10  Chun-wei Fan  <fanchunwei@src.gnome.org>
+
+  Build: Use NMake Makefiles for MSVC Builds
+
+  Since the MSVC projects are not created upon 'make dist' but
+  is manually updated, use a set of NMake Makefiles that consumes
+  sigc++/filelist.am as needed, so that whenever the list of sources
+  is updated, we do not have to worry that the generated release
+  tarballs have broken Visual Studio build files.
+  
+  The next commit will remove the Visual Studio project files.
+  
+  This should make maintenance of the Visual Studio build files easier.
+
+2018-09-10  Chun-wei Fan  <fanchunwei@src.gnome.org>
+
+  build: Split out source listing
+
+  Consolidate the source listing from sigc++/Makefile.am to
+  sigc++/filelist.am, so that we can let other Makefile-based
+  build systems consume sigc++/filelist.am as well.
+
+2018-09-10  Chun-wei Fan  <fanc999@yahoo.com.tw>
+
+  build: Rename MSVC_Net2017 to MSVC_NMake
+
+  This is to prepare the transition from Visual Studio project files to
+  NMake Makefiles.  This is done in order to simplify maintainance of the
+  Visual Studio build files.
+
+2018-08-29  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  slot, signal: Avoid compiler warnings from function pointer conversions
+
+  gcc8 -Wextra prints a warning when a single reinterpret_cast is used for
+  conversion between different types of function pointers. The previous fix
+  with a union in sigc::internal::bitwise_equivalent_cast<>() is not standard
+  C++. Rename the function to function_pointer_cast<>(), and use two
+  reinterpret_casts as recommended in gcc's documentation.
+  
+  Fixes #8
+
+2018-08-02  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  Update libsigcplusplus.doap
+
+2018-08-02  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  configure.ac: Update bug report address
+
+2018-08-02  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  README: Update contact information and compiler requirement
+
+  Fixes #6
+
+2018-07-17  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  Qualify calls to bitwise_equivalent_cast() with namespace names
+
+  Otherwise indirect calls from glibmm, with its own bitwise_equivalent_cast(),
+  can be ambiguous due to ACL (argument-dependent lookup).
+
+2018-07-16  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  slot, signal: Avoid compiler warnings from function pointer conversions
+
+  gcc8 -Wextra prints a warning when reinterpret_cast is used for conversion
+  between different types of function pointers. Avoid that by adding
+  sigc::internal::bitwise_equivalent_cast<>() with a union with members of
+  the two types of function pointers.
+  
+  Fixes #1
+
+2018-07-16  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  Revert "slot, signal: Avoid compiler warnings from function pointer conversions"
+
+  This reverts commit c7dbcd5df0e6c260d50fe12dfb2b87a002d91985.
+  
+  This can be done in a better way by keeping the union in a template function.
+
+2018-07-13  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  slot, signal: Avoid compiler warnings from function pointer conversions
+
+  gcc8 -Wextra prints a warning when reinterpret_cast is used for conversion
+  between different types of function pointers. Avoid that by instead using
+  a union with members of the two types of function pointers.
+  
+  Fixes #1
+
+2018-06-11  Seirra  <github@sarifria.x10.bz>
+
+  fix broken url
+
+  current url in AC_INIT is broken, I imagine the github webpage serves as a good stand in replacement?
+2018-04-15  Murray Cumming  <murrayc@murrayc.com>
+
+  C++17: Update tuple_transform_each().
+
+  Update from murrayc-tuple-utils:
+  https://github.com/murraycu/murrayc-tuple-utils/commits/master
+
+2018-04-15  Murray Cumming  <murrayc@murrayc.com>
+
+  C++17: Update from murrayc-tuple-utils.
+
+  From https://github.com/murraycu/murrayc-tuple-utils/commits/master
+  This also uses the C++17 nested namespace syntax.
+  
+  Apart from tuple_transform_each, which seems to have a memory access
+  problem, with both g++ and clang++, in its C++17 version.
+
+2018-04-10  Murray Cumming  <murrayc@murrayc.com>
+
+  2.99.11
+
+2018-04-10  Murray Cumming  <murrayc@murrayc.com>
+
+  track_obj: Remove unnecessary overload.
+
+2018-04-10  Murray Cumming  <murrayc@murrayc.com>
+
+  retype_return: Remove unnecessary overloads.
+
+2018-04-10  Murray Cumming  <murrayc@murrayc.com>
+
+  compose: Remove unnecessary overloads.
+
+2018-04-08  Murray Cumming  <murrayc@murrayc.com>
+
+  C++17: More use of std::invoke().
+
+  The use of template operator() here was maybe to deal with
+  awkward compilers, but now we can just expect them to support
+  std::invoke() from C++17.
+
+2018-04-07  Murray Cumming  <murrayc@murrayc.com>
+
+  C++17: Use std::invoke().
+
+  This makes code more generic. Maybe this will let us simplify code.
+
+2018-04-07  Murray Cumming  <murrayc@murrayc.com>
+
+  Build: Require mm-common 0.9.12
+
+  This version allows the check for C++17 support.
+
+2018-04-07  Murray Cumming  <murrayc@murrayc.com>
+
+  C++17: Replace some call_*() helpers with std::apply().
+
+2018-03-28  Murray Cumming  <murrayc@murrayc.com>
+
+  C++17: limit_trackable_target: Use constexpr if to simplify code.
+
+2018-03-28  Murray Cumming  <murrayc@murrayc.com>
+
+  configure.ac: Require C++17.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  website: Correct website source link.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  Website: Remove mailing list from footer.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  website: Simplify the layout.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  website: Remove invalid xml declaration.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  website: Remove W3C validator button.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  website: download: Slight cleanup.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  website: Rename stable.md to download.md.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  Website: Simplify the menu.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  website: Remove links page.
+
+  It doesn't seem useful.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  website: Update git/bug links.
+
+2018-03-10  Murray Cumming  <murrayc@murrayc.com>
+
+  website: Slight html cleanup.
+
+2018-03-09  Murray Cumming  <murrayc@murrayc.com>
+
+  website: Remove sourceforge logo.
+
+2018-03-09  Murray Cumming  <murrayc@murrayc.com>
+
+  Use jekyll instead of SSI framgments.
+
+  While keeping the old markup and styling for now.
+
+2018-03-09  Murray Cumming  <murrayc@murrayc.com>
+
+  Update .gitignore.
+
+2018-03-08  Murray Cumming  <murrayc@murrayc.com>
+
+  docs/: Convert website .shtml to .md
+
+2018-03-08  Murray Cumming  <murrayc@murrayc.com>
+
+  docs/website: Move to docs/.
+
+  Because that is the standard path for GitHub Pages websites.
+
+2018-03-08  Murray Cumming  <murrayc@murrayc.com>
+
+  docs/: Move contents to docs/docs/
+
+  This lets us use docs/ for the website, as is standard for
+  GitHub Pages.
+
+2018-03-07  Murray Cumming  <murrayc@murrayc.com>
+
+  Set theme jekyll-theme-minimal
+
+2018-01-10  Murray Cumming  <murrayc@murrayc.com>
+
+  2.99.10
+
+2017-11-09  Kjell Ahlstedt  <kjellahlstedt@gmail.com>
+
+  slot_base::set_parent(): Create a dummy slot_rep if necessary
+
+  set_parent() must always store the supplied parent pointer and cleanup
+  function pointer, or else there may be a memory leak. The pointers are
+  stored in slot_rep. Bug 167714
 

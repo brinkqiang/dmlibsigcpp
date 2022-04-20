@@ -1,0 +1,13 @@
+<map id="sigc::adapts&lt; T_functor &gt;" name="sigc::adapts&lt; T_functor &gt;">
+<area shape="rect" id="node1" title="Base type for adaptors." alt="" coords="197,305,388,332"/>
+<area shape="rect" id="node3" href="$structsigc_1_1bind__functor.html" title="Adaptor that binds arguments to the wrapped functor." alt="" coords="451,5,624,61"/>
+<area shape="rect" id="node4" href="$structsigc_1_1bind__functor_3-1_00_01T__functor_00_01T__type_8_8_8_01_4.html" title="Adaptor that binds argument(s) to the wrapped functor." alt="" coords="440,86,635,127"/>
+<area shape="rect" id="node5" href="$structsigc_1_1bind__return__functor.html" title="Adaptor that fixes the return value of the wrapped functor." alt="" coords="446,151,629,193"/>
+<area shape="rect" id="node6" href="$structsigc_1_1exception__catch__functor.html" title=" " alt="" coords="456,217,619,273"/>
+<area shape="rect" id="node7" href="$structsigc_1_1hide__functor.html" title="Adaptor that adds a dummy parameter to the wrapped functor." alt="" coords="445,298,629,339"/>
+<area shape="rect" id="node8" href="$structsigc_1_1retype__functor.html" title="Adaptor that performs C&#45;style casts on the parameters passed on to the functor." alt="" coords="455,363,620,405"/>
+<area shape="rect" id="node9" href="$structsigc_1_1retype__return__functor.html" title="Adaptor that performs a C&#45;style cast on the return value of a functor." alt="" coords="463,429,611,485"/>
+<area shape="rect" id="node10" href="$structsigc_1_1retype__return__functor_3_01void_00_01T__functor_01_4.html" title="Adaptor that performs a C&#45;style cast on the return value of a functor." alt="" coords="436,510,639,551"/>
+<area shape="rect" id="node11" href="$classsigc_1_1track__obj__functor.html" title="track_obj_functor wraps a functor and stores a reference to a trackable object." alt="" coords="453,575,622,617"/>
+<area shape="rect" id="node2" href="$structsigc_1_1adaptor__base.html" title="A hint to the compiler." alt="" coords="5,305,149,332"/>
+</map>

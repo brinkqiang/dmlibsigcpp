@@ -1,6 +1,5 @@
-// -*- c++ -*-
 /*
- * Copyright 2002, The libsigc++ Development Team
+ * Copyright 2002 - 2016, The libsigc++ Development Team
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -19,30 +18,44 @@
  */
 
 #include <sigc++/trackable.h>
-#include <iostream>
-
-SIGC_USING_STD(ostream)
-
-using namespace std;
 
 namespace sigc
 {
 
-trackable::trackable()
-: callback_list_(0)
-{}
+trackable::trackable() noexcept : callback_list_(nullptr) {}
 
 /* Don't copy the notification list.
    The objects watching src don't need to be notified when the new object dies. */
-trackable::trackable(const trackable& /*src*/)
-: callback_list_(0)
-{}
+trackable::trackable(const trackable& /*src*/) noexcept : callback_list_(nullptr) {}
 
-trackable& trackable::operator=(const trackable& src)
+// Don't move the notification list.
+// The objects watching src don't need to be notified when the new object dies.
+// They need to be notified now, because src probably becomes useless.
+//
+// If trackable's move constructor is modified, check if Glib::Object's
+// move constructor should be modified similarly.
+trackable::trackable(trackable&& src) noexcept : callback_list_(nullptr)
 {
-  if(this != &src)
-    notify_callbacks(); //Make sure that we have finished with existing stuff before replacing it.
-  
+  src.notify_callbacks();
+}
+
+trackable&
+trackable::operator=(const trackable& src)
+{
+  if (this != &src)
+    notify_callbacks(); // Make sure that we have finished with existing stuff before replacing it.
+
+  return *this;
+}
+
+trackable&
+trackable::operator=(trackable&& src) noexcept
+{
+  if (this != &src)
+  {
+    notify_callbacks(); // Make sure that we have finished with existing stuff before replacing it.
+    src.notify_callbacks(); // src probably becomes useless.
+  }
   return *this;
 }
 
@@ -51,25 +64,27 @@ trackable::~trackable()
   notify_callbacks();
 }
 
-void trackable::add_destroy_notify_callback(void* data, func_destroy_notify func) const
+void
+trackable::add_destroy_notify_callback(notifiable* data, func_destroy_notify func) const
 {
   callback_list()->add_callback(data, func);
 }
 
-void trackable::remove_destroy_notify_callback(void* data) const
+void
+trackable::remove_destroy_notify_callback(notifiable* data) const
 {
   callback_list()->remove_callback(data);
 }
 
-void trackable::notify_callbacks()
+void
+trackable::notify_callbacks()
 {
-  if (callback_list_)
-    delete callback_list_; //This invokes all of the callbacks.
-
-  callback_list_ = 0;
+  delete callback_list_; // This invokes all of the callbacks.
+  callback_list_ = nullptr;
 }
 
-internal::trackable_callback_list* trackable::callback_list() const
+internal::trackable_callback_list*
+trackable::callback_list() const
 {
   if (!callback_list_)
     callback_list_ = new internal::trackable_callback_list;
@@ -77,7 +92,6 @@ internal::trackable_callback_list* trackable::callback_list() const
   return callback_list_;
 }
 
-      
 namespace internal
 {
 
@@ -85,43 +99,60 @@ trackable_callback_list::~trackable_callback_list()
 {
   clearing_ = true;
 
-  for (callback_list::iterator i = callbacks_.begin(); i != callbacks_.end(); ++i)
-    (*i).func_((*i).data_);
+  for (auto& callback : callbacks_)
+  {
+    if (callback.func_)
+      callback.func_(callback.data_);
+  }
 }
 
-void trackable_callback_list::add_callback(void* data, func_destroy_notify func)
+void
+trackable_callback_list::add_callback(notifiable* data, func_destroy_notify func)
 {
-  if (!clearing_)  // TODO: Is it okay to silently ignore attempts to add dependencies when the list is being cleared?
-                   //       I'd consider this a serious application bug, since the app is likely to segfault.
-                   //       But then, how should we handle it? Throw an exception? Martin.
-    callbacks_.push_back(trackable_callback(data, func));
+  // TODO: Is it okay to silently ignore attempts to add dependencies when the list
+  // is being cleared?
+  // I'd consider this a serious application bug, since the app is likely to segfault.
+  // But then, how should we handle it? Throw an exception? Martin.
+  if (!clearing_)
+    callbacks_.emplace_back(trackable_callback(data, func));
 }
 
-void trackable_callback_list::clear()
+void
+trackable_callback_list::clear()
 {
   clearing_ = true;
 
-  for (callback_list::iterator i = callbacks_.begin(); i != callbacks_.end(); ++i)
-    (*i).func_((*i).data_);
+  for (auto& callback : callbacks_)
+  {
+    if (callback.func_)
+      callback.func_(callback.data_);
+  }
 
   callbacks_.clear();
 
   clearing_ = false;
 }
 
-void trackable_callback_list::remove_callback(void* data)
+void
+trackable_callback_list::remove_callback(notifiable* data)
 {
-  if (clearing_) return; // No circular notices
-
-  for (callback_list::iterator i = callbacks_.begin(); i != callbacks_.end(); ++i)
-    if ((*i).data_ == data)
+  for (auto i = callbacks_.begin(); i != callbacks_.end(); ++i)
+  {
+    auto& callback = *i;
+    if (callback.data_ == data && callback.func_ != nullptr)
     {
-      callbacks_.erase(i);
+      // Don't remove a list element while the list is being cleared.
+      // It could invalidate the iterator in ~trackable_callback_list() or clear().
+      // But it may be necessary to invalidate the callback. See bug 589202.
+      if (clearing_)
+        callback.func_ = nullptr;
+      else
+        callbacks_.erase(i);
       return;
     }
+  }
 }
 
 } /* namespace internal */
-
 
 } /* namespace sigc */

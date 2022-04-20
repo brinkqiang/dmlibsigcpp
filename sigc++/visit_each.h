@@ -1,6 +1,5 @@
-// -*- c++ -*- 
 /*
- * Copyright 2002, The libsigc++ Development Team
+ * Copyright 2002 - 2016, The libsigc++ Development Team
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -15,159 +14,148 @@
  *  You should have received a copy of the GNU Lesser General Public
  *  License along with this library; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
  */
-#ifndef _SIGC_VISIT_EACH_HPP_
-#define _SIGC_VISIT_EACH_HPP_
+#ifndef SIGC_VISIT_EACH_HPP
+#define SIGC_VISIT_EACH_HPP
 
 #include <sigc++/type_traits.h>
+#include <type_traits>
+#include <utility> // std::forward
+#include <functional>
 
-namespace sigc {
-
-namespace internal {
-
-//This should really be an inner class of limit_derived_target, without the T_limit template type,
-//But the SUN CC 5.7 (not earlier versions) compiler finds it ambiguous when we specify a particular specialization of it.
-//and does not seem to allow us to tell it explicitly that it's an inner class.
-template <bool I_derived, class T_type, class T_limit>
-struct with_type;
-
-//Specialization for I_derived = false
-template <class T_type, class T_limit> struct
-with_type<false, T_type, T_limit>
+namespace sigc
 {
-  static void execute_(const T_type&, const T_limit&) {}
-};
 
-//Specialization for I_derived = true
-template <class T_type, class T_limit>
-struct with_type<true, T_type, T_limit>
+struct trackable;
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+namespace internal
 {
-  static void execute_(const T_type& _A_type, const T_limit& _A_action)
-  { _A_action.action_(_A_type); }
-};
 
+template<typename Base, typename Derived>
+constexpr bool is_base_of_or_same_v =
+  std::is_base_of<std::decay_t<Base>, std::decay_t<Derived>>::value ||
+  std::is_same<std::decay_t<Base>, std::decay_t<Derived>>::value;
 
-/// Helper struct for visit_each_type().
-template <class T_target, class T_action>
-struct limit_derived_target
+/// Helper struct for visit_each_trackable().
+template<typename T_action>
+struct limit_trackable_target
 {
-  typedef limit_derived_target<T_target, T_action> T_self;
-
- 
-  template <class T_type>
-  void operator()(const T_type& _A_type) const
+  template<typename T_type>
+  void operator()(T_type&& type) const
   {
-    with_type<is_base_and_derived<T_target, T_type>::value, T_type, T_self>::execute_(_A_type, *this);
+    // Only call action_() if T_Type derives from trackable.
+    if constexpr (is_base_of_or_same_v<sigc::trackable, T_type>)
+    {
+      std::invoke(action_, type);
+    }
+    else
+    {
+      // Prevent 'unreferenced formal parameter' warning from MSVC by 'using' type
+      static_cast<void>(type);
+    }
   }
 
-  limit_derived_target(const T_action& _A_action)
-  : action_(_A_action)
-  {}
+  explicit limit_trackable_target(const T_action& action) : action_(action) {}
 
-  T_action action_;
-};
-
-// Specialization for T_target pointer types, to provide a slightly different execute_() implementation.
-
-template <bool I_derived, class T_type, class T_limit>
-struct with_type_pointer;
-
-//Specialization for I_derived = false
-template <class T_type, class T_limit>
-struct with_type_pointer<false, T_type, T_limit>
-{
- static void execute_(const T_type&, const T_limit&) {}
-};
-
-//Specialization for I_derived = true
-template <class T_type, class T_limit>
-struct with_type_pointer<true, T_type, T_limit>
-{
-  static void execute_(const T_type& _A_type, const T_limit& _A_action) 
-  { _A_action.action_(&_A_type); }
-};
-
-template <class T_target, class T_action>
-struct limit_derived_target<T_target*, T_action>
-{
-  typedef limit_derived_target<T_target*, T_action> T_self;
-
-
-  template <class T_type>
-  void operator()(const T_type& _A_type) const
-  {
-    with_type_pointer<is_base_and_derived<T_target, T_type>::value, T_type, T_self>::execute_(_A_type, *this);
-  }
-
-  limit_derived_target(const T_action& _A_action)
-  : action_(_A_action)
-  {}
+  limit_trackable_target(const limit_trackable_target& src) = delete;
+  limit_trackable_target& operator=(const limit_trackable_target& src) = delete;
+  limit_trackable_target(limit_trackable_target&& src) = delete;
+  limit_trackable_target& operator=(limit_trackable_target&& src) = delete;
 
   T_action action_;
 };
 
 } /* namespace internal */
+#endif // DOXYGEN_SHOULD_SKIP_THIS
 
+// struct visitor was introduced as a result of https://bugzilla.gnome.org/show_bug.cgi?id=724496
+// The advantage of using specializations of a template struct instead of overloads of
+// a template function is described by Herb Sutter in http://www.gotw.ca/publications/mill17.htm
+// In libsigc++ the main reason for using this technique is that we can avoid using ADL
+// (argument-dependent lookup), and therefore there is no risk that a visit_each() overload
+// in e.g. Boost is selected by mistake.
 
-/** This function performs a functor on each of the targets of a functor.
- * All unknown types just call @e _A_action on them.
- * Add overloads that specialize the @e T_functor argument for your own
+/** sigc::visitor<T_functor>::do_visit_each() performs a functor on each of the targets of a
+ * functor.
+ * All unknown types just call @a action on them.
+ * Add specializations that specialize the @a T_functor argument for your own
  * functor types, so that subobjects get visited. This is needed to enable
  * auto-disconnection support for your functor types.
  *
  * @par Example:
  *   @code
- *   struct some_functor
+ *   namespace some_ns
  *   {
- *     void operator()() {}
- *     some_possibly_sigc_trackable_derived_type some_data_member;
- *     some_other_functor_type some_other_functor;
+ *     struct some_functor
+ *     {
+ *       void operator()() {}
+ *       some_possibly_sigc_trackable_derived_type some_data_member;
+ *       some_other_functor_type some_other_functor;
+ *     };
  *   }
  *
  *   namespace sigc
  *   {
- *     template <class T_action>
- *     void visit_each(const T_action& _A_action,
- *                     const some_functor& _A_target)
+ *     template <>
+ *     struct visitor<some_ns::some_functor>
  *     {
- *       visit_each(_A_action, _A_target.some_data_member);
- *       visit_each(_A_action, _A_target.some_other_functor);
- *     }
+ *       template <typename T_action>
+ *       static void do_visit_each(const T_action& action,
+ *                                 const some_ns::some_functor& target)
+ *       {
+ *         sigc::visit_each(action, target.some_data_member);
+ *         sigc::visit_each(action, target.some_other_functor);
+ *       }
+ *     };
  *   }
  *   @endcode
  *
- * @ingroup functors
+ * @ingroup sigcfunctors
  */
-template <class T_action, class T_functor>
-void visit_each(const T_action& _A_action, const T_functor& _A_functor)
-{ _A_action(_A_functor); }
+template<typename T_functor>
+struct visitor
+{
+  template<typename T_action>
+  static void do_visit_each(const T_action& action, const T_functor& functor)
+  {
+    action(functor);
+  }
+};
+
+/** This function performs a functor on each of the targets of a functor.
+ *
+ * @ingroup sigcfunctors
+ */
+template<typename T_action, typename T_functor>
+void
+visit_each(const T_action& action, const T_functor& functor)
+{
+  sigc::visitor<T_functor>::do_visit_each(action, functor);
+}
 
 /** This function performs a functor on each of the targets
  * of a functor limited to a restricted type.
  *
- * @ingroup functors
+ * It is currently used only to call slot_do_bind and slot_do_unbind
+ * only on trackable-derived arguments of the functors, like a compile-time version of
+ *   if(dynamic_cast<trackable*)(&arg) { slot_do_unbind(arg); }
+ * This also depends on do_visit_each() method overloads for
+ * limit_trackable_target<slot_do_bind/slot_do_unbind> parameters
+ * in the visitor<slot> template specialization.
+ * TODO: Remove the need for slot_do_bind/slot_do_unbind, limit_trackable_target,
+ * and visit_each_trackable() by just using a constexpr_if
+ * (previously known as static_if) if that ends up in C++17.
+ *
+ * @ingroup sigcfunctors
  */
-template <class T_type, class T_action, class T_functor>
-void visit_each_type(const T_action& _A_action, const T_functor& _A_functor)
-{ 
-  typedef internal::limit_derived_target<T_type, T_action> type_limited_action;
+template<typename T_action, typename T_functor>
+void
+visit_each_trackable(const T_action& action, const T_functor& functor)
+{
+  internal::limit_trackable_target<T_action> limited_action(action);
 
-  type_limited_action limited_action(_A_action);
-
-  //specifying the types of the template specialization prevents disconnection of bound trackable references (such as with sigc::ref()),
-  //probably because the visit_each<> specializations take various different template types,
-  //in various sequences, and we are probably specifying only a subset of them with this.
-  //
-  //But this is required by the AIX (and maybe IRIX MipsPro  and Tru64) compilers.
-  //I guess that sigc::ref() therefore does not work on those platforms. murrayc
-  //visit_each<type_limited_action, T_functor>(limited_action, _A_functor);
-
-  //g++ (even slightly old ones) is our primary platform, so we could use the non-crashing version. 
-  //However, the expliict version also fixes a crash in a slightl more common case: http://bugzilla.gnome.org/show_bug.cgi?id=169225
-  //Users (and distributors) of libsigc++ on AIX (and maybe IRIX MipsPro  and Tru64) do 
-  //need to use the version above instead, to allow compilation.
-  visit_each(limited_action, _A_functor);
+  sigc::visit_each(limited_action, functor);
 }
 
 } /* namespace sigc */

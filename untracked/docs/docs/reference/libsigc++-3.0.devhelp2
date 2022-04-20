@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xmlns="http://www.devhelp.net/book" title="libsigc++ Reference Manual" name="libsigc++-3.0" base="html" link="index.html" version="2" language="c++">
+  <chapters>
+    <sub name="Modules" link="modules.html">
+      <sub name="Adaptors" link="group__adaptors.html">
+        <sub name="bind(), bind_return()" link="group__bind.html"/>
+        <sub name="compose()" link="group__compose.html"/>
+        <sub name="exception_catch()" link="group__exception__catch.html"/>
+        <sub name="hide(), hide_return()" link="group__hide.html"/>
+        <sub name="retype(), retype_return()" link="group__retype.html"/>
+        <sub name="track_obj()" link="group__track__obj.html"/>
+      </sub>
+      <sub name="Functors" link="group__sigcfunctors.html">
+        <sub name="mem_fun()" link="group__mem__fun.html"/>
+        <sub name="ptr_fun()" link="group__ptr__fun.html"/>
+        <sub name="Slots" link="group__slot.html"/>
+      </sub>
+      <sub name="Signals" link="group__signal.html"/>
+    </sub>
+    <sub name="Namespaces" link="namespaces.html">
+      <sub name="sigc" link="namespacesigc.html"/>
+    </sub>
+    <sub name="Classes" link="classes.html">
+      <sub name="adapts&lt; T_setter &gt;" link="structsigc_1_1adapts.html"/>
+      <sub name="bound_argument&lt; T_return &gt;" link="classsigc_1_1bound__argument.html"/>
+      <sub name="limit_reference&lt; const T_wrapped &gt;" link="classsigc_1_1limit__reference.html"/>
+      <sub name="limit_reference&lt; T_wrapped &gt;" link="classsigc_1_1limit__reference.html"/>
+      <sub name="mem_functor&lt; T_func, T_arg... &gt;" link="classsigc_1_1mem__functor.html"/>
+      <sub name="sigc" link="namespacesigc.html">
+        <sub name="adaptor_base" link="structsigc_1_1adaptor__base.html"/>
+        <sub name="adaptor_functor" link="structsigc_1_1adaptor__functor.html"/>
+        <sub name="adaptor_trait" link="structsigc_1_1adaptor__trait.html"/>
+        <sub name="adaptor_trait&lt; T_functor, false &gt;" link="structsigc_1_1adaptor__trait_3_01T__functor_00_01false_01_4.html"/>
+        <sub name="adaptor_trait&lt; T_functor, true &gt;" link="structsigc_1_1adaptor__trait_3_01T__functor_00_01true_01_4.html"/>
+        <sub name="adapts" link="structsigc_1_1adapts.html"/>
+        <sub name="bind_functor" link="structsigc_1_1bind__functor.html"/>
+        <sub name="bind_functor&lt;-1, T_functor, T_type... &gt;" link="structsigc_1_1bind__functor_3-1_00_01T__functor_00_01T__type_8_8_8_01_4.html"/>
+        <sub name="bind_return_functor" link="structsigc_1_1bind__return__functor.html"/>
+        <sub name="bound_argument" link="classsigc_1_1bound__argument.html"/>
+        <sub name="bound_argument&lt; std::reference_wrapper&lt; const T_wrapped &gt; &gt;" link="classsigc_1_1bound__argument_3_01std_1_1reference__wrapper_3_01const_01T__wrapped_01_4_01_4.html"/>
+        <sub name="bound_argument&lt; std::reference_wrapper&lt; T_wrapped &gt; &gt;" link="classsigc_1_1bound__argument_3_01std_1_1reference__wrapper_3_01T__wrapped_01_4_01_4.html"/>
+        <sub name="bound_mem_functor" link="classsigc_1_1bound__mem__functor.html"/>
+        <sub name="compose1_functor" link="structsigc_1_1compose1__functor.html"/>
+        <sub name="compose2_functor" link="structsigc_1_1compose2__functor.html"/>
+        <sub name="connection" link="structsigc_1_1connection.html"/>
+        <sub name="exception_catch_functor" link="structsigc_1_1exception__catch__functor.html"/>
+        <sub name="functor_trait" link="structsigc_1_1functor__trait.html"/>
+        <sub name="hide_functor" link="structsigc_1_1hide__functor.html"/>
+        <sub name="limit_reference" link="classsigc_1_1limit__reference.html"/>
+        <sub name="limit_reference&lt; T_type, true &gt;" link="classsigc_1_1limit__reference_3_01T__type_00_01true_01_4.html"/>
+        <sub name="mem_functor" link="classsigc_1_1mem__functor.html"/>
+        <sub name="notifiable" link="structsigc_1_1notifiable.html"/>
+        <sub name="pointer_functor" link="classsigc_1_1pointer__functor.html"/>
+        <sub name="pointer_functor&lt; T_return(T_args...)&gt;" link="classsigc_1_1pointer__functor_3_01T__return_07T__args_8_8_8_08_4.html"/>
+        <sub name="retype_functor" link="structsigc_1_1retype__functor.html"/>
+        <sub name="retype_return_functor" link="structsigc_1_1retype__return__functor.html"/>
+        <sub name="retype_return_functor&lt; void, T_functor &gt;" link="structsigc_1_1retype__return__functor_3_01void_00_01T__functor_01_4.html"/>
+        <sub name="signal_base" link="structsigc_1_1signal__base.html"/>
+        <sub name="signal&lt; T_return(T_arg...)&gt;" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4.html">
+          <sub name="accumulated" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4_1_1accumulated.html"/>
+        </sub>
+        <sub name="signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html"/>
+        <sub name="slot_base" link="classsigc_1_1slot__base.html"/>
+        <sub name="slot&lt; T_return(T_arg...)&gt;" link="classsigc_1_1slot_3_01T__return_07T__arg_8_8_8_08_4.html"/>
+        <sub name="trackable" link="structsigc_1_1trackable.html"/>
+        <sub name="track_obj_functor" link="classsigc_1_1track__obj__functor.html"/>
+        <sub name="type_trait" link="structsigc_1_1type__trait.html"/>
+        <sub name="type_trait&lt; const T_type &amp; &gt;" link="structsigc_1_1type__trait_3_01const_01T__type_01_6_01_4.html"/>
+        <sub name="type_trait&lt; T_type &amp; &gt;" link="structsigc_1_1type__trait_3_01T__type_01_6_01_4.html"/>
+        <sub name="type_trait&lt; T_type &amp;&amp; &gt;" link="structsigc_1_1type__trait_3_01T__type_01_6_6_01_4.html"/>
+        <sub name="type_trait&lt; T_type[N]&gt;" link="structsigc_1_1type__trait_3_01T__type_0fN_0e_4.html"/>
+        <sub name="type_trait&lt; void &gt;" link="structsigc_1_1type__trait_3_01void_01_4.html"/>
+        <sub name="unwrap_reference" link="structsigc_1_1unwrap__reference.html"/>
+        <sub name="unwrap_reference&lt; std::reference_wrapper&lt; const T_type &gt; &gt;" link="structsigc_1_1unwrap__reference_3_01std_1_1reference__wrapper_3_01const_01T__type_01_4_01_4.html"/>
+        <sub name="unwrap_reference&lt; std::reference_wrapper&lt; T_type &gt; &gt;" link="structsigc_1_1unwrap__reference_3_01std_1_1reference__wrapper_3_01T__type_01_4_01_4.html"/>
+        <sub name="visitor" link="structsigc_1_1visitor.html"/>
+      </sub>
+      <sub name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;" link="classsigc_1_1signal__with__accumulator.html"/>
+      <sub name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;" link="classsigc_1_1signal__with__accumulator.html"/>
+    </sub>
+  </chapters>
+  <functions>
+    <keyword type="struct" name="adapts&lt; T_setter &gt;" link="structsigc_1_1adapts.html"/>
+    <keyword name="adapts&lt; T_setter &gt;::adapts" link="structsigc_1_1adapts.html#a90e81ef167e1c3959168570fc533d4a9" type="function"/>
+    <keyword type="struct" name="bound_argument&lt; T_return &gt;" link="classsigc_1_1bound__argument.html"/>
+    <keyword name="bound_argument&lt; T_return &gt;::bound_argument" link="classsigc_1_1bound__argument.html#a1b5875536eb85310466c87d397fcad2d" type="function"/>
+    <keyword name="bound_argument&lt; T_return &gt;::invoke" link="classsigc_1_1bound__argument.html#af1cf20526bade89328a1ed398055bbba" type="function"/>
+    <keyword name="bound_argument&lt; T_return &gt;::visit" link="classsigc_1_1bound__argument.html#ab29e53c5e983c45e4963e0ecace26465" type="function"/>
+    <keyword type="struct" name="limit_reference&lt; const T_wrapped &gt;" link="classsigc_1_1limit__reference.html"/>
+    <keyword name="limit_reference&lt; const T_wrapped &gt;::reference_type" link="classsigc_1_1limit__reference.html#a1092df7238eb5703afa2fabfbf3cf3a9" type="typedef"/>
+    <keyword name="limit_reference&lt; const T_wrapped &gt;::limit_reference" link="classsigc_1_1limit__reference.html#a64608a32d7fe0b2c39db77014bd5da9f" type="function"/>
+    <keyword name="limit_reference&lt; const T_wrapped &gt;::limit_reference" link="classsigc_1_1limit__reference.html#a1588506f63d9144b177d2ad561a59e3a" type="function"/>
+    <keyword name="limit_reference&lt; const T_wrapped &gt;::limit_reference" link="classsigc_1_1limit__reference.html#a466ec9bf43c2bc3c6de3333378c810df" type="function"/>
+    <keyword name="limit_reference&lt; const T_wrapped &gt;::limit_reference" link="classsigc_1_1limit__reference.html#adbc26d25545ff546ee8361e0846d2c37" type="function"/>
+    <keyword name="limit_reference&lt; const T_wrapped &gt;::invoke" link="classsigc_1_1limit__reference.html#affd2902cd78ccdae45c499058c83e992" type="function"/>
+    <keyword name="limit_reference&lt; const T_wrapped &gt;::operator=" link="classsigc_1_1limit__reference.html#a4f49d30ea704ad30378d988ebebfe842" type="function"/>
+    <keyword name="limit_reference&lt; const T_wrapped &gt;::operator=" link="classsigc_1_1limit__reference.html#a54bb169eddbbab6a1fd9ca642d9de1a9" type="function"/>
+    <keyword name="limit_reference&lt; const T_wrapped &gt;::visit" link="classsigc_1_1limit__reference.html#a3e7f495f3ac4c771fcf33a3be0e00016" type="function"/>
+    <keyword type="struct" name="limit_reference&lt; T_wrapped &gt;" link="classsigc_1_1limit__reference.html"/>
+    <keyword name="limit_reference&lt; T_wrapped &gt;::reference_type" link="classsigc_1_1limit__reference.html#a1092df7238eb5703afa2fabfbf3cf3a9" type="typedef"/>
+    <keyword name="limit_reference&lt; T_wrapped &gt;::limit_reference" link="classsigc_1_1limit__reference.html#a64608a32d7fe0b2c39db77014bd5da9f" type="function"/>
+    <keyword name="limit_reference&lt; T_wrapped &gt;::limit_reference" link="classsigc_1_1limit__reference.html#a1588506f63d9144b177d2ad561a59e3a" type="function"/>
+    <keyword name="limit_reference&lt; T_wrapped &gt;::limit_reference" link="classsigc_1_1limit__reference.html#a466ec9bf43c2bc3c6de3333378c810df" type="function"/>
+    <keyword name="limit_reference&lt; T_wrapped &gt;::limit_reference" link="classsigc_1_1limit__reference.html#adbc26d25545ff546ee8361e0846d2c37" type="function"/>
+    <keyword name="limit_reference&lt; T_wrapped &gt;::invoke" link="classsigc_1_1limit__reference.html#affd2902cd78ccdae45c499058c83e992" type="function"/>
+    <keyword name="limit_reference&lt; T_wrapped &gt;::operator=" link="classsigc_1_1limit__reference.html#a4f49d30ea704ad30378d988ebebfe842" type="function"/>
+    <keyword name="limit_reference&lt; T_wrapped &gt;::operator=" link="classsigc_1_1limit__reference.html#a54bb169eddbbab6a1fd9ca642d9de1a9" type="function"/>
+    <keyword name="limit_reference&lt; T_wrapped &gt;::visit" link="classsigc_1_1limit__reference.html#a3e7f495f3ac4c771fcf33a3be0e00016" type="function"/>
+    <keyword type="struct" name="mem_functor&lt; T_func, T_arg... &gt;" link="classsigc_1_1mem__functor.html"/>
+    <keyword name="mem_functor&lt; T_func, T_arg... &gt;::function_type" link="classsigc_1_1mem__functor.html#a15a8ea02f1ffc3875b06fe24afe0c716" type="typedef"/>
+    <keyword name="mem_functor&lt; T_func, T_arg... &gt;::obj_type_with_modifier" link="classsigc_1_1mem__functor.html#a3364e8cdbb75b5339e860ed2e6c2e064" type="typedef"/>
+    <keyword name="mem_functor&lt; T_func, T_arg... &gt;::object_type" link="classsigc_1_1mem__functor.html#a66ce968499f60275c30feea623a5fa5b" type="typedef"/>
+    <keyword name="mem_functor&lt; T_func, T_arg... &gt;::mem_functor" link="classsigc_1_1mem__functor.html#a47fa96e26ce1f3f4fd056342b76f90f6" type="function"/>
+    <keyword name="mem_functor&lt; T_func, T_arg... &gt;::mem_functor" link="classsigc_1_1mem__functor.html#af27b8235ab3a86911a6ba455ea18bbb7" type="function"/>
+    <keyword name="mem_functor&lt; T_func, T_arg... &gt;::operator()" link="classsigc_1_1mem__functor.html#a37a7637a3d1589940f8b17f8a09180a0" type="function"/>
+    <keyword type="struct" name="sigc::adaptor_base" link="structsigc_1_1adaptor__base.html"/>
+    <keyword type="struct" name="sigc::adaptor_functor" link="structsigc_1_1adaptor__functor.html"/>
+    <keyword name="sigc::adaptor_functor::adaptor_functor" link="structsigc_1_1adaptor__functor.html#a35ecf04af30830154f9ced6ddb9401a7" type="function"/>
+    <keyword name="sigc::adaptor_functor::adaptor_functor" link="structsigc_1_1adaptor__functor.html#ad8db5d07a3dc81f9771052611b1b0a3b" type="function"/>
+    <keyword name="sigc::adaptor_functor::adaptor_functor" link="structsigc_1_1adaptor__functor.html#a8786a858388c7ab1074a7f5318f8c242" type="function"/>
+    <keyword name="sigc::adaptor_functor::operator()" link="structsigc_1_1adaptor__functor.html#affdafa5b1938033b09e537874a966e1a" type="function"/>
+    <keyword name="sigc::adaptor_functor::operator()" link="structsigc_1_1adaptor__functor.html#a0bf022c0122de2bec4da2a682696b6c6" type="function"/>
+    <keyword type="struct" name="sigc::adaptor_trait" link="structsigc_1_1adaptor__trait.html"/>
+    <keyword type="struct" name="sigc::adaptor_trait&lt; T_functor, false &gt;" link="structsigc_1_1adaptor__trait_3_01T__functor_00_01false_01_4.html"/>
+    <keyword name="sigc::adaptor_trait&lt; T_functor, false &gt;::adaptor_type" link="structsigc_1_1adaptor__trait_3_01T__functor_00_01false_01_4.html#af72713c96b82c5205ea4e884c9fd7565" type="typedef"/>
+    <keyword type="struct" name="sigc::adaptor_trait&lt; T_functor, true &gt;" link="structsigc_1_1adaptor__trait_3_01T__functor_00_01true_01_4.html"/>
+    <keyword name="sigc::adaptor_trait&lt; T_functor, true &gt;::adaptor_type" link="structsigc_1_1adaptor__trait_3_01T__functor_00_01true_01_4.html#a3a4dd88741539b2abd5931a732f9e1c3" type="typedef"/>
+    <keyword type="struct" name="sigc::adapts" link="structsigc_1_1adapts.html"/>
+    <keyword name="sigc::adapts::adapts" link="structsigc_1_1adapts.html#a90e81ef167e1c3959168570fc533d4a9" type="function"/>
+    <keyword type="struct" name="sigc::bind_functor" link="structsigc_1_1bind__functor.html"/>
+    <keyword name="sigc::bind_functor::bind_functor" link="structsigc_1_1bind__functor.html#a030940f51fbed0c8f7846b91fd5a3e42" type="function"/>
+    <keyword name="sigc::bind_functor::operator()" link="structsigc_1_1bind__functor.html#a13e894a73b569075aa51f8539964a852" type="function"/>
+    <keyword type="struct" name="sigc::bind_functor&lt;-1, T_functor, T_type... &gt;" link="structsigc_1_1bind__functor_3-1_00_01T__functor_00_01T__type_8_8_8_01_4.html"/>
+    <keyword name="sigc::bind_functor&lt;-1, T_functor, T_type... &gt;::bind_functor" link="structsigc_1_1bind__functor_3-1_00_01T__functor_00_01T__type_8_8_8_01_4.html#ad52d6d2aa0ba4d5bd656a86a7219282a" type="function"/>
+    <keyword name="sigc::bind_functor&lt;-1, T_functor, T_type... &gt;::operator()" link="structsigc_1_1bind__functor_3-1_00_01T__functor_00_01T__type_8_8_8_01_4.html#abccc707a3c9e02908a7e953d1711616e" type="function"/>
+    <keyword type="struct" name="sigc::bind_return_functor" link="structsigc_1_1bind__return__functor.html"/>
+    <keyword name="sigc::bind_return_functor::bind_return_functor" link="structsigc_1_1bind__return__functor.html#a4766bf4d5f514915a900301dd4d15657" type="function"/>
+    <keyword name="sigc::bind_return_functor::operator()" link="structsigc_1_1bind__return__functor.html#a35959a6f4d5f6ddc83f603ee67d25981" type="function"/>
+    <keyword name="sigc::bind_return_functor::operator()" link="structsigc_1_1bind__return__functor.html#a260b7c9606ccc5c41160326499877230" type="function"/>
+    <keyword type="struct" name="sigc::bound_argument" link="classsigc_1_1bound__argument.html"/>
+    <keyword name="sigc::bound_argument::bound_argument" link="classsigc_1_1bound__argument.html#a1b5875536eb85310466c87d397fcad2d" type="function"/>
+    <keyword name="sigc::bound_argument::invoke" link="classsigc_1_1bound__argument.html#af1cf20526bade89328a1ed398055bbba" type="function"/>
+    <keyword name="sigc::bound_argument::visit" link="classsigc_1_1bound__argument.html#ab29e53c5e983c45e4963e0ecace26465" type="function"/>
+    <keyword type="struct" name="sigc::bound_argument&lt; std::reference_wrapper&lt; const T_wrapped &gt; &gt;" link="classsigc_1_1bound__argument_3_01std_1_1reference__wrapper_3_01const_01T__wrapped_01_4_01_4.html"/>
+    <keyword name="sigc::bound_argument&lt; std::reference_wrapper&lt; const T_wrapped &gt; &gt;::bound_argument" link="classsigc_1_1bound__argument_3_01std_1_1reference__wrapper_3_01const_01T__wrapped_01_4_01_4.html#a4c36031606b1275757cdd803b4f227c7" type="function"/>
+    <keyword name="sigc::bound_argument&lt; std::reference_wrapper&lt; const T_wrapped &gt; &gt;::invoke" link="classsigc_1_1bound__argument_3_01std_1_1reference__wrapper_3_01const_01T__wrapped_01_4_01_4.html#abb2ea93baef5b9d52491668b5b33f6b9" type="function"/>
+    <keyword name="sigc::bound_argument&lt; std::reference_wrapper&lt; const T_wrapped &gt; &gt;::visit" link="classsigc_1_1bound__argument_3_01std_1_1reference__wrapper_3_01const_01T__wrapped_01_4_01_4.html#ae9d90aca975a65a7bf6070776ffed37d" type="function"/>
+    <keyword type="struct" name="sigc::bound_argument&lt; std::reference_wrapper&lt; T_wrapped &gt; &gt;" link="classsigc_1_1bound__argument_3_01std_1_1reference__wrapper_3_01T__wrapped_01_4_01_4.html"/>
+    <keyword name="sigc::bound_argument&lt; std::reference_wrapper&lt; T_wrapped &gt; &gt;::bound_argument" link="classsigc_1_1bound__argument_3_01std_1_1reference__wrapper_3_01T__wrapped_01_4_01_4.html#a19da6c95faa889ab23a807f04b5ac8ab" type="function"/>
+    <keyword name="sigc::bound_argument&lt; std::reference_wrapper&lt; T_wrapped &gt; &gt;::invoke" link="classsigc_1_1bound__argument_3_01std_1_1reference__wrapper_3_01T__wrapped_01_4_01_4.html#a38950827998907494c25397f01552730" type="function"/>
+    <keyword name="sigc::bound_argument&lt; std::reference_wrapper&lt; T_wrapped &gt; &gt;::visit" link="classsigc_1_1bound__argument_3_01std_1_1reference__wrapper_3_01T__wrapped_01_4_01_4.html#a3d34b13540ac33e677024727ffd3a36e" type="function"/>
+    <keyword type="struct" name="sigc::bound_mem_functor" link="classsigc_1_1bound__mem__functor.html"/>
+    <keyword name="sigc::bound_mem_functor::function_type" link="classsigc_1_1bound__mem__functor.html#a872b1c05e93574f6b4fea719dd84562b" type="typedef"/>
+    <keyword name="sigc::bound_mem_functor::obj_type_with_modifier" link="classsigc_1_1bound__mem__functor.html#a69e38ae68878e27f3ce2583d1cdc9669" type="typedef"/>
+    <keyword name="sigc::bound_mem_functor::object_type" link="classsigc_1_1bound__mem__functor.html#a6cff1d1d709688fed710b40ce96c6eca" type="typedef"/>
+    <keyword name="sigc::bound_mem_functor::T_limit_reference" link="classsigc_1_1bound__mem__functor.html#a28c1968f18062134490f62f4113e1061" type="typedef"/>
+    <keyword name="sigc::bound_mem_functor::bound_mem_functor" link="classsigc_1_1bound__mem__functor.html#a8ef43e5d5455b43449b25410b0160860" type="function"/>
+    <keyword name="sigc::bound_mem_functor::operator()" link="classsigc_1_1bound__mem__functor.html#ad4711d042328e1da9fd57e22e2d23fda" type="function"/>
+    <keyword type="struct" name="sigc::compose1_functor" link="structsigc_1_1compose1__functor.html"/>
+    <keyword name="sigc::compose1_functor::compose1_functor" link="structsigc_1_1compose1__functor.html#ac28c1664262e854a531ab3d67f3ff31e" type="function"/>
+    <keyword name="sigc::compose1_functor::operator()" link="structsigc_1_1compose1__functor.html#ae7f62fc5d355e5e0d2e9e0213cfa6cfd" type="function"/>
+    <keyword type="struct" name="sigc::compose2_functor" link="structsigc_1_1compose2__functor.html"/>
+    <keyword name="sigc::compose2_functor::compose2_functor" link="structsigc_1_1compose2__functor.html#aca652fedefcce4cda4386a5f4a58d265" type="function"/>
+    <keyword name="sigc::compose2_functor::operator()" link="structsigc_1_1compose2__functor.html#a11c5aa999a262510a4ddcc930c267e3d" type="function"/>
+    <keyword type="struct" name="sigc::connection" link="structsigc_1_1connection.html"/>
+    <keyword name="sigc::connection::connection" link="structsigc_1_1connection.html#a95f80dbbf10fde0b851d78ec12cc2629" type="function"/>
+    <keyword name="sigc::connection::connection" link="structsigc_1_1connection.html#ad13d5e3331cc9b1494e0edb8fa37fdba" type="function"/>
+    <keyword name="sigc::connection::connection" link="structsigc_1_1connection.html#ac0424dbcb9db4176338fd38012c9975e" type="function"/>
+    <keyword name="sigc::connection::~connection" link="structsigc_1_1connection.html#a99678ccb2be5c20719f37e469416578a" type="function"/>
+    <keyword name="sigc::connection::block" link="structsigc_1_1connection.html#a581ae4f2b708cb6be7b081557864d6ec" type="function"/>
+    <keyword name="sigc::connection::blocked" link="structsigc_1_1connection.html#a7c86964aa4b0f339db5842e6c7e604f3" type="function"/>
+    <keyword name="sigc::connection::connected" link="structsigc_1_1connection.html#a307b5df56439539be66f92d6e39f0bce" type="function"/>
+    <keyword name="sigc::connection::disconnect" link="structsigc_1_1connection.html#a0452bd182a61650d14a9664d6297ed1b" type="function"/>
+    <keyword name="sigc::connection::empty" link="structsigc_1_1connection.html#a810bdde9fbe7ad10bf9d578eebf929de" type="function"/>
+    <keyword name="sigc::connection::operator bool" link="structsigc_1_1connection.html#a5419e6fc689df523283e0182189c33b0" type="function"/>
+    <keyword name="sigc::connection::operator=" link="structsigc_1_1connection.html#a62c8e28c43d173e1bba50e4fa0947a6a" type="function"/>
+    <keyword name="sigc::connection::unblock" link="structsigc_1_1connection.html#a15abcbfa76f1e5d8601cf4ad4176ed50" type="function"/>
+    <keyword type="struct" name="sigc::exception_catch_functor" link="structsigc_1_1exception__catch__functor.html"/>
+    <keyword name="sigc::exception_catch_functor::exception_catch_functor" link="structsigc_1_1exception__catch__functor.html#a8d1d3bd860ba6c8bba9ae7655f4dc3a5" type="function"/>
+    <keyword name="sigc::exception_catch_functor::operator()" link="structsigc_1_1exception__catch__functor.html#aa7d768aae8b73b5853c8f223f3eeef7f" type="function"/>
+    <keyword name="sigc::exception_catch_functor::operator()" link="structsigc_1_1exception__catch__functor.html#a5784f84ee16758b747e77b89667bbee6" type="function"/>
+    <keyword type="struct" name="sigc::functor_trait" link="structsigc_1_1functor__trait.html"/>
+    <keyword name="sigc::functor_trait::functor_type" link="structsigc_1_1functor__trait.html#a47582113a4fbc3f2cd8c6336f8fe9b67" type="typedef"/>
+    <keyword type="struct" name="sigc::hide_functor" link="structsigc_1_1hide__functor.html"/>
+    <keyword name="sigc::hide_functor::hide_functor" link="structsigc_1_1hide__functor.html#abb0ddd2f5468fb2ead8e1d52c181ebca" type="function"/>
+    <keyword name="sigc::hide_functor::operator()" link="structsigc_1_1hide__functor.html#aa3bfa2b74af5a8fdd924bff73688bad5" type="function"/>
+    <keyword type="struct" name="sigc::limit_reference" link="classsigc_1_1limit__reference.html"/>
+    <keyword name="sigc::limit_reference::reference_type" link="classsigc_1_1limit__reference.html#a1092df7238eb5703afa2fabfbf3cf3a9" type="typedef"/>
+    <keyword name="sigc::limit_reference::limit_reference" link="classsigc_1_1limit__reference.html#a64608a32d7fe0b2c39db77014bd5da9f" type="function"/>
+    <keyword name="sigc::limit_reference::limit_reference" link="classsigc_1_1limit__reference.html#a1588506f63d9144b177d2ad561a59e3a" type="function"/>
+    <keyword name="sigc::limit_reference::limit_reference" link="classsigc_1_1limit__reference.html#a466ec9bf43c2bc3c6de3333378c810df" type="function"/>
+    <keyword name="sigc::limit_reference::limit_reference" link="classsigc_1_1limit__reference.html#adbc26d25545ff546ee8361e0846d2c37" type="function"/>
+    <keyword name="sigc::limit_reference::invoke" link="classsigc_1_1limit__reference.html#affd2902cd78ccdae45c499058c83e992" type="function"/>
+    <keyword name="sigc::limit_reference::operator=" link="classsigc_1_1limit__reference.html#a4f49d30ea704ad30378d988ebebfe842" type="function"/>
+    <keyword name="sigc::limit_reference::operator=" link="classsigc_1_1limit__reference.html#a54bb169eddbbab6a1fd9ca642d9de1a9" type="function"/>
+    <keyword name="sigc::limit_reference::visit" link="classsigc_1_1limit__reference.html#a3e7f495f3ac4c771fcf33a3be0e00016" type="function"/>
+    <keyword type="struct" name="sigc::limit_reference&lt; T_type, true &gt;" link="classsigc_1_1limit__reference_3_01T__type_00_01true_01_4.html"/>
+    <keyword name="sigc::limit_reference&lt; T_type, true &gt;::reference_type" link="classsigc_1_1limit__reference_3_01T__type_00_01true_01_4.html#aae9d2692328f83a89ff8d78978a12ce9" type="typedef"/>
+    <keyword name="sigc::limit_reference&lt; T_type, true &gt;::limit_reference" link="classsigc_1_1limit__reference_3_01T__type_00_01true_01_4.html#a2a98a2124761cb6d13122f2cadd7d7a2" type="function"/>
+    <keyword name="sigc::limit_reference&lt; T_type, true &gt;::invoke" link="classsigc_1_1limit__reference_3_01T__type_00_01true_01_4.html#a6c8067da8b8c15361127ad25efab6903" type="function"/>
+    <keyword name="sigc::limit_reference&lt; T_type, true &gt;::visit" link="classsigc_1_1limit__reference_3_01T__type_00_01true_01_4.html#a85e56a8140929d71b2bdbd091e348c3a" type="function"/>
+    <keyword type="struct" name="sigc::mem_functor" link="classsigc_1_1mem__functor.html"/>
+    <keyword name="sigc::mem_functor::function_type" link="classsigc_1_1mem__functor.html#a15a8ea02f1ffc3875b06fe24afe0c716" type="typedef"/>
+    <keyword name="sigc::mem_functor::obj_type_with_modifier" link="classsigc_1_1mem__functor.html#a3364e8cdbb75b5339e860ed2e6c2e064" type="typedef"/>
+    <keyword name="sigc::mem_functor::object_type" link="classsigc_1_1mem__functor.html#a66ce968499f60275c30feea623a5fa5b" type="typedef"/>
+    <keyword name="sigc::mem_functor::mem_functor" link="classsigc_1_1mem__functor.html#a47fa96e26ce1f3f4fd056342b76f90f6" type="function"/>
+    <keyword name="sigc::mem_functor::mem_functor" link="classsigc_1_1mem__functor.html#af27b8235ab3a86911a6ba455ea18bbb7" type="function"/>
+    <keyword name="sigc::mem_functor::operator()" link="classsigc_1_1mem__functor.html#a37a7637a3d1589940f8b17f8a09180a0" type="function"/>
+    <keyword type="struct" name="sigc::notifiable" link="structsigc_1_1notifiable.html"/>
+    <keyword name="sigc::notifiable::func_destroy_notify" link="structsigc_1_1notifiable.html#a71455cae4b10ff1277e68a1729e1b8c4" type="typedef"/>
+    <keyword type="struct" name="sigc::pointer_functor" link="classsigc_1_1pointer__functor.html"/>
+    <keyword type="struct" name="sigc::pointer_functor&lt; T_return(T_args...)&gt;" link="classsigc_1_1pointer__functor_3_01T__return_07T__args_8_8_8_08_4.html"/>
+    <keyword name="sigc::pointer_functor&lt; T_return(T_args...)&gt;::pointer_functor" link="classsigc_1_1pointer__functor_3_01T__return_07T__args_8_8_8_08_4.html#a8c24759c975f2c4e7c18913f1adad397" type="function"/>
+    <keyword name="sigc::pointer_functor&lt; T_return(T_args...)&gt;::pointer_functor" link="classsigc_1_1pointer__functor_3_01T__return_07T__args_8_8_8_08_4.html#a1abbaa91a159909420c06e93d7917bf6" type="function"/>
+    <keyword name="sigc::pointer_functor&lt; T_return(T_args...)&gt;::operator()" link="classsigc_1_1pointer__functor_3_01T__return_07T__args_8_8_8_08_4.html#a1735eb14ed8a5810e6c78f6d478362a8" type="function"/>
+    <keyword type="struct" name="sigc::retype_functor" link="structsigc_1_1retype__functor.html"/>
+    <keyword name="sigc::retype_functor::retype_functor" link="structsigc_1_1retype__functor.html#ae1c611a409fc0d20e35a6148ec9bae41" type="function"/>
+    <keyword name="sigc::retype_functor::operator()" link="structsigc_1_1retype__functor.html#ac825c5137ffe05b0113662f09664f2f3" type="function"/>
+    <keyword type="struct" name="sigc::retype_return_functor" link="structsigc_1_1retype__return__functor.html"/>
+    <keyword name="sigc::retype_return_functor::retype_return_functor" link="structsigc_1_1retype__return__functor.html#a59293dcbd669f21528d027d89b205a9b" type="function"/>
+    <keyword name="sigc::retype_return_functor::retype_return_functor" link="structsigc_1_1retype__return__functor.html#a54640478f5193a7719952f1514f52e9b" type="function"/>
+    <keyword name="sigc::retype_return_functor::operator()" link="structsigc_1_1retype__return__functor.html#a5a8351fd4c16e3ff1407d3984ecda491" type="function"/>
+    <keyword type="struct" name="sigc::retype_return_functor&lt; void, T_functor &gt;" link="structsigc_1_1retype__return__functor_3_01void_00_01T__functor_01_4.html"/>
+    <keyword name="sigc::retype_return_functor&lt; void, T_functor &gt;::retype_return_functor" link="structsigc_1_1retype__return__functor_3_01void_00_01T__functor_01_4.html#a541afde21dab200b4461e6d5f2955665" type="function"/>
+    <keyword name="sigc::retype_return_functor&lt; void, T_functor &gt;::retype_return_functor" link="structsigc_1_1retype__return__functor_3_01void_00_01T__functor_01_4.html#a2d6d7497091664389bd5afe65770ffd8" type="function"/>
+    <keyword name="sigc::retype_return_functor&lt; void, T_functor &gt;::operator()" link="structsigc_1_1retype__return__functor_3_01void_00_01T__functor_01_4.html#a764e42bd2c705cce6ef7fbe67d4b18ec" type="function"/>
+    <keyword type="struct" name="sigc::signal&lt; T_return(T_arg...)&gt;" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4.html"/>
+    <keyword name="sigc::signal&lt; T_return(T_arg...)&gt;::accumulator_type" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4.html#a80332f4caf87e55c1038365318dacb60" type="typedef"/>
+    <keyword name="sigc::signal&lt; T_return(T_arg...)&gt;::signal" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4.html#a64007f14e856dfc6fd775b0d7590b830" type="function"/>
+    <keyword name="sigc::signal&lt; T_return(T_arg...)&gt;::signal" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4.html#aeb519c37f7e815bd98bab97fff31eb3a" type="function"/>
+    <keyword name="sigc::signal&lt; T_return(T_arg...)&gt;::signal" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4.html#ab5cc052ce9315f1ebb8f11a4ebd20c14" type="function"/>
+    <keyword name="sigc::signal&lt; T_return(T_arg...)&gt;::operator=" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4.html#a826d3477588200bb8e1be7a2369892a2" type="function"/>
+    <keyword name="sigc::signal&lt; T_return(T_arg...)&gt;::operator=" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4.html#ab765e34c9b99fe2d6e2c888fa9d139e8" type="function"/>
+    <keyword type="struct" name="sigc::signal&lt; T_return(T_arg...)&gt;::accumulated" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4_1_1accumulated.html"/>
+    <keyword name="sigc::signal&lt; T_return(T_arg...)&gt;::accumulated::accumulated" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4_1_1accumulated.html#a082c6d8d61fb29a411b6ee457c4cfb26" type="function"/>
+    <keyword name="sigc::signal&lt; T_return(T_arg...)&gt;::accumulated::accumulated" link="classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4_1_1accumulated.html#ae2a536f43414691cf7a11ca8eb8b8ca4" type="function"/>
+    <keyword type="struct" name="sigc::signal_base" link="structsigc_1_1signal__base.html"/>
+    <keyword name="sigc::signal_base::size_type" link="structsigc_1_1signal__base.html#a703c48e69c62ef57801e4d29f84f6e94" type="typedef"/>
+    <keyword name="sigc::signal_base::signal_base" link="structsigc_1_1signal__base.html#aff65198ddcb4fbccb644ff853e663e0e" type="function"/>
+    <keyword name="sigc::signal_base::signal_base" link="structsigc_1_1signal__base.html#a761e95b8c7b460664d3338ed3eb39543" type="function"/>
+    <keyword name="sigc::signal_base::signal_base" link="structsigc_1_1signal__base.html#a9f8570c89cd5c0b35613570a5ea80154" type="function"/>
+    <keyword name="sigc::signal_base::~signal_base" link="structsigc_1_1signal__base.html#afa2e5807537c989b430015e5ae05a357" type="function"/>
+    <keyword name="sigc::signal_base::block" link="structsigc_1_1signal__base.html#a52fda4806ec9dbc02baa95ce70c13fb0" type="function"/>
+    <keyword name="sigc::signal_base::blocked" link="structsigc_1_1signal__base.html#a228da4dd1eac6905dafbc5697086e503" type="function"/>
+    <keyword name="sigc::signal_base::clear" link="structsigc_1_1signal__base.html#a17597d66e680d222248c523985f0afd6" type="function"/>
+    <keyword name="sigc::signal_base::empty" link="structsigc_1_1signal__base.html#a24e7fc4e07ac19cebafe8e3bd71bfe94" type="function"/>
+    <keyword name="sigc::signal_base::operator=" link="structsigc_1_1signal__base.html#a90b36a7b33e107ce0af0de895e0df286" type="function"/>
+    <keyword name="sigc::signal_base::operator=" link="structsigc_1_1signal__base.html#a277a34edf44207fb4784807eac5872c6" type="function"/>
+    <keyword name="sigc::signal_base::size" link="structsigc_1_1signal__base.html#a0725416f747d6db3c57fa318a9f887a8" type="function"/>
+    <keyword name="sigc::signal_base::unblock" link="structsigc_1_1signal__base.html#aebb7ac69ea745cd60c0505f8d553d27f" type="function"/>
+    <keyword name="sigc::signal_base::iterator_type" link="structsigc_1_1signal__base.html#ac3670b4b1b36db33ebeda3fe46532f85" type="typedef"/>
+    <keyword name="sigc::signal_base::connect" link="structsigc_1_1signal__base.html#a5c89a76a27d69c512f554b841b1bd08a" type="function"/>
+    <keyword name="sigc::signal_base::connect" link="structsigc_1_1signal__base.html#a50eab6d37728bbbf3beb21d684a72e6c" type="function"/>
+    <keyword name="sigc::signal_base::impl" link="structsigc_1_1signal__base.html#aed18e4f8837cdd7cb546f1c019b0b55e" type="function"/>
+    <keyword name="sigc::signal_base::insert" link="structsigc_1_1signal__base.html#a87da23ad801faa9e2b6b4be2a747e757" type="function"/>
+    <keyword name="sigc::signal_base::insert" link="structsigc_1_1signal__base.html#aa80c33868910139dd2f511afcc31b687" type="function"/>
+    <keyword type="struct" name="sigc::signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html"/>
+    <keyword name="sigc::signal_with_accumulator::slot_type" link="classsigc_1_1signal__with__accumulator.html#a2eee90cba16be957a3212d1b541ddc04" type="typedef"/>
+    <keyword name="sigc::signal_with_accumulator::signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html#a3a3897c85039df0bdfb3badcf0123674" type="function"/>
+    <keyword name="sigc::signal_with_accumulator::signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html#a33d243a0841a085e3d2fddc7723de5ce" type="function"/>
+    <keyword name="sigc::signal_with_accumulator::signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html#a3a86b1a92c39a2f82f0c568243894462" type="function"/>
+    <keyword name="sigc::signal_with_accumulator::connect" link="classsigc_1_1signal__with__accumulator.html#a3765ae85a8ffaae0d48afa15fffe6009" type="function"/>
+    <keyword name="sigc::signal_with_accumulator::connect" link="classsigc_1_1signal__with__accumulator.html#adfad79b62b1a72bbb74bf329d84732a4" type="function"/>
+    <keyword name="sigc::signal_with_accumulator::emit" link="classsigc_1_1signal__with__accumulator.html#a9cdd5ffe58f2445a1012c7be05f7029f" type="function"/>
+    <keyword name="sigc::signal_with_accumulator::make_slot" link="classsigc_1_1signal__with__accumulator.html#a6c35faed011b8497e2433fca322976ea" type="function"/>
+    <keyword name="sigc::signal_with_accumulator::operator()" link="classsigc_1_1signal__with__accumulator.html#aa87c95f2e865abb8b3fe999fd9d5205c" type="function"/>
+    <keyword name="sigc::signal_with_accumulator::operator=" link="classsigc_1_1signal__with__accumulator.html#a1df17e4384549a0029d459ef6df00eb5" type="function"/>
+    <keyword name="sigc::signal_with_accumulator::operator=" link="classsigc_1_1signal__with__accumulator.html#ac0dc555e87b209fb3fc4084cadab9631" type="function"/>
+    <keyword type="struct" name="sigc::slot&lt; T_return(T_arg...)&gt;" link="classsigc_1_1slot_3_01T__return_07T__arg_8_8_8_08_4.html"/>
+    <keyword name="sigc::slot&lt; T_return(T_arg...)&gt;::slot" link="classsigc_1_1slot_3_01T__return_07T__arg_8_8_8_08_4.html#acc6f588781fd085c25f1971ef5011cce" type="function"/>
+    <keyword name="sigc::slot&lt; T_return(T_arg...)&gt;::slot" link="classsigc_1_1slot_3_01T__return_07T__arg_8_8_8_08_4.html#a414a664fc0112a68963e6e5187287237" type="function"/>
+    <keyword name="sigc::slot&lt; T_return(T_arg...)&gt;::slot" link="classsigc_1_1slot_3_01T__return_07T__arg_8_8_8_08_4.html#a4f8fd59d40e1c7551dfed6612ee631a9" type="function"/>
+    <keyword name="sigc::slot&lt; T_return(T_arg...)&gt;::slot" link="classsigc_1_1slot_3_01T__return_07T__arg_8_8_8_08_4.html#ae7d852d9ac2c9a6a37564a0f4aed3872" type="function"/>
+    <keyword name="sigc::slot&lt; T_return(T_arg...)&gt;::operator()" link="classsigc_1_1slot_3_01T__return_07T__arg_8_8_8_08_4.html#a6cdad9fd4a040e7cc99375b92d2d4f4b" type="function"/>
+    <keyword name="sigc::slot&lt; T_return(T_arg...)&gt;::operator=" link="classsigc_1_1slot_3_01T__return_07T__arg_8_8_8_08_4.html#af729fbf89950d5d6bfb816b8d0899ec2" type="function"/>
+    <keyword name="sigc::slot&lt; T_return(T_arg...)&gt;::operator=" link="classsigc_1_1slot_3_01T__return_07T__arg_8_8_8_08_4.html#a22759a1af0d37b9e7432bbb046ceff8a" type="function"/>
+    <keyword type="struct" name="sigc::slot_base" link="classsigc_1_1slot__base.html"/>
+    <keyword name="sigc::slot_base::func_destroy_notify" link="classsigc_1_1slot__base.html#a719ea8d3cec443f2e63717bfbae41a30" type="typedef"/>
+    <keyword name="sigc::slot_base::slot_base" link="classsigc_1_1slot__base.html#a182d5db71ef371838c73bcf1c135cd9a" type="function"/>
+    <keyword name="sigc::slot_base::slot_base" link="classsigc_1_1slot__base.html#aadcbb54832b5207bddf89ac5433b531a" type="function"/>
+    <keyword name="sigc::slot_base::slot_base" link="classsigc_1_1slot__base.html#a5fbc2bf38a0d9ebcbe13d578d2b3d5a1" type="function"/>
+    <keyword name="sigc::slot_base::slot_base" link="classsigc_1_1slot__base.html#ad1fee67a5885e424c275ad0f48fc81b1" type="function"/>
+    <keyword name="sigc::slot_base::~slot_base" link="classsigc_1_1slot__base.html#a75c18c50860f63fb020fc2953576ea57" type="function"/>
+    <keyword name="sigc::slot_base::add_destroy_notify_callback" link="classsigc_1_1slot__base.html#a6864b09adae72d6c87d27adde7a1241b" type="function"/>
+    <keyword name="sigc::slot_base::block" link="classsigc_1_1slot__base.html#a657a8473164c963a5ca4828c88121bb9" type="function"/>
+    <keyword name="sigc::slot_base::blocked" link="classsigc_1_1slot__base.html#a2f266b6147c4a6bbc5b68994d2dc1517" type="function"/>
+    <keyword name="sigc::slot_base::disconnect" link="classsigc_1_1slot__base.html#a4042d221f7f07a7394d2eb0f14db2857" type="function"/>
+    <keyword name="sigc::slot_base::empty" link="classsigc_1_1slot__base.html#ae6ac6ca962a1f6a7506d0817165b5cef" type="function"/>
+    <keyword name="sigc::slot_base::operator bool" link="classsigc_1_1slot__base.html#a90d4d7d6037973a94d7dfd7ba9a5feb9" type="function"/>
+    <keyword name="sigc::slot_base::operator=" link="classsigc_1_1slot__base.html#a19522528264f1646f8ed982b0042ffad" type="function"/>
+    <keyword name="sigc::slot_base::operator=" link="classsigc_1_1slot__base.html#a64e36f28ee61a94c0496fe76f6b3e813" type="function"/>
+    <keyword name="sigc::slot_base::remove_destroy_notify_callback" link="classsigc_1_1slot__base.html#a98cadeae496214ddbcdb93defeef2290" type="function"/>
+    <keyword name="sigc::slot_base::set_parent" link="classsigc_1_1slot__base.html#a2b17848ee6104b628932c1fe5473ed1b" type="function"/>
+    <keyword name="sigc::slot_base::unblock" link="classsigc_1_1slot__base.html#a25ad0bd4d2cea4dbfcd09f7d393d266d" type="function"/>
+    <keyword type="struct" name="sigc::track_obj_functor" link="classsigc_1_1track__obj__functor.html"/>
+    <keyword name="sigc::track_obj_functor::track_obj_functor" link="classsigc_1_1track__obj__functor.html#aae2c45966604c0841c5a26204e002981" type="function"/>
+    <keyword name="sigc::track_obj_functor::operator()" link="classsigc_1_1track__obj__functor.html#af4e5d826d0b57d9556acbd7bc51269ee" type="function"/>
+    <keyword type="struct" name="sigc::trackable" link="structsigc_1_1trackable.html"/>
+    <keyword name="sigc::trackable::func_destroy_notify" link="structsigc_1_1trackable.html#a1721dff57885c3ff2bc409538ceb8097" type="typedef"/>
+    <keyword name="sigc::trackable::trackable" link="structsigc_1_1trackable.html#a7e1348841e762fb41b41c6f2ce9fa073" type="function"/>
+    <keyword name="sigc::trackable::trackable" link="structsigc_1_1trackable.html#ac8431d9452c9698a012597e6560c72fa" type="function"/>
+    <keyword name="sigc::trackable::trackable" link="structsigc_1_1trackable.html#a9a6ff5a4d7c51cede2117525f470f96a" type="function"/>
+    <keyword name="sigc::trackable::~trackable" link="structsigc_1_1trackable.html#a75587da09e30031db7a2519843f1f4fb" type="function"/>
+    <keyword name="sigc::trackable::add_destroy_notify_callback" link="structsigc_1_1trackable.html#a7e9678b7a0e59db3a7220689484dad34" type="function"/>
+    <keyword name="sigc::trackable::notify_callbacks" link="structsigc_1_1trackable.html#af2e23cfe7adc1ca844a3350bbac557cb" type="function"/>
+    <keyword name="sigc::trackable::operator=" link="structsigc_1_1trackable.html#a7494fbad23a65932ff1457d00d4edaf5" type="function"/>
+    <keyword name="sigc::trackable::operator=" link="structsigc_1_1trackable.html#a400b5799372238211a4437844d923a4e" type="function"/>
+    <keyword name="sigc::trackable::remove_destroy_notify_callback" link="structsigc_1_1trackable.html#a93be460f50044c6213b82f6ac4ba07fa" type="function"/>
+    <keyword type="struct" name="sigc::type_trait" link="structsigc_1_1type__trait.html"/>
+    <keyword name="sigc::type_trait::pass" link="structsigc_1_1type__trait.html#a7bc07ab05291c9e76192c662ac53f5b0" type="typedef"/>
+    <keyword name="sigc::type_trait::take" link="structsigc_1_1type__trait.html#a628e6e7930d6551bd4f884b02bcd5d17" type="typedef"/>
+    <keyword type="struct" name="sigc::type_trait&lt; const T_type &amp; &gt;" link="structsigc_1_1type__trait_3_01const_01T__type_01_6_01_4.html"/>
+    <keyword name="sigc::type_trait&lt; const T_type &amp; &gt;::pass" link="structsigc_1_1type__trait_3_01const_01T__type_01_6_01_4.html#a2354c3ddf9a055f693941d8353385ffa" type="typedef"/>
+    <keyword name="sigc::type_trait&lt; const T_type &amp; &gt;::take" link="structsigc_1_1type__trait_3_01const_01T__type_01_6_01_4.html#acc1d043f494e55adc45e1439a402c298" type="typedef"/>
+    <keyword type="struct" name="sigc::type_trait&lt; T_type &amp; &gt;" link="structsigc_1_1type__trait_3_01T__type_01_6_01_4.html"/>
+    <keyword name="sigc::type_trait&lt; T_type &amp; &gt;::pass" link="structsigc_1_1type__trait_3_01T__type_01_6_01_4.html#a142c6b05d842c93a0da4dbd04d529409" type="typedef"/>
+    <keyword name="sigc::type_trait&lt; T_type &amp; &gt;::take" link="structsigc_1_1type__trait_3_01T__type_01_6_01_4.html#a966fa5c1414593811fee9a7e4cb0987f" type="typedef"/>
+    <keyword type="struct" name="sigc::type_trait&lt; T_type &amp;&amp; &gt;" link="structsigc_1_1type__trait_3_01T__type_01_6_6_01_4.html"/>
+    <keyword name="sigc::type_trait&lt; T_type &amp;&amp; &gt;::pass" link="structsigc_1_1type__trait_3_01T__type_01_6_6_01_4.html#a337e6dbd33a45d03ca371e50678978cc" type="typedef"/>
+    <keyword name="sigc::type_trait&lt; T_type &amp;&amp; &gt;::take" link="structsigc_1_1type__trait_3_01T__type_01_6_6_01_4.html#a7bcd2f9ae21fb0efd395f96f8ca7c906" type="typedef"/>
+    <keyword type="struct" name="sigc::type_trait&lt; T_type[N]&gt;" link="structsigc_1_1type__trait_3_01T__type_0fN_0e_4.html"/>
+    <keyword name="sigc::type_trait&lt; T_type[N]&gt;::pass" link="structsigc_1_1type__trait_3_01T__type_0fN_0e_4.html#acca526a7a67432da8a147a523f8ee11e" type="typedef"/>
+    <keyword name="sigc::type_trait&lt; T_type[N]&gt;::take" link="structsigc_1_1type__trait_3_01T__type_0fN_0e_4.html#a198b15156cd2136917e23b3fa1ae278e" type="typedef"/>
+    <keyword type="struct" name="sigc::type_trait&lt; void &gt;" link="structsigc_1_1type__trait_3_01void_01_4.html"/>
+    <keyword name="sigc::type_trait&lt; void &gt;::pass" link="structsigc_1_1type__trait_3_01void_01_4.html#aab612d64e1797770630fa9f486b8d972" type="typedef"/>
+    <keyword name="sigc::type_trait&lt; void &gt;::take" link="structsigc_1_1type__trait_3_01void_01_4.html#a8181667b02cb286afd339613b0e5d3c2" type="typedef"/>
+    <keyword type="struct" name="sigc::unwrap_reference" link="structsigc_1_1unwrap__reference.html"/>
+    <keyword name="sigc::unwrap_reference::type" link="structsigc_1_1unwrap__reference.html#a4fce6ccdec89d46831dc3b0d2e62e583" type="typedef"/>
+    <keyword type="struct" name="sigc::unwrap_reference&lt; std::reference_wrapper&lt; const T_type &gt; &gt;" link="structsigc_1_1unwrap__reference_3_01std_1_1reference__wrapper_3_01const_01T__type_01_4_01_4.html"/>
+    <keyword name="sigc::unwrap_reference&lt; std::reference_wrapper&lt; const T_type &gt; &gt;::type" link="structsigc_1_1unwrap__reference_3_01std_1_1reference__wrapper_3_01const_01T__type_01_4_01_4.html#a7715612ec7a2d390bce25b1ea313adc7" type="typedef"/>
+    <keyword type="struct" name="sigc::unwrap_reference&lt; std::reference_wrapper&lt; T_type &gt; &gt;" link="structsigc_1_1unwrap__reference_3_01std_1_1reference__wrapper_3_01T__type_01_4_01_4.html"/>
+    <keyword name="sigc::unwrap_reference&lt; std::reference_wrapper&lt; T_type &gt; &gt;::type" link="structsigc_1_1unwrap__reference_3_01std_1_1reference__wrapper_3_01T__type_01_4_01_4.html#a5bc4ccb4302aaeabd066e29259ceff6b" type="typedef"/>
+    <keyword type="struct" name="sigc::visitor" link="structsigc_1_1visitor.html"/>
+    <keyword name="sigc::visitor::do_visit_each" link="structsigc_1_1visitor.html#a75d738d8762f376582cfd257ca912fff" type="function"/>
+    <keyword type="struct" name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;" link="classsigc_1_1signal__with__accumulator.html"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::slot_type" link="classsigc_1_1signal__with__accumulator.html#a2eee90cba16be957a3212d1b541ddc04" type="typedef"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html#a3a3897c85039df0bdfb3badcf0123674" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html#a33d243a0841a085e3d2fddc7723de5ce" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html#a3a86b1a92c39a2f82f0c568243894462" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::connect" link="classsigc_1_1signal__with__accumulator.html#a3765ae85a8ffaae0d48afa15fffe6009" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::connect" link="classsigc_1_1signal__with__accumulator.html#adfad79b62b1a72bbb74bf329d84732a4" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::emit" link="classsigc_1_1signal__with__accumulator.html#a9cdd5ffe58f2445a1012c7be05f7029f" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::make_slot" link="classsigc_1_1signal__with__accumulator.html#a6c35faed011b8497e2433fca322976ea" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::operator()" link="classsigc_1_1signal__with__accumulator.html#aa87c95f2e865abb8b3fe999fd9d5205c" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::operator=" link="classsigc_1_1signal__with__accumulator.html#a1df17e4384549a0029d459ef6df00eb5" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, T_accumulator, T_arg... &gt;::operator=" link="classsigc_1_1signal__with__accumulator.html#ac0dc555e87b209fb3fc4084cadab9631" type="function"/>
+    <keyword type="struct" name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;" link="classsigc_1_1signal__with__accumulator.html"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::slot_type" link="classsigc_1_1signal__with__accumulator.html#a2eee90cba16be957a3212d1b541ddc04" type="typedef"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html#a3a3897c85039df0bdfb3badcf0123674" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html#a33d243a0841a085e3d2fddc7723de5ce" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::signal_with_accumulator" link="classsigc_1_1signal__with__accumulator.html#a3a86b1a92c39a2f82f0c568243894462" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::connect" link="classsigc_1_1signal__with__accumulator.html#a3765ae85a8ffaae0d48afa15fffe6009" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::connect" link="classsigc_1_1signal__with__accumulator.html#adfad79b62b1a72bbb74bf329d84732a4" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::emit" link="classsigc_1_1signal__with__accumulator.html#a9cdd5ffe58f2445a1012c7be05f7029f" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::make_slot" link="classsigc_1_1signal__with__accumulator.html#a6c35faed011b8497e2433fca322976ea" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::operator()" link="classsigc_1_1signal__with__accumulator.html#aa87c95f2e865abb8b3fe999fd9d5205c" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::operator=" link="classsigc_1_1signal__with__accumulator.html#a1df17e4384549a0029d459ef6df00eb5" type="function"/>
+    <keyword name="signal_with_accumulator&lt; T_return, void, T_arg... &gt;::operator=" link="classsigc_1_1signal__with__accumulator.html#ac0dc555e87b209fb3fc4084cadab9631" type="function"/>
+    <keyword name="sigc::type_trait_pass_t" link="namespacesigc.html#aa2d13c7fc829cfec6e0f9d5092f2aa79" type="typedef"/>
+    <keyword name="sigc::type_trait_take_t" link="namespacesigc.html#aa0d56c61023af35c47b79db80b32fd2e" type="typedef"/>
+    <keyword name="sigc::bind" link="group__bind.html#ga5f3052c2e56f44047bc5627fc3d5ed63" type="function"/>
+    <keyword name="sigc::bind" link="group__bind.html#ga572970c90b3b5de4729ae607cd134a48" type="function"/>
+    <keyword name="sigc::bind_return" link="group__bind.html#ga1fe7595fccb66af31a2c4c6628ad1211" type="function"/>
+    <keyword name="sigc::compose" link="group__compose.html#ga409ad0b48460ec6258992e0db8068c2b" type="function"/>
+    <keyword name="sigc::compose" link="group__compose.html#gafe54b1deb9bc7d100e7fde1473626c91" type="function"/>
+    <keyword name="sigc::exception_catch" link="namespacesigc.html#a087997a75b3111a3f3794d7215fd8cc1" type="function"/>
+    <keyword name="sigc::hide" link="group__hide.html#ga9fb2e235e725beff4941a0ec076b4def" type="function"/>
+    <keyword name="sigc::hide" link="group__hide.html#ga83b17f6ce498f801415d1fb662344b9b" type="function"/>
+    <keyword name="sigc::hide_return" link="group__hide.html#gad4b3c31144decd0e6ad5df0e85a51edc" type="function"/>
+    <keyword name="sigc::mem_fun" link="group__mem__fun.html#ga3b501a5f603a575b05a8985af4485adf" type="function"/>
+    <keyword name="sigc::mem_fun" link="group__mem__fun.html#ga5d28dcf1bb88830a6e50d08d1fe7ec08" type="function"/>
+    <keyword name="sigc::ptr_fun" link="group__ptr__fun.html#ga90d9748e4be611e80869c0a6a8d8e62a" type="function"/>
+    <keyword name="sigc::retype" link="group__retype.html#gadfd6bb36213c29b50a14fe4b9f19306c" type="function"/>
+    <keyword name="sigc::retype" link="group__retype.html#gac4067e1b90fac1396a4850a0fe8f3b45" type="function"/>
+    <keyword name="sigc::retype_return" link="group__retype.html#gaee83df6f09125a59cab92e00aeb8b753" type="function"/>
+    <keyword name="sigc::track_obj" link="group__track__obj.html#gaf6c81ae078b3cb2a9809ecbd09b1c123" type="function"/>
+    <keyword name="sigc::unwrap" link="namespacesigc.html#a783debc26872ae783c27c0259f40107c" type="function"/>
+    <keyword name="sigc::unwrap" link="namespacesigc.html#a3256789f3d3bb134471d7cf8fcf4d91a" type="function"/>
+    <keyword name="sigc::visit_each" link="group__sigcfunctors.html#ga5e7aa8b975e706f4fe9e8365892a7fd0" type="function"/>
+    <keyword name="sigc::visit_each_trackable" link="group__sigcfunctors.html#gaa352d90af3801576a8e0c7d176e5571d" type="function"/>
+  </functions>
+</book>

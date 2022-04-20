@@ -1,50 +1,62 @@
-// -*- c++ -*-
-/* Copyright 2002, The libsigc++ Development Team
+/* Copyright 2002 - 2016, The libsigc++ Development Team
  *  Assigned to public domain.  Use as you wish without restriction.
  */
 
+#include "testutilities.h"
 #include <sigc++/adaptors/retype_return.h>
 #include <sigc++/functors/slot.h>
-#include <iostream>
 
-SIGC_USING_STD(cout)
-SIGC_USING_STD(endl)
-
-struct foo : public sigc::functor_base
+namespace
 {
-  typedef float result_type;
-  float operator()(int i) 
+std::ostringstream result_stream;
+
+struct foo
+{
+  float operator()(int i)
   {
-    std::cout << "foo(int " << i << ")" << std::endl;
+    result_stream << "foo(int " << i << ") ";
     return i;
   }
 
-  float operator()(float i) 
+  float operator()(float i)
   {
-    std::cout << "foo(float " << i << ")" << std::endl;
+    result_stream << "foo(float " << i << ") ";
     return i * 5;
   }
 };
 
-struct bar : public sigc::trackable, public sigc::functor_base
+struct bar : public sigc::trackable
 {
-  typedef int result_type;
   int operator()(int i)
   {
-    std::cout << "bar(int " << i << ")" << std::endl;
+    result_stream << "bar(int " << i << ")";
     return i;
   }
 };
 
-int main()
+} // end anonymous namespace
+
+int
+main(int argc, char* argv[])
 {
+  auto util = TestUtilities::get_instance();
+
+  if (!util->check_command_args(argc, argv))
+    return util->get_result_and_delete_instance() ? EXIT_SUCCESS : EXIT_FAILURE;
+
   // retype_return<int>
-  std::cout << sigc::retype_return<int>(foo())(1.234f) << std::endl;
+  result_stream << sigc::retype_return<int>(foo())(1.234f);
+  util->check_result(result_stream, "foo(float 1.234) 6");
 
   // retype_return<void> / hide_return
-  sigc::slot<void, int> sl;
+  sigc::slot<void(int)> sl;
   sl = sigc::retype_return<void>(bar());
   sl(5);
+  util->check_result(result_stream, "bar(int 5)");
+
   sl = sigc::hide_return(bar());
   sl(6);
+  util->check_result(result_stream, "bar(int 6)");
+
+  return util->get_result_and_delete_instance() ? EXIT_SUCCESS : EXIT_FAILURE;
 }

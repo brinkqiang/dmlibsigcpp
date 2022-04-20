@@ -1,135 +1,90 @@
-dnl Configure.in
-dnl
-dnl  Source for generating compiler independent libraries.
-dnl
+## Copyright (c) 2009  Openismus GmbH  <http://www.openismus.com/>
+##
+## This file is part of libsigc++.
+##
+## libsigc++ is free software: you can redistribute it and/or modify it
+## under the terms of the GNU Lesser General Public License as published
+## by the Free Software Foundation, either version 2.1 of the License,
+## or (at your option) any later version.
+##
+## libsigc++ is distributed in the hope that it will be useful, but
+## WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+## See the GNU Lesser General Public License for more details.
+##
+## You should have received a copy of the GNU Lesser General Public License
+## along with this library.  If not, see <http://www.gnu.org/licenses/>.
 
-#We use pushdef here because we can't use shell variables before AC_INIT, but we want to use a variable with AC_INIT:
-dnl   thus make format_package-0.0.1.tar.gz 
-pushdef([FP_MAJOR_VERSION],     [2])
-pushdef([FP_MINOR_VERSION],     [0])
-pushdef([FP_MICRO_VERSION],     [18])
-pushdef([FP_EXTRA_VERSION],     [])
-pushdef([FP_VERSION], FP_MAJOR_VERSION.FP_MINOR_VERSION.FP_MICRO_VERSION[]FP_EXTRA_VERSION)
-# package name, version, support contact, tarball name.
-AC_INIT([libsigc++], FP_VERSION, [libsigc-list@gnome.org], [libsigc++])
+AC_INIT([libsigc++], [3.2.0],
+        [https://github.com/libsigcplusplus/libsigcplusplus/issues/],
+        [libsigc++], [https://libsigcplusplus.github.io/libsigcplusplus/])
+AC_PREREQ([2.59])
 
-dnl AC_CONFIG_SRCDIR is required name a file which is unique to the package
-dnl just to prevent someone from copying the configure to the wrong package.
-AC_CONFIG_SRCDIR([sigc++])
+AC_CONFIG_SRCDIR([sigc++/sigc++.h])
+AC_CONFIG_AUX_DIR([build])
+AC_CONFIG_MACRO_DIR([build])
+AC_CONFIG_HEADERS([config.h sigc++config.h])
 
-AC_PREREQ(2.59)
-
-#########################################################################
-#  Version and initialization
-#########################################################################
-[FP_MAJOR_VERSION]=FP_MAJOR_VERSION
-[FP_MINOR_VERSION]=FP_MINOR_VERSION
-[FP_MICRO_VERSION]=FP_MICRO_VERSION
-[FP_EXTRA_VERSION]=FP_EXTRA_VERSION
-[FP_VERSION]=FP_VERSION
-popdef([FP_MAJOR_VERSION])
-popdef([FP_MINOR_VERSION])
-popdef([FP_MICRO_VERSION])
-popdef([FP_EXTRA_VERSION])
-popdef([FP_VERSION])
-FP_RELEASE=$FP_MAJOR_VERSION.$FP_MINOR_VERSION
-AC_DEFINE_UNQUOTED(FP_MAJOR_VERSION, $FP_MAJOR_VERSION, [Major version of libsigc++])
-AC_DEFINE_UNQUOTED(FP_MINOR_VERSION, $FP_MINOR_VERSION, [Minor version of libsigc++])
-AC_DEFINE_UNQUOTED(FP_MICRO_VERSION, $FP_MICRO_VERSION, [Micro version of libsigc++])
-AC_SUBST(FP_VERSION)
-AC_SUBST(FP_RELEASE)
-AC_SUBST(FP_MAJOR_VERSION)
-AC_SUBST(FP_MINOR_VERSION)
-AC_SUBST(FP_MICRO_VERSION)
-
-dnl For automake.
-VERSION=$FP_VERSION
-PACKAGE=libsigc++
-
-# Initialize automake stuff
-# tar-ustar asks it to use a sensible tar format that can handle long filenames.
-AM_INIT_AUTOMAKE([1.9 tar-ustar])
-
-dnl Specify a configuration file:
-AC_CONFIG_HEADER(sigc++config.h)
-
-dnl Macros to support windows platforms
-AC_CYGWIN
-#AC_MINGW32
-AC_EXEEXT
-
-dnl this package needs m4
-AC_CHECK_PROGS(M4, gm4 m4, m4)
-
-dnl perl is needed for building the reference documentation
-AC_PATH_PROGS([PERL_PATH], [perl perl5], [perl])
-AC_SUBST([PERL_PATH])
-
-dnl disable autoheader
-AUTOHEADER=':'
-
-dnl Maintainer support (autodependencies and packaging)
+AM_INIT_AUTOMAKE([1.9 -Wno-portability check-news no-dist-gzip dist-xz tar-ustar no-define nostdinc foreign])
+# Support silent build rules.
+# Disable by either passing --disable-silent-rules to configure or passing V=1 to make.
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 AM_MAINTAINER_MODE
+AC_ARG_VAR([ACLOCAL_FLAGS], [aclocal flags, e.g. -I <macro dir>])
 
-dnl Using C compiler
-AC_PROG_CC
-AC_PROG_CPP
+MM_PREREQ([0.9.12])
+MM_INIT_MODULE([sigc++-3.0])
+MM_CONFIG_DOCTOOL_DIR([docs/docs])
 
-dnl Used for enabling the "-no-undefined" flag while generating DLLs
-dnl Borrowed from the official gtk+-2 configure.in
-AC_MSG_CHECKING([for some Win32 platform])
-case "$host" in
-  *-*-mingw*|*-*-cygwin*)
-    platform_win32=yes
-    ;;
-  *)
-    platform_win32=no
-    ;;
-esac
-AC_MSG_RESULT([$platform_win32])
-AM_CONDITIONAL(PLATFORM_WIN32, test "$platform_win32" = "yes")
-
-dnl Using libtool
-AC_CONFIG_MACRO_DIR(scripts)
-AC_LIBTOOL_WIN32_DLL
-dnl: Use with libtool 1.5a instead of AM_PROG_LIBTOOL: LT_INIT
-AM_PROG_LIBTOOL
-
-dnl Using C++ compiler
 AC_PROG_CXX
-AC_LANG_CPLUSPLUS
+MM_AX_CXX_COMPILE_STDCXX([17],[noext],[mandatory])
 
-SIGC_CXX_GCC_TEMPLATE_SPECIALIZATION_OPERATOR_OVERLOAD()
-SIGC_CXX_MSVC_TEMPLATE_SPECIALIZATION_OPERATOR_OVERLOAD()
-SIGC_CXX_SELF_REFERENCE_IN_MEMBER_INITIALIZATION()
-SIGC_CXX_HAS_NAMESPACE_STD()
-SIGC_CXX_HAS_SUN_REVERSE_ITERATOR()
+AC_DISABLE_STATIC
+LT_INIT([win32-dll])
 
-if test "X$config_error" = "Xyes" ; then
-  AC_ERROR(
-[One or more of the required compiler features is missing.
-If you believe this is in error, please consult the config.log file
-for further details.
+MM_ARG_ENABLE_DOCUMENTATION
+MM_ARG_WITH_TAGFILE_DOC([libstdc++.tag], [mm-common-libstdc++])
+
+AC_LANG([C++])
+
+AS_IF([test "x$config_error" = xyes],
+      [AC_MSG_FAILURE([[One or more of the required C++ compiler features is missing.]])])
+
+# Evaluate the --enable-warnings=level option.
+MM_ARG_ENABLE_WARNINGS([SIGC_WXXFLAGS],
+                       [-Wall],
+                       [-pedantic -Wall -Wextra -Wsuggest-override -Wshadow -Wzero-as-null-pointer-constant -Wformat-security])
+
+# Offer the ability to omit some API from the library.
+MM_ARG_DISABLE_DEPRECATED_API([SIGCXX])
+
+AC_ARG_ENABLE(benchmark,
+  AS_HELP_STRING([--enable-benchmark=yes|no])
+)
+
+AM_CONDITIONAL([SIGC_BUILD_BENCHMARK], [test "x$enable_benchmark" = xyes])
+
+AS_IF([test "x$enable_benchmark" = xyes],[
+  #Use boost::timer for our benchmark, if it's available.
+  # See http://www.gnu.org/software/autoconf-archive/ax_boost_base.html
+  # Boost System is needed by Boost Timer
+  AX_BOOST_BASE
+  AX_BOOST_SYSTEM
+  AX_BOOST_TIMER
 ])
-fi
- 
 
-# Generate output
-AC_OUTPUT([
-  Makefile
-  sigc++-2.0.pc
+AC_CONFIG_FILES([Makefile
+                 ${SIGCXX_MODULE_NAME}.pc:sigc++.pc.in
+                 ${SIGCXX_MODULE_NAME}-uninstalled.pc:sigc++-uninstalled.pc.in
+                 cmake/Makefile
+                 sigc++/Makefile
+                 examples/Makefile
+                 tests/Makefile
+                 docs/docs/Makefile
+                 docs/docs/reference/Doxyfile
+                 MSVC_NMake/sigc.rc])
 
-  sigc++/Makefile
-  scripts/Makefile
-  tests/Makefile
-  examples/Makefile
-  MSVC_Net2003/Makefile
-  MSVC_Net2003/sigc-2.0.rc
-  libsigc++-2.0.spec
-
-  docs/Makefile
-    docs/manual/Makefile
-    docs/images/Makefile
-    docs/reference/Makefile
-    docs/reference/Doxyfile
-])
+# Copy the generated configuration headers into the MSVC NMake directory.
+AC_CONFIG_COMMANDS([MSVC_NMake/sigc++config.h],
+                   [cp -f sigc++config.h MSVC_NMake/sigc++config.h])
+AC_OUTPUT

@@ -1,0 +1,8 @@
+<map id="sigc::signal_base" name="sigc::signal_base">
+<area shape="rect" id="node1" title="Base class for the sigc::signal template." alt="" coords="5,93,139,120"/>
+<area shape="rect" id="node2" href="$classsigc_1_1signal__with__accumulator.html" title=" " alt="" coords="187,5,405,61"/>
+<area shape="rect" id="node4" href="$classsigc_1_1signal__with__accumulator.html" title=" " alt="" coords="187,86,405,127"/>
+<area shape="rect" id="node6" href="$classsigc_1_1signal__with__accumulator.html" title="Signal declaration." alt="" coords="187,152,405,208"/>
+<area shape="rect" id="node3" href="$classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4_1_1accumulated.html" title="Like sigc::signal but the additional template parameter T_accumulator defines the accumulator type th..." alt="" coords="453,5,636,61"/>
+<area shape="rect" id="node5" href="$classsigc_1_1signal_3_01T__return_07T__arg_8_8_8_08_4.html" title="signal can be used to connect() slots that are invoked during subsequent calls to emit()." alt="" coords="463,86,627,127"/>
+</map>

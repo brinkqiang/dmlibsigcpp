@@ -1,5 +1,5 @@
 /*
- * Copyright 2002, The libsigc++ Development Team
+ * Copyright 2002 - 2016, The libsigc++ Development Team
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -16,19 +16,9 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-#ifndef _SIGC_BIND_RETURN_HPP_
-#define _SIGC_BIND_RETURN_HPP_
+#ifndef SIGC_BIND_RETURN_HPP
+#define SIGC_BIND_RETURN_HPP
 
 #include <sigc++/adaptors/bind_return.h>
 
-#ifndef LIBSIGC_DISABLE_DEPRECATED
-
-namespace SigC {
-
-using ::sigc::bind_return;
-
-}
-
-#endif /* LIBSIGC_DISABLE_DEPRECATED */
-
-#endif /* _SIGC_BIND_RETURN_HPP_ */
+#endif /* SIGC_BIND_RETURN_HPP */

@@ -1,6 +1,5 @@
-// -*- c++ -*-
 /*
- * Copyright 2002, The libsigc++ Development Team
+ * Copyright 2002 - 2016, The libsigc++ Development Team
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -19,93 +18,71 @@
  */
 
 #include <sigc++/connection.h>
-using namespace std;
 
-namespace sigc {
-
-connection::connection()
-: slot_(0)
-{}
-
-connection::connection(const connection& c)
-: slot_(c.slot_)
+namespace sigc
 {
-  //Let the connection forget about the signal handler when the handler object dies:
-  if (slot_)
-    slot_->add_destroy_notify_callback(this, &notify);
-}
 
-connection::connection(slot_base& sl)
-: slot_(&sl)
-{
-  //Let the connection forget about the signal handler when the handler object dies:
-  slot_->add_destroy_notify_callback(this, &notify);
-}
+connection::connection() noexcept : slot_(nullptr) {}
 
-connection& connection::operator=(const connection& c)
+connection::connection(slot_base& slot) : slot_(&slot) {}
+
+connection::connection(const connection& c) : slot_(c.slot_) {}
+
+connection&
+connection::operator=(const connection& src)
 {
-  set_slot(c.slot_);
+  set_slot(src.slot_);
   return *this;
 }
 
-connection::~connection()
-{
-  if (slot_)
-    slot_->remove_destroy_notify_callback(this);
-}
+connection::~connection() {}
 
-bool connection::empty() const
+bool
+connection::empty() const noexcept
 {
   return (!slot_ || slot_->empty());
 }
 
-bool connection::connected() const
+bool
+connection::connected() const noexcept
 {
   return !empty();
 }
 
-bool connection::blocked() const
+bool
+connection::blocked() const noexcept
 {
   return (slot_ ? slot_->blocked() : false);
 }
 
-bool connection::block(bool should_block)
+bool
+connection::block(bool should_block) noexcept
 {
   return (slot_ ? slot_->block(should_block) : false);
 }
 
-bool connection::unblock()
+bool
+connection::unblock() noexcept
 {
   return (slot_ ? slot_->unblock() : false);
 }
 
-void connection::disconnect()
+void
+connection::disconnect()
 {
   if (slot_)
     slot_->disconnect(); // This notifies slot_'s parent.
-} 
+}
 
-connection::operator bool()
+connection::operator bool() const noexcept
 {
   return !empty();
 }
-    
-void connection::set_slot(slot_base* sl)
-{
-  if (slot_)
-    slot_->remove_destroy_notify_callback(this);
 
+void
+connection::set_slot(const sigc::internal::weak_raw_ptr<slot_base>& sl)
+{
   slot_ = sl;
-
-  if (slot_)
-    slot_->add_destroy_notify_callback(this, &notify);
-}
-
-void* connection::notify(void* data)
-{
-  connection* self = reinterpret_cast<connection*>(data);
-  self->slot_ = 0;
-  return 0;
 }
 
 } /* namespace sigc */
