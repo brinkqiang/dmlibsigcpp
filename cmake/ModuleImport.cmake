@@ -105,7 +105,7 @@ macro(ExeImport ModulePath DependsLib)
             ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}/*.hpp
             ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}/*.h)
 
-            LIST(FILTER BIN_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}/tpl/*")
+            #LIST(FILTER BIN_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}/tpl/*")
 
             MESSAGE(STATUS "BIN_SOURCES ${LIB_SOURCES}")
 
@@ -131,7 +131,7 @@ macro(LibImport ModuleName ModulePath)
         ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/*.h
         )
 
-        LIST(FILTER LIB_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/tpl/*")
+        #LIST(FILTER LIB_SOURCES EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/tpl/*")
 
         IF (WIN32)
             LIST(APPEND LIB_SOURCES)
