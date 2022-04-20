@@ -22,4 +22,4 @@ SET(CMAKE_CXX_STANDARD 11)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 LibImport("dmlibsigcpp" "sigc++")
-ExeImport("tests" "dmlibsigcpp")
+ExeImport("test" "dmlibsigcpp")
