@@ -18,5 +18,8 @@ MESSAGE(STATUS "VERSION: ${DMLIBSIGCPP_VERSION}")
 OPTION(USE_DMLIBSIGCPP "use dmlibsigcpp" OFF)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/sigc++config.h.in ${CMAKE_CURRENT_SOURCE_DIR}/src/sigc++config.h)
 
+SET(CMAKE_CXX_STANDARD 17)
+SET(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 LibImport("dmlibsigcpp" "src")
 ExeImport("tests" "dmlibsigcpp")
