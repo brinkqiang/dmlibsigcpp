@@ -1,0 +1,41 @@
+<area shape="rect" href="$classsigc_1_1signal0.html" title="Signal declaration." alt="" coords="471,56,713,83">
+<area shape="rect" href="$classsigc_1_1signal0.html" title="sigc::signal0\&lt; T_return, nil \&gt;" alt="" coords="504,132,680,159">
+<area shape="rect" href="$classsigc_1_1signal1.html" title="Signal declaration." alt="" coords="448,208,736,235">
+<area shape="rect" href="$classsigc_1_1signal1.html" title="sigc::signal1\&lt; T_return, T_arg1, nil \&gt;" alt="" coords="481,284,703,311">
+<area shape="rect" href="$classsigc_1_1signal2.html" title="Signal declaration." alt="" coords="425,360,759,387">
+<area shape="rect" href="$classsigc_1_1signal2.html" title="sigc::signal2\&lt; T_return, T_arg1, T_arg2, nil \&gt;" alt="" coords="459,436,725,463">
+<area shape="rect" href="$classsigc_1_1signal3.html" title="Signal declaration." alt="" coords="403,512,781,539">
+<area shape="rect" href="$classsigc_1_1signal3.html" title="sigc::signal3\&lt; T_return, T_arg1, T_arg2, T_arg3, nil \&gt;" alt="" coords="436,563,748,589">
+<area shape="rect" href="$classsigc_1_1signal4.html" title="Signal declaration." alt="" coords="380,613,804,640">
+<area shape="rect" href="$classsigc_1_1signal4.html" title="sigc::signal4\&lt; T_return, T_arg1, T_arg2, T_arg3, T_arg4, nil \&gt;" alt="" coords="413,689,771,716">
+<area shape="rect" href="$classsigc_1_1signal5.html" title="Signal declaration." alt="" coords="357,765,827,792">
+<area shape="rect" href="$classsigc_1_1signal5.html" title="sigc::signal5\&lt; T_return, T_arg1, T_arg2, T_arg3, T_arg4, T_arg5, nil \&gt;" alt="" coords="391,841,793,868">
+<area shape="rect" href="$classsigc_1_1signal6.html" title="Signal declaration." alt="" coords="335,917,849,944">
+<area shape="rect" href="$classsigc_1_1signal6.html" title="sigc::signal6\&lt; T_return, T_arg1, T_arg2, T_arg3, T_arg4, T_arg5, T_arg6, nil \&gt;" alt="" coords="368,993,816,1020">
+<area shape="rect" href="$classsigc_1_1signal7.html" title="Signal declaration." alt="" coords="312,1069,872,1096">
+<area shape="rect" href="$classsigc_1_1signal7.html" title="sigc::signal7\&lt; T_return, T_arg1, T_arg2, T_arg3, T_arg4, T_arg5, T_arg6, T_arg7, nil \&gt;" alt="" coords="345,1145,839,1172">
+<area shape="rect" href="$structsigc_1_1trackable.html" title="Base class for objects with auto&#45;disconnection." alt="" coords="5,588,104,615">
+<area shape="rect" href="$classSigC_1_1Signal0.html" title="Signal declaration." alt="" coords="1109,5,1360,32">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_01_4_1_1accumulated.html" title="Convenience wrapper for the numbered sigc::signal0 template." alt="" coords="1049,56,1420,83">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_01_4.html" title="Convenience wrapper for the numbered sigc::signal0 template." alt="" coords="1087,107,1383,133">
+<area shape="rect" href="$classSigC_1_1Signal1.html" title="Signal declaration." alt="" coords="1087,157,1383,184">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_01_4_1_1accumulated.html" title="Convenience wrapper for the numbered sigc::signal1 template." alt="" coords="1037,208,1432,235">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_01_4.html" title="Convenience wrapper for the numbered sigc::signal1 template." alt="" coords="1075,259,1395,285">
+<area shape="rect" href="$classSigC_1_1Signal2.html" title="Signal declaration." alt="" coords="1064,309,1405,336">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_01_4_1_1accumulated.html" title="Convenience wrapper for the numbered sigc::signal2 template." alt="" coords="1025,360,1444,387">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01nil_00_01nil_00_01nil_00_01nil_00_01nil_01_4.html" title="Convenience wrapper for the numbered sigc::signal2 template." alt="" coords="1063,411,1407,437">
+<area shape="rect" href="$classSigC_1_1Signal3.html" title="Signal declaration." alt="" coords="1041,461,1428,488">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01T__arg3_00_01nil_00_01nil_00_01852c349c390cefa04662a850d84c0a94.html" title="Convenience wrapper for the numbered sigc::signal3 template." alt="" coords="1013,512,1456,539">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01T__arg3_00_01nil_00_01nil_00_01nil_00_01nil_01_4.html" title="Convenience wrapper for the numbered sigc::signal3 template." alt="" coords="1051,563,1419,589">
+<area shape="rect" href="$classSigC_1_1Signal4.html" title="Signal declaration." alt="" coords="1019,613,1451,640">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01T__arg3_00_01T__arg4_00_01nil_0d729ce48b1328d982e0ee754652fed04.html" title="Convenience wrapper for the numbered sigc::signal4 template." alt="" coords="1001,664,1468,691">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01T__arg3_00_01T__arg4_00_01nil_00_01nil_00_01nil_01_4.html" title="Convenience wrapper for the numbered sigc::signal4 template." alt="" coords="1039,715,1431,741">
+<area shape="rect" href="$classSigC_1_1Signal5.html" title="Signal declaration." alt="" coords="996,765,1473,792">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01T__arg3_00_01T__arg4_00_01T__arcf6cb51783c363bfae7c4a91d9685109.html" title="Convenience wrapper for the numbered sigc::signal5 template." alt="" coords="989,816,1480,843">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01T__arg3_00_01T__arg4_00_01T__arg5_00_01nil_00_01nil_01_4.html" title="Convenience wrapper for the numbered sigc::signal5 template." alt="" coords="1027,867,1443,893">
+<area shape="rect" href="$classSigC_1_1Signal6.html" title="Signal declaration." alt="" coords="973,917,1496,944">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01T__arg3_00_01T__arg4_00_01T__are33def4d0c1a12dcbfd220489302db67.html" title="Convenience wrapper for the numbered sigc::signal6 template." alt="" coords="976,968,1493,995">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01T__arg3_00_01T__arg4_00_01T__arg5_00_01T__arg6_00_01nil_01_4.html" title="Convenience wrapper for the numbered sigc::signal6 template." alt="" coords="1013,1019,1456,1045">
+<area shape="rect" href="$classSigC_1_1Signal7.html" title="Signal declaration." alt="" coords="951,1069,1519,1096">
+<area shape="rect" href="$classsigc_1_1signal_1_1accumulated.html" title="Convenience wrapper for the numbered sigc::signal# templates." alt="" coords="920,1120,1549,1147">
+<area shape="rect" href="$classsigc_1_1signal.html" title="Convenience wrapper for the numbered sigc::signal# templates." alt="" coords="1001,1171,1468,1197">

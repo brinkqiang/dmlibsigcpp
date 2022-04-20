@@ -1,0 +1,4 @@
+<area shape="rect" href="$classSigC_1_1Signal4.html" title="Signal declaration." alt="" coords="805,5,1237,32">
+<area shape="rect" href="$classsigc_1_1signal_3_01T__return_00_01T__arg1_00_01T__arg2_00_01T__arg3_00_01T__arg4_00_01nil_0d729ce48b1328d982e0ee754652fed04.html" title="Convenience wrapper for the numbered sigc::signal4 template." alt="" coords="788,56,1255,83">
+<area shape="rect" href="$structsigc_1_1signal__base.html" title="Base class for the sigc::signal# templates." alt="" coords="152,31,264,57">
+<area shape="rect" href="$structsigc_1_1trackable.html" title="Base class for objects with auto&#45;disconnection." alt="" coords="5,31,104,57">
