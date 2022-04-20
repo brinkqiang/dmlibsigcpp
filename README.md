@@ -22,7 +22,7 @@ Copyright (c) 2013-2018 brinkqiang (brink.qiang@gmail.com)
 [win-link]:  https://github.com/brinkqiang/dmlibsigcpp/actions/workflows/win.yml "win build status"
 
 ## Intro
-dmlibsigcpp
+dmlibsigcpp mod by libsigc++
 ```cpp
 ```
 ## Contacts
