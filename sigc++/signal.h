@@ -18,7 +18,7 @@
   //Compilers, such as older versions of SUN Forte C++, that do not allow this also often
   //do not allow a typedef to have the same name as a class in the typedef's definition.
   //For Sun Forte CC 5.7 (SUN Workshop 10), comment this out to fix the build.
-  #define SIGC_TYPEDEF_REDEFINE_ALLOWED 1
+  //#define SIGC_TYPEDEF_REDEFINE_ALLOWED 1
 #endif
 
 namespace sigc {
