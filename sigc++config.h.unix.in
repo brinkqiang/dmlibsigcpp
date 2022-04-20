@@ -63,3 +63,4 @@
 #else
   #  define SIGC_USING_STD(Symbol) /* empty */
 #endif
+#endif /* _SIGCXX_CONFIG_H */
