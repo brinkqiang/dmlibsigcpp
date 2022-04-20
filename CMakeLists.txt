@@ -22,7 +22,7 @@ else(UNIX)
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/sigc++config.h.unix.in ${CMAKE_CURRENT_SOURCE_DIR}/sigc++config.h)
 endif(WIN32)
 
-SET(CMAKE_CXX_STANDARD 14)
+SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 LibImport("dmlibsigcpp" "sigc++")
